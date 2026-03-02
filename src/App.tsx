@@ -233,7 +233,6 @@ function App() {
         <footer className="mt-12 lg:mt-0">
           <div className="flex space-x-6 grayscale opacity-30 hover:opacity-100 transition-all duration-700">
             <a href="https://www.instagram.com/henrilai.photography/" target="_blank" rel="noreferrer" className="hover:text-black"><Instagram size={16} strokeWidth={1.5} /></a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-black"><Linkedin size={16} strokeWidth={1.5} /></a>
           </div>
           <p className="text-[0.56rem] text-gray-300 mt-6 uppercase tracking-[0.2em]">© 2026 Henri Lai</p>
         </footer>
