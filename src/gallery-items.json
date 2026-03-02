@@ -5,7 +5,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/2023 PNGL (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 2,
@@ -13,7 +14,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/2023 PNGL (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 3,
@@ -21,7 +23,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/2023 PNGL (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 4,
@@ -29,7 +32,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/2023 PNGL (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 5,
@@ -37,7 +41,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/2023 PNGL (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 6,
@@ -45,7 +50,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/2023 PNGL (6).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 7,
@@ -53,7 +59,8 @@
     "subTitle": "Part 1",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 1/Part 1 (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 8,
@@ -61,7 +68,8 @@
     "subTitle": "Part 1",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 1/Part 1 (10).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 9,
@@ -69,7 +77,8 @@
     "subTitle": "Part 1",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 1/Part 1 (11).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 10,
@@ -77,7 +86,8 @@
     "subTitle": "Part 1",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 1/Part 1 (12).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 11,
@@ -85,7 +95,8 @@
     "subTitle": "Part 1",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 1/Part 1 (13).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 12,
@@ -93,7 +104,8 @@
     "subTitle": "Part 1",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 1/Part 1 (14).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 13,
@@ -101,7 +113,8 @@
     "subTitle": "Part 1",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 1/Part 1 (15).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 14,
@@ -109,7 +122,8 @@
     "subTitle": "Part 1",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 1/Part 1 (16).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 15,
@@ -117,7 +131,8 @@
     "subTitle": "Part 1",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 1/Part 1 (17).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 16,
@@ -125,7 +140,8 @@
     "subTitle": "Part 1",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 1/Part 1 (18).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 17,
@@ -133,7 +149,8 @@
     "subTitle": "Part 1",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 1/Part 1 (19).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 18,
@@ -141,7 +158,8 @@
     "subTitle": "Part 1",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 1/Part 1 (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 19,
@@ -149,7 +167,8 @@
     "subTitle": "Part 1",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 1/Part 1 (20).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 20,
@@ -157,7 +176,8 @@
     "subTitle": "Part 1",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 1/Part 1 (21).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 21,
@@ -165,7 +185,8 @@
     "subTitle": "Part 1",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 1/Part 1 (22).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 22,
@@ -173,7 +194,8 @@
     "subTitle": "Part 1",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 1/Part 1 (23).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 23,
@@ -181,7 +203,8 @@
     "subTitle": "Part 1",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 1/Part 1 (24).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 24,
@@ -189,7 +212,8 @@
     "subTitle": "Part 1",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 1/Part 1 (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 25,
@@ -197,7 +221,8 @@
     "subTitle": "Part 1",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 1/Part 1 (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 26,
@@ -205,7 +230,8 @@
     "subTitle": "Part 1",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 1/Part 1 (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 27,
@@ -213,7 +239,8 @@
     "subTitle": "Part 1",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 1/Part 1 (6).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 28,
@@ -221,7 +248,8 @@
     "subTitle": "Part 1",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 1/Part 1 (7).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 29,
@@ -229,7 +257,8 @@
     "subTitle": "Part 1",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 1/Part 1 (8).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 30,
@@ -237,7 +266,8 @@
     "subTitle": "Part 1",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 1/Part 1 (9).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 31,
@@ -245,7 +275,8 @@
     "subTitle": "Part 2",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 32,
@@ -253,7 +284,8 @@
     "subTitle": "Part 2",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (10).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 33,
@@ -261,7 +293,8 @@
     "subTitle": "Part 2",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (11).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 34,
@@ -269,7 +302,8 @@
     "subTitle": "Part 2",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (12).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 35,
@@ -277,7 +311,8 @@
     "subTitle": "Part 2",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (13).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 36,
@@ -285,7 +320,8 @@
     "subTitle": "Part 2",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (14).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 37,
@@ -293,7 +329,8 @@
     "subTitle": "Part 2",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (15).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 38,
@@ -301,7 +338,8 @@
     "subTitle": "Part 2",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (16).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 39,
@@ -309,7 +347,8 @@
     "subTitle": "Part 2",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (17).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 40,
@@ -317,7 +356,8 @@
     "subTitle": "Part 2",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (18).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 41,
@@ -325,7 +365,8 @@
     "subTitle": "Part 2",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (19).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 42,
@@ -333,7 +374,8 @@
     "subTitle": "Part 2",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 43,
@@ -341,7 +383,8 @@
     "subTitle": "Part 2",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (20).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 44,
@@ -349,7 +392,8 @@
     "subTitle": "Part 2",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (21).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 45,
@@ -357,7 +401,8 @@
     "subTitle": "Part 2",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (22).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 46,
@@ -365,7 +410,8 @@
     "subTitle": "Part 2",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 47,
@@ -373,7 +419,8 @@
     "subTitle": "Part 2",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 48,
@@ -381,15 +428,17 @@
     "subTitle": "Part 2",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 49,
     "title": "2023 PNGL",
     "subTitle": "Part 2",
     "category": "Commissioned",
-    "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (6).jpg",
-    "aspectRatio": "square"
+    "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (6)_cover.jpg",
+    "aspectRatio": "square",
+    "isCover": true
   },
   {
     "id": 50,
@@ -397,7 +446,8 @@
     "subTitle": "Part 2",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (7).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 51,
@@ -405,7 +455,8 @@
     "subTitle": "Part 2",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (8).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 52,
@@ -413,7 +464,8 @@
     "subTitle": "Part 2",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (9).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 53,
@@ -421,7 +473,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 PNGLx拓荒者/2024 PNGL x Pioneer (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 54,
@@ -429,15 +482,17 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 PNGLx拓荒者/2024 PNGL x Pioneer (10).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 55,
     "title": "2024 PNGLx拓荒者",
     "subTitle": null,
     "category": "Commissioned",
-    "imageUrl": "/images/commissioned/2024 PNGLx拓荒者/2024 PNGL x Pioneer (2).jpg",
-    "aspectRatio": "square"
+    "imageUrl": "/images/commissioned/2024 PNGLx拓荒者/2024 PNGL x Pioneer (2)_cover.jpg",
+    "aspectRatio": "square",
+    "isCover": true
   },
   {
     "id": 56,
@@ -445,7 +500,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 PNGLx拓荒者/2024 PNGL x Pioneer (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 57,
@@ -453,7 +509,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 PNGLx拓荒者/2024 PNGL x Pioneer (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 58,
@@ -461,7 +518,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 PNGLx拓荒者/2024 PNGL x Pioneer (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 59,
@@ -469,7 +527,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 PNGLx拓荒者/2024 PNGL x Pioneer (6).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 60,
@@ -477,7 +536,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 PNGLx拓荒者/2024 PNGL x Pioneer (7).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 61,
@@ -485,7 +545,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 PNGLx拓荒者/2024 PNGL x Pioneer (8).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 62,
@@ -493,7 +554,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 PNGLx拓荒者/2024 PNGL x Pioneer (9).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 63,
@@ -501,7 +563,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 64,
@@ -509,7 +572,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (10).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 65,
@@ -517,7 +581,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (11).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 66,
@@ -525,7 +590,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (12).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 67,
@@ -533,7 +599,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (13).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 68,
@@ -541,7 +608,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (14).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 69,
@@ -549,7 +617,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (15).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 70,
@@ -557,7 +626,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (16).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 71,
@@ -565,7 +635,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (17).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 72,
@@ -573,7 +644,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (18).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 73,
@@ -581,7 +653,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (19).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 74,
@@ -589,7 +662,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 75,
@@ -597,7 +671,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (20).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 76,
@@ -605,7 +680,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (21).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 77,
@@ -613,7 +689,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (22).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 78,
@@ -621,7 +698,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (23).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 79,
@@ -629,7 +707,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (24).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 80,
@@ -637,7 +716,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (25).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 81,
@@ -645,7 +725,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (26).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 82,
@@ -653,7 +734,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (27).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 83,
@@ -661,7 +743,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (28).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 84,
@@ -669,7 +752,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (29).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 85,
@@ -677,7 +761,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 86,
@@ -685,7 +770,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (30).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 87,
@@ -693,7 +779,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (31).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 88,
@@ -701,7 +788,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (32).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 89,
@@ -709,7 +797,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (33).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 90,
@@ -717,7 +806,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (34).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 91,
@@ -725,7 +815,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (35).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 92,
@@ -733,7 +824,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (36).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 93,
@@ -741,7 +833,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (37).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 94,
@@ -749,7 +842,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (38).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 95,
@@ -757,7 +851,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (39).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 96,
@@ -765,7 +860,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 97,
@@ -773,7 +869,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (40).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 98,
@@ -781,7 +878,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (41).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 99,
@@ -789,7 +887,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (42).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 100,
@@ -797,15 +896,17 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (43).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 101,
     "title": "2024 念亭&智鴻",
     "subTitle": null,
     "category": "Commissioned",
-    "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (44).jpg",
-    "aspectRatio": "square"
+    "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (44)_cover.jpg",
+    "aspectRatio": "square",
+    "isCover": true
   },
   {
     "id": 102,
@@ -813,7 +914,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 103,
@@ -821,7 +923,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (6).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 104,
@@ -829,7 +932,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (7).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 105,
@@ -837,7 +941,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (8).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 106,
@@ -845,7 +950,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 念亭&智鴻/wedding (9).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 107,
@@ -853,7 +959,8 @@
     "subTitle": "EK 咖啡",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/EK 咖啡/EK (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 108,
@@ -861,7 +968,8 @@
     "subTitle": "EK 咖啡",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/EK 咖啡/EK (10).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 109,
@@ -869,7 +977,8 @@
     "subTitle": "EK 咖啡",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/EK 咖啡/EK (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 110,
@@ -877,7 +986,8 @@
     "subTitle": "EK 咖啡",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/EK 咖啡/EK (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 111,
@@ -885,7 +995,8 @@
     "subTitle": "EK 咖啡",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/EK 咖啡/EK (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 112,
@@ -893,7 +1004,8 @@
     "subTitle": "EK 咖啡",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/EK 咖啡/EK (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 113,
@@ -901,7 +1013,8 @@
     "subTitle": "EK 咖啡",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/EK 咖啡/EK (6).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 114,
@@ -909,7 +1022,8 @@
     "subTitle": "EK 咖啡",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/EK 咖啡/EK (7).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 115,
@@ -917,7 +1031,8 @@
     "subTitle": "EK 咖啡",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/EK 咖啡/EK (8).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 116,
@@ -925,7 +1040,8 @@
     "subTitle": "EK 咖啡",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/EK 咖啡/EK (9).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 117,
@@ -933,7 +1049,8 @@
     "subTitle": "The kingfolk",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/The kingfolk/The kingfolk (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 118,
@@ -941,7 +1058,8 @@
     "subTitle": "The kingfolk",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/The kingfolk/The kingfolk (10).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 119,
@@ -949,7 +1067,8 @@
     "subTitle": "The kingfolk",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/The kingfolk/The kingfolk (11).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 120,
@@ -957,7 +1076,8 @@
     "subTitle": "The kingfolk",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/The kingfolk/The kingfolk (12).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 121,
@@ -965,7 +1085,8 @@
     "subTitle": "The kingfolk",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/The kingfolk/The kingfolk (13).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 122,
@@ -973,7 +1094,8 @@
     "subTitle": "The kingfolk",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/The kingfolk/The kingfolk (14).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 123,
@@ -981,7 +1103,8 @@
     "subTitle": "The kingfolk",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/The kingfolk/The kingfolk (15).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 124,
@@ -989,7 +1112,8 @@
     "subTitle": "The kingfolk",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/The kingfolk/The kingfolk (16).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 125,
@@ -997,7 +1121,8 @@
     "subTitle": "The kingfolk",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/The kingfolk/The kingfolk (17).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 126,
@@ -1005,7 +1130,8 @@
     "subTitle": "The kingfolk",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/The kingfolk/The kingfolk (18).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 127,
@@ -1013,7 +1139,8 @@
     "subTitle": "The kingfolk",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/The kingfolk/The kingfolk (19).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 128,
@@ -1021,7 +1148,8 @@
     "subTitle": "The kingfolk",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/The kingfolk/The kingfolk (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 129,
@@ -1029,7 +1157,8 @@
     "subTitle": "The kingfolk",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/The kingfolk/The kingfolk (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 130,
@@ -1037,15 +1166,17 @@
     "subTitle": "The kingfolk",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/The kingfolk/The kingfolk (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 131,
     "title": "2024 潮旅行 形象",
     "subTitle": "The kingfolk",
     "category": "Commissioned",
-    "imageUrl": "/images/commissioned/2024 潮旅行 形象/The kingfolk/The kingfolk (5).jpg",
-    "aspectRatio": "square"
+    "imageUrl": "/images/commissioned/2024 潮旅行 形象/The kingfolk/The kingfolk (5)_cover.jpg",
+    "aspectRatio": "square",
+    "isCover": true
   },
   {
     "id": 132,
@@ -1053,7 +1184,8 @@
     "subTitle": "The kingfolk",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/The kingfolk/The kingfolk (6).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 133,
@@ -1061,7 +1193,8 @@
     "subTitle": "The kingfolk",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/The kingfolk/The kingfolk (7).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 134,
@@ -1069,7 +1202,8 @@
     "subTitle": "The kingfolk",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/The kingfolk/The kingfolk (8).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 135,
@@ -1077,7 +1211,8 @@
     "subTitle": "The kingfolk",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/The kingfolk/The kingfolk (9).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 136,
@@ -1085,7 +1220,8 @@
     "subTitle": "力里部落",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/力里部落/Lili village (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 137,
@@ -1093,7 +1229,8 @@
     "subTitle": "力里部落",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/力里部落/Lili village (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 138,
@@ -1101,7 +1238,8 @@
     "subTitle": "力里部落",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/力里部落/Lili village (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 139,
@@ -1109,7 +1247,8 @@
     "subTitle": "力里部落",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/力里部落/Lili village (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 140,
@@ -1117,7 +1256,8 @@
     "subTitle": "力里部落",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/力里部落/Lili village (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 141,
@@ -1125,7 +1265,8 @@
     "subTitle": "力里部落",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/力里部落/Lili village (6).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 142,
@@ -1133,7 +1274,8 @@
     "subTitle": "力里部落",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/力里部落/Lili village (7).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 143,
@@ -1141,7 +1283,8 @@
     "subTitle": "力里部落",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/力里部落/Lili village (8).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 144,
@@ -1149,7 +1292,8 @@
     "subTitle": "力里部落",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/力里部落/Lili village (9).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 145,
@@ -1157,7 +1301,8 @@
     "subTitle": "南國紅逗",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南國紅逗/Redbean (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 146,
@@ -1165,7 +1310,8 @@
     "subTitle": "南國紅逗",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南國紅逗/Redbean (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 147,
@@ -1173,7 +1319,8 @@
     "subTitle": "南國紅逗",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南國紅逗/Redbean (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 148,
@@ -1181,7 +1328,8 @@
     "subTitle": "南國紅逗",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南國紅逗/Redbean (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 149,
@@ -1189,7 +1337,8 @@
     "subTitle": "南國紅逗",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南國紅逗/Redbean (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 150,
@@ -1197,7 +1346,8 @@
     "subTitle": "南國紅逗",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南國紅逗/Redbean (6).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 151,
@@ -1205,7 +1355,8 @@
     "subTitle": "南國紅逗",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南國紅逗/Redbean (7).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 152,
@@ -1213,7 +1364,8 @@
     "subTitle": "南國紅逗",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南國紅逗/Redbean (8).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 153,
@@ -1221,7 +1373,8 @@
     "subTitle": "南國紅逗",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南國紅逗/Redbean (9).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 154,
@@ -1229,7 +1382,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南州/Nanzhou (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 155,
@@ -1237,7 +1391,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南州/Nanzhou (10).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 156,
@@ -1245,7 +1400,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南州/Nanzhou (11).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 157,
@@ -1253,7 +1409,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南州/Nanzhou (12).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 158,
@@ -1261,7 +1418,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南州/Nanzhou (13).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 159,
@@ -1269,7 +1427,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南州/Nanzhou (14).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 160,
@@ -1277,7 +1436,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南州/Nanzhou (15).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 161,
@@ -1285,7 +1445,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南州/Nanzhou (16).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 162,
@@ -1293,7 +1454,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南州/Nanzhou (17).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 163,
@@ -1301,7 +1463,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南州/Nanzhou (18).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 164,
@@ -1309,7 +1472,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南州/Nanzhou (19).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 165,
@@ -1317,7 +1481,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南州/Nanzhou (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 166,
@@ -1325,7 +1490,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南州/Nanzhou (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 167,
@@ -1333,7 +1499,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南州/Nanzhou (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 168,
@@ -1341,7 +1508,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南州/Nanzhou (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 169,
@@ -1349,7 +1517,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南州/Nanzhou (6).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 170,
@@ -1357,7 +1526,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南州/Nanzhou (7).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 171,
@@ -1365,7 +1535,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南州/Nanzhou (8).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 172,
@@ -1373,7 +1544,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/南州/Nanzhou (9).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 173,
@@ -1381,7 +1553,8 @@
     "subTitle": "潮州佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/潮州佳興/Couzhou Jiaxing (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 174,
@@ -1389,7 +1562,8 @@
     "subTitle": "潮州佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/潮州佳興/Couzhou Jiaxing (10).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 175,
@@ -1397,7 +1571,8 @@
     "subTitle": "潮州佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/潮州佳興/Couzhou Jiaxing (11).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 176,
@@ -1405,7 +1580,8 @@
     "subTitle": "潮州佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/潮州佳興/Couzhou Jiaxing (12).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 177,
@@ -1413,7 +1589,8 @@
     "subTitle": "潮州佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/潮州佳興/Couzhou Jiaxing (13).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 178,
@@ -1421,7 +1598,8 @@
     "subTitle": "潮州佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/潮州佳興/Couzhou Jiaxing (14).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 179,
@@ -1429,7 +1607,8 @@
     "subTitle": "潮州佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/潮州佳興/Couzhou Jiaxing (15).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 180,
@@ -1437,7 +1616,8 @@
     "subTitle": "潮州佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/潮州佳興/Couzhou Jiaxing (16).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 181,
@@ -1445,7 +1625,8 @@
     "subTitle": "潮州佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/潮州佳興/Couzhou Jiaxing (17).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 182,
@@ -1453,7 +1634,8 @@
     "subTitle": "潮州佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/潮州佳興/Couzhou Jiaxing (18).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 183,
@@ -1461,7 +1643,8 @@
     "subTitle": "潮州佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/潮州佳興/Couzhou Jiaxing (19).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 184,
@@ -1469,7 +1652,8 @@
     "subTitle": "潮州佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/潮州佳興/Couzhou Jiaxing (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 185,
@@ -1477,7 +1661,8 @@
     "subTitle": "潮州佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/潮州佳興/Couzhou Jiaxing (20).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 186,
@@ -1485,7 +1670,8 @@
     "subTitle": "潮州佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/潮州佳興/Couzhou Jiaxing (21).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 187,
@@ -1493,7 +1679,8 @@
     "subTitle": "潮州佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/潮州佳興/Couzhou Jiaxing (22).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 188,
@@ -1501,7 +1688,8 @@
     "subTitle": "潮州佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/潮州佳興/Couzhou Jiaxing (23).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 189,
@@ -1509,7 +1697,8 @@
     "subTitle": "潮州佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/潮州佳興/Couzhou Jiaxing (24).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 190,
@@ -1517,7 +1706,8 @@
     "subTitle": "潮州佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/潮州佳興/Couzhou Jiaxing (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 191,
@@ -1525,7 +1715,8 @@
     "subTitle": "潮州佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/潮州佳興/Couzhou Jiaxing (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 192,
@@ -1533,7 +1724,8 @@
     "subTitle": "潮州佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/潮州佳興/Couzhou Jiaxing (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 193,
@@ -1541,7 +1733,8 @@
     "subTitle": "潮州佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/潮州佳興/Couzhou Jiaxing (6).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 194,
@@ -1549,7 +1742,8 @@
     "subTitle": "潮州佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/潮州佳興/Couzhou Jiaxing (7).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 195,
@@ -1557,7 +1751,8 @@
     "subTitle": "潮州佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/潮州佳興/Couzhou Jiaxing (8).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 196,
@@ -1565,7 +1760,8 @@
     "subTitle": "潮州佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/潮州佳興/Couzhou Jiaxing (9).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 197,
@@ -1573,7 +1769,8 @@
     "subTitle": "禾牧企業",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/禾牧企業/He Mu (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 198,
@@ -1581,7 +1778,8 @@
     "subTitle": "禾牧企業",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/禾牧企業/He Mu (10).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 199,
@@ -1589,7 +1787,8 @@
     "subTitle": "禾牧企業",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/禾牧企業/He Mu (11).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 200,
@@ -1597,7 +1796,8 @@
     "subTitle": "禾牧企業",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/禾牧企業/He Mu (12).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 201,
@@ -1605,7 +1805,8 @@
     "subTitle": "禾牧企業",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/禾牧企業/He Mu (13).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 202,
@@ -1613,7 +1814,8 @@
     "subTitle": "禾牧企業",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/禾牧企業/He Mu (14).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 203,
@@ -1621,7 +1823,8 @@
     "subTitle": "禾牧企業",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/禾牧企業/He Mu (15).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 204,
@@ -1629,7 +1832,8 @@
     "subTitle": "禾牧企業",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/禾牧企業/He Mu (16).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 205,
@@ -1637,7 +1841,8 @@
     "subTitle": "禾牧企業",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/禾牧企業/He Mu (17).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 206,
@@ -1645,7 +1850,8 @@
     "subTitle": "禾牧企業",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/禾牧企業/He Mu (18).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 207,
@@ -1653,7 +1859,8 @@
     "subTitle": "禾牧企業",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/禾牧企業/He Mu (19).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 208,
@@ -1661,7 +1868,8 @@
     "subTitle": "禾牧企業",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/禾牧企業/He Mu (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 209,
@@ -1669,7 +1877,8 @@
     "subTitle": "禾牧企業",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/禾牧企業/He Mu (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 210,
@@ -1677,7 +1886,8 @@
     "subTitle": "禾牧企業",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/禾牧企業/He Mu (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 211,
@@ -1685,7 +1895,8 @@
     "subTitle": "禾牧企業",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/禾牧企業/He Mu (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 212,
@@ -1693,7 +1904,8 @@
     "subTitle": "禾牧企業",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/禾牧企業/He Mu (6).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 213,
@@ -1701,7 +1913,8 @@
     "subTitle": "禾牧企業",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/禾牧企業/He Mu (7).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 214,
@@ -1709,7 +1922,8 @@
     "subTitle": "禾牧企業",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/禾牧企業/He Mu (8).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 215,
@@ -1717,7 +1931,8 @@
     "subTitle": "禾牧企業",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 形象/禾牧企業/He Mu (9).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 216,
@@ -1725,7 +1940,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 217,
@@ -1733,7 +1949,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (10).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 218,
@@ -1741,7 +1958,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (11).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 219,
@@ -1749,7 +1967,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (12).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 220,
@@ -1757,7 +1976,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (13).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 221,
@@ -1765,7 +1985,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (14).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 222,
@@ -1773,7 +1994,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (15).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 223,
@@ -1781,7 +2003,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (16).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 224,
@@ -1789,7 +2012,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (17).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 225,
@@ -1797,7 +2021,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (18).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 226,
@@ -1805,7 +2030,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (19).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 227,
@@ -1813,7 +2039,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 228,
@@ -1821,7 +2048,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (20).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 229,
@@ -1829,7 +2057,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (21).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 230,
@@ -1837,7 +2066,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (22).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 231,
@@ -1845,7 +2075,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (23).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 232,
@@ -1853,7 +2084,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (24).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 233,
@@ -1861,7 +2093,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (25).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 234,
@@ -1869,7 +2102,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (26).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 235,
@@ -1877,7 +2111,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (27).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 236,
@@ -1885,7 +2120,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (28).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 237,
@@ -1893,7 +2129,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (29).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 238,
@@ -1901,7 +2138,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 239,
@@ -1909,7 +2147,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (30).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 240,
@@ -1917,7 +2156,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (31).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 241,
@@ -1925,7 +2165,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (32).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 242,
@@ -1933,7 +2174,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (33).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 243,
@@ -1941,7 +2183,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (34).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 244,
@@ -1949,7 +2192,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (35).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 245,
@@ -1957,7 +2201,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 246,
@@ -1965,7 +2210,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 247,
@@ -1973,7 +2219,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (6).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 248,
@@ -1981,7 +2228,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (7).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 249,
@@ -1989,7 +2237,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (8).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 250,
@@ -1997,7 +2246,8 @@
     "subTitle": "佳興",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/佳興/Jiaxing (9).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 251,
@@ -2005,7 +2255,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 252,
@@ -2013,7 +2264,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (10).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 253,
@@ -2021,7 +2273,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (11).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 254,
@@ -2029,7 +2282,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (12).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 255,
@@ -2037,7 +2291,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (13).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 256,
@@ -2045,7 +2300,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (14).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 257,
@@ -2053,7 +2309,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (15).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 258,
@@ -2061,7 +2318,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (16).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 259,
@@ -2069,7 +2327,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (17).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 260,
@@ -2077,7 +2336,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (18).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 261,
@@ -2085,7 +2345,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (19).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 262,
@@ -2093,7 +2354,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 263,
@@ -2101,7 +2363,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (20).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 264,
@@ -2109,7 +2372,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (21).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 265,
@@ -2117,7 +2381,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (22).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 266,
@@ -2125,7 +2390,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (23).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 267,
@@ -2133,7 +2399,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (24).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 268,
@@ -2141,7 +2408,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (25).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 269,
@@ -2149,7 +2417,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (26).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 270,
@@ -2157,7 +2426,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (27).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 271,
@@ -2165,7 +2435,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (28).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 272,
@@ -2173,7 +2444,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (29).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 273,
@@ -2181,7 +2453,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 274,
@@ -2189,7 +2462,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (30).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 275,
@@ -2197,7 +2471,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (31).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 276,
@@ -2205,7 +2480,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (32).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 277,
@@ -2213,7 +2489,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (33).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 278,
@@ -2221,7 +2498,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 279,
@@ -2229,7 +2507,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 280,
@@ -2237,7 +2516,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (6).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 281,
@@ -2245,7 +2525,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (7).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 282,
@@ -2253,7 +2534,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (8).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 283,
@@ -2261,7 +2543,8 @@
     "subTitle": "南州",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/南州/Nanzhou-2 (9).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 284,
@@ -2269,7 +2552,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 285,
@@ -2277,7 +2561,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (10).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 286,
@@ -2285,7 +2570,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (11).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 287,
@@ -2293,7 +2579,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (12).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 288,
@@ -2301,7 +2588,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (13).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 289,
@@ -2309,7 +2597,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (14).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 290,
@@ -2317,7 +2606,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (15).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 291,
@@ -2325,7 +2615,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (16).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 292,
@@ -2333,7 +2624,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (17).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 293,
@@ -2341,7 +2633,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (18).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 294,
@@ -2349,7 +2642,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (19).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 295,
@@ -2357,7 +2651,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 296,
@@ -2365,7 +2660,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (20).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 297,
@@ -2373,7 +2669,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (21).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 298,
@@ -2381,7 +2678,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (22).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 299,
@@ -2389,7 +2687,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (23).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 300,
@@ -2397,15 +2696,17 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (24).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 301,
     "title": "2024 潮旅行 活動",
     "subTitle": "枋寮",
     "category": "Commissioned",
-    "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (25).jpg",
-    "aspectRatio": "square"
+    "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (25)_cover.jpg",
+    "aspectRatio": "square",
+    "isCover": true
   },
   {
     "id": 302,
@@ -2413,7 +2714,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (26).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 303,
@@ -2421,7 +2723,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (27).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 304,
@@ -2429,7 +2732,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (28).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 305,
@@ -2437,7 +2741,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (29).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 306,
@@ -2445,7 +2750,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 307,
@@ -2453,7 +2759,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 308,
@@ -2461,7 +2768,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 309,
@@ -2469,7 +2777,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (6).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 310,
@@ -2477,7 +2786,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (7).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 311,
@@ -2485,7 +2795,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (8).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 312,
@@ -2493,7 +2804,8 @@
     "subTitle": "枋寮",
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 潮旅行 活動/枋寮/Fangliao (9).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 313,
@@ -2501,7 +2813,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 莊瑋系列作品/2024 pottery (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 314,
@@ -2509,7 +2822,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 莊瑋系列作品/2024 pottery (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 315,
@@ -2517,7 +2831,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 莊瑋系列作品/2024 pottery (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 316,
@@ -2525,7 +2840,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 莊瑋系列作品/2024 pottery (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 317,
@@ -2533,7 +2849,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 莊瑋系列作品/2024 pottery (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 318,
@@ -2541,7 +2858,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 莊瑋系列作品/2024 pottery (6).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 319,
@@ -2549,7 +2867,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 莊瑋系列作品/2024 pottery (7).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 320,
@@ -2557,7 +2876,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 莊瑋系列作品/2024 pottery (8).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 321,
@@ -2565,7 +2885,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 莊瑋系列作品/2024 pottery (9).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 322,
@@ -2573,7 +2894,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 雄女百年路跑/2024 Roadrace (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 323,
@@ -2581,7 +2903,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 雄女百年路跑/2024 Roadrace (10).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 324,
@@ -2589,7 +2912,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 雄女百年路跑/2024 Roadrace (11).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 325,
@@ -2597,7 +2921,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 雄女百年路跑/2024 Roadrace (12).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 326,
@@ -2605,7 +2930,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 雄女百年路跑/2024 Roadrace (13).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 327,
@@ -2613,7 +2939,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 雄女百年路跑/2024 Roadrace (14).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 328,
@@ -2621,7 +2948,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 雄女百年路跑/2024 Roadrace (15).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 329,
@@ -2629,7 +2957,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 雄女百年路跑/2024 Roadrace (16).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 330,
@@ -2637,7 +2966,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 雄女百年路跑/2024 Roadrace (17).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 331,
@@ -2645,15 +2975,17 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 雄女百年路跑/2024 Roadrace (18).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 332,
     "title": "2024 雄女百年路跑",
     "subTitle": null,
     "category": "Commissioned",
-    "imageUrl": "/images/commissioned/2024 雄女百年路跑/2024 Roadrace (19).jpg",
-    "aspectRatio": "square"
+    "imageUrl": "/images/commissioned/2024 雄女百年路跑/2024 Roadrace (19)_cover.jpg",
+    "aspectRatio": "square",
+    "isCover": true
   },
   {
     "id": 333,
@@ -2661,7 +2993,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 雄女百年路跑/2024 Roadrace (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 334,
@@ -2669,7 +3002,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 雄女百年路跑/2024 Roadrace (20).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 335,
@@ -2677,7 +3011,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 雄女百年路跑/2024 Roadrace (21).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 336,
@@ -2685,7 +3020,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 雄女百年路跑/2024 Roadrace (22).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 337,
@@ -2693,7 +3029,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 雄女百年路跑/2024 Roadrace (23).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 338,
@@ -2701,7 +3038,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 雄女百年路跑/2024 Roadrace (24).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 339,
@@ -2709,7 +3047,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 雄女百年路跑/2024 Roadrace (25).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 340,
@@ -2717,7 +3056,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 雄女百年路跑/2024 Roadrace (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 341,
@@ -2725,7 +3065,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 雄女百年路跑/2024 Roadrace (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 342,
@@ -2733,7 +3074,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 雄女百年路跑/2024 Roadrace (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 343,
@@ -2741,7 +3083,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 雄女百年路跑/2024 Roadrace (6).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 344,
@@ -2749,7 +3092,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 雄女百年路跑/2024 Roadrace (7).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 345,
@@ -2757,7 +3101,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 雄女百年路跑/2024 Roadrace (8).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 346,
@@ -2765,7 +3110,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2024 雄女百年路跑/2024 Roadrace (9).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 347,
@@ -2773,7 +3119,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 348,
@@ -2781,7 +3128,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (10).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 349,
@@ -2789,7 +3137,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (11).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 350,
@@ -2797,7 +3146,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (12).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 351,
@@ -2805,7 +3155,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (13).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 352,
@@ -2813,7 +3164,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (14).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 353,
@@ -2821,7 +3173,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (15).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 354,
@@ -2829,7 +3182,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (16).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 355,
@@ -2837,7 +3191,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (17).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 356,
@@ -2845,15 +3200,17 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (18).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 357,
     "title": "2025 PNGL",
     "subTitle": null,
     "category": "Commissioned",
-    "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (19).jpg",
-    "aspectRatio": "square"
+    "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (19)_cover.jpg",
+    "aspectRatio": "square",
+    "isCover": true
   },
   {
     "id": 358,
@@ -2861,7 +3218,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 359,
@@ -2869,7 +3227,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (20).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 360,
@@ -2877,7 +3236,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (21).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 361,
@@ -2885,7 +3245,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (22).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 362,
@@ -2893,7 +3254,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (23).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 363,
@@ -2901,7 +3263,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (24).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 364,
@@ -2909,7 +3272,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (25).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 365,
@@ -2917,7 +3281,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (26).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 366,
@@ -2925,7 +3290,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (27).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 367,
@@ -2933,7 +3299,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (28).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 368,
@@ -2941,7 +3308,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (29).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 369,
@@ -2949,7 +3317,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 370,
@@ -2957,7 +3326,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (30).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 371,
@@ -2965,7 +3335,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (31).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 372,
@@ -2973,7 +3344,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (32).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 373,
@@ -2981,7 +3353,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (33).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 374,
@@ -2989,7 +3362,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (34).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 375,
@@ -2997,7 +3371,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (35).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 376,
@@ -3005,7 +3380,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (36).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 377,
@@ -3013,7 +3389,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (37).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 378,
@@ -3021,7 +3398,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (38).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 379,
@@ -3029,7 +3407,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (39).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 380,
@@ -3037,7 +3416,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 381,
@@ -3045,7 +3425,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (40).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 382,
@@ -3053,7 +3434,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (41).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 383,
@@ -3061,7 +3443,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (42).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 384,
@@ -3069,7 +3452,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 385,
@@ -3077,7 +3461,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (6).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 386,
@@ -3085,7 +3470,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (7).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 387,
@@ -3093,7 +3479,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (8).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 388,
@@ -3101,7 +3488,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 PNGL/2025 PNGL (9).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 389,
@@ -3109,7 +3497,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 390,
@@ -3117,7 +3506,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (10).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 391,
@@ -3125,7 +3515,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (11).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 392,
@@ -3133,7 +3524,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (12).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 393,
@@ -3141,7 +3533,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (13).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 394,
@@ -3149,7 +3542,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (14).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 395,
@@ -3157,7 +3551,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (15).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 396,
@@ -3165,7 +3560,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (16).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 397,
@@ -3173,7 +3569,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (17).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 398,
@@ -3181,7 +3578,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (18).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 399,
@@ -3189,7 +3587,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (19).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 400,
@@ -3197,7 +3596,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 401,
@@ -3205,7 +3605,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (20).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 402,
@@ -3213,7 +3614,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (21).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 403,
@@ -3221,7 +3623,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (22).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 404,
@@ -3229,7 +3632,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (23).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 405,
@@ -3237,7 +3641,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (24).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 406,
@@ -3245,7 +3650,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (25).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 407,
@@ -3253,7 +3659,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (26).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 408,
@@ -3261,7 +3668,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (27).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 409,
@@ -3269,7 +3677,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (28).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 410,
@@ -3277,7 +3686,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (29).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 411,
@@ -3285,7 +3695,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 412,
@@ -3293,7 +3704,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (30).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 413,
@@ -3301,7 +3713,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (31).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 414,
@@ -3309,7 +3722,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (32).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 415,
@@ -3317,7 +3731,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (33).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 416,
@@ -3325,7 +3740,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (34).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 417,
@@ -3333,7 +3749,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (35).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 418,
@@ -3341,7 +3758,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (36).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 419,
@@ -3349,7 +3767,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (37).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 420,
@@ -3357,7 +3776,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (38).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 421,
@@ -3365,7 +3785,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (39).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 422,
@@ -3373,7 +3794,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 423,
@@ -3381,7 +3803,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (40).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 424,
@@ -3389,7 +3812,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (41).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 425,
@@ -3397,7 +3821,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (42).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 426,
@@ -3405,7 +3830,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (43).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 427,
@@ -3413,7 +3839,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (44).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 428,
@@ -3421,7 +3848,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (45).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 429,
@@ -3429,7 +3857,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (46).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 430,
@@ -3437,15 +3866,17 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (47).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 431,
     "title": "2025 洛豪&怡帆",
     "subTitle": null,
     "category": "Commissioned",
-    "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (48).jpg",
-    "aspectRatio": "square"
+    "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (48)_cover.jpg",
+    "aspectRatio": "square",
+    "isCover": true
   },
   {
     "id": 432,
@@ -3453,7 +3884,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (49).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 433,
@@ -3461,7 +3893,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 434,
@@ -3469,7 +3902,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (6).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 435,
@@ -3477,7 +3911,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (7).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 436,
@@ -3485,7 +3920,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (8).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 437,
@@ -3493,7 +3929,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 洛豪&怡帆/2025 Wedding (9).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 438,
@@ -3501,7 +3938,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 潮旅行 形象/2025 Chouzhou Travel 形象 (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 439,
@@ -3509,7 +3947,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 潮旅行 形象/2025 Chouzhou Travel 形象 (10).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 440,
@@ -3517,7 +3956,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 潮旅行 形象/2025 Chouzhou Travel 形象 (11).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 441,
@@ -3525,7 +3965,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 潮旅行 形象/2025 Chouzhou Travel 形象 (12).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 442,
@@ -3533,7 +3974,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 潮旅行 形象/2025 Chouzhou Travel 形象 (13).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 443,
@@ -3541,7 +3983,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 潮旅行 形象/2025 Chouzhou Travel 形象 (14).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 444,
@@ -3549,7 +3992,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 潮旅行 形象/2025 Chouzhou Travel 形象 (15).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 445,
@@ -3557,15 +4001,17 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 潮旅行 形象/2025 Chouzhou Travel 形象 (16).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 446,
     "title": "2025 潮旅行 形象",
     "subTitle": null,
     "category": "Commissioned",
-    "imageUrl": "/images/commissioned/2025 潮旅行 形象/2025 Chouzhou Travel 形象 (17).jpg",
-    "aspectRatio": "square"
+    "imageUrl": "/images/commissioned/2025 潮旅行 形象/2025 Chouzhou Travel 形象 (17)_cover.jpg",
+    "aspectRatio": "square",
+    "isCover": true
   },
   {
     "id": 447,
@@ -3573,7 +4019,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 潮旅行 形象/2025 Chouzhou Travel 形象 (18).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 448,
@@ -3581,7 +4028,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 潮旅行 形象/2025 Chouzhou Travel 形象 (19).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 449,
@@ -3589,7 +4037,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 潮旅行 形象/2025 Chouzhou Travel 形象 (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 450,
@@ -3597,7 +4046,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 潮旅行 形象/2025 Chouzhou Travel 形象 (20).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 451,
@@ -3605,7 +4055,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 潮旅行 形象/2025 Chouzhou Travel 形象 (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 452,
@@ -3613,7 +4064,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 潮旅行 形象/2025 Chouzhou Travel 形象 (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 453,
@@ -3621,7 +4073,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 潮旅行 形象/2025 Chouzhou Travel 形象 (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 454,
@@ -3629,7 +4082,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 潮旅行 形象/2025 Chouzhou Travel 形象 (6).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 455,
@@ -3637,7 +4091,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 潮旅行 形象/2025 Chouzhou Travel 形象 (7).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 456,
@@ -3645,7 +4100,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 潮旅行 形象/2025 Chouzhou Travel 形象 (8).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 457,
@@ -3653,7 +4109,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2025 潮旅行 形象/2025 Chouzhou Travel 形象 (9).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 458,
@@ -3661,7 +4118,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 459,
@@ -3669,7 +4127,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (10).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 460,
@@ -3677,7 +4136,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (11).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 461,
@@ -3685,7 +4145,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (12).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 462,
@@ -3693,7 +4154,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (13).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 463,
@@ -3701,7 +4163,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (14).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 464,
@@ -3709,7 +4172,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (15).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 465,
@@ -3717,7 +4181,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (16).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 466,
@@ -3725,15 +4190,17 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (17).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 467,
     "title": "2026 潮旅行 活動",
     "subTitle": null,
     "category": "Commissioned",
-    "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (18).jpg",
-    "aspectRatio": "square"
+    "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (18)_cover.jpg",
+    "aspectRatio": "square",
+    "isCover": true
   },
   {
     "id": 468,
@@ -3741,7 +4208,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (19).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 469,
@@ -3749,7 +4217,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 470,
@@ -3757,7 +4226,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (20).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 471,
@@ -3765,7 +4235,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (21).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 472,
@@ -3773,7 +4244,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (22).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 473,
@@ -3781,7 +4253,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (23).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 474,
@@ -3789,7 +4262,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (24).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 475,
@@ -3797,7 +4271,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (25).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 476,
@@ -3805,7 +4280,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (26).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 477,
@@ -3813,7 +4289,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (27).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 478,
@@ -3821,7 +4298,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (28).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 479,
@@ -3829,7 +4307,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (29).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 480,
@@ -3837,7 +4316,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 481,
@@ -3845,7 +4325,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (30).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 482,
@@ -3853,7 +4334,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (31).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 483,
@@ -3861,7 +4343,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (32).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 484,
@@ -3869,7 +4352,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (33).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 485,
@@ -3877,7 +4361,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (34).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 486,
@@ -3885,7 +4370,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (35).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 487,
@@ -3893,7 +4379,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (36).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 488,
@@ -3901,7 +4388,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (37).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 489,
@@ -3909,7 +4397,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (38).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 490,
@@ -3917,7 +4406,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (39).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 491,
@@ -3925,7 +4415,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 492,
@@ -3933,7 +4424,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 493,
@@ -3941,7 +4433,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (6).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 494,
@@ -3949,7 +4442,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (7).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 495,
@@ -3957,7 +4451,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (8).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 496,
@@ -3965,7 +4460,8 @@
     "subTitle": null,
     "category": "Commissioned",
     "imageUrl": "/images/commissioned/2026 潮旅行 活動/2026 Chouzhou Travel 活動 (9).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 497,
@@ -3973,7 +4469,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/graphic/graphic (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 498,
@@ -3981,7 +4478,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/graphic/graphic (15).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 499,
@@ -3989,7 +4487,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/graphic/graphic (16).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 500,
@@ -3997,7 +4496,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/graphic/graphic (17).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 501,
@@ -4005,7 +4505,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/graphic/graphic (18).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 502,
@@ -4013,7 +4514,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/graphic/graphic (19).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 503,
@@ -4021,7 +4523,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/graphic/graphic (20).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 504,
@@ -4029,7 +4532,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/graphic/graphic (21).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 505,
@@ -4037,7 +4541,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/graphic/graphic (22).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 506,
@@ -4045,7 +4550,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/graphic/graphic (23).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 507,
@@ -4053,7 +4559,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/graphic/graphic (24).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 508,
@@ -4061,7 +4568,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/graphic/graphic (25).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 509,
@@ -4069,7 +4577,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/graphic/graphic (26).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 510,
@@ -4077,7 +4586,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/graphic/graphic (27).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 511,
@@ -4085,7 +4595,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/graphic/graphic (28).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 512,
@@ -4093,7 +4604,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/outdoor/Tarp-1.jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 513,
@@ -4101,7 +4613,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/outdoor/Tent-1.jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 514,
@@ -4109,7 +4622,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/outdoor/Tent-2.jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 515,
@@ -4117,7 +4631,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/outdoor/Tentconcept (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 516,
@@ -4125,7 +4640,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/outdoor/Tentconcept (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 517,
@@ -4133,7 +4649,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/vehicle/997/997 (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 518,
@@ -4141,7 +4658,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/vehicle/997/997 (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 519,
@@ -4149,7 +4667,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/vehicle/997/997 (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 520,
@@ -4157,7 +4676,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/vehicle/997/997 (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 521,
@@ -4165,7 +4685,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/vehicle/997/997 (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 522,
@@ -4173,7 +4694,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/vehicle/997/997.jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 523,
@@ -4181,7 +4703,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/vehicle/gogoro/gogoro-02.jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 524,
@@ -4189,7 +4712,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/vehicle/gogoro/gogoro-03.jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 525,
@@ -4197,7 +4721,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/vehicle/gogoro/gogoro-04.jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 526,
@@ -4205,7 +4730,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/vehicle/gogoro/gogoro-05.jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 527,
@@ -4213,7 +4739,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/vehicle/gogoro/gogoro-06.jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 528,
@@ -4221,7 +4748,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/vehicle/gogoro/gogoro-07.jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 529,
@@ -4229,7 +4757,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/vehicle/gogoro/gogoro-08.jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 530,
@@ -4237,7 +4766,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/vehicle/gogoro/gogoro-09.jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 531,
@@ -4245,7 +4775,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/vehicle/gogoro/gogoro-10.jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 532,
@@ -4253,7 +4784,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/vehicle/gogoro/gogoro.jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 533,
@@ -4261,7 +4793,8 @@
     "subTitle": null,
     "category": "Design",
     "imageUrl": "/images/design/vehicle/gogoro/gogoro_工作區域 1.jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 534,
@@ -4269,7 +4802,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2016/2016.jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 535,
@@ -4277,7 +4811,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2018/2018 (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 536,
@@ -4285,7 +4820,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2018/2018 (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 537,
@@ -4293,7 +4829,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2018/2018 (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 538,
@@ -4301,7 +4838,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2019/2019 (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 539,
@@ -4309,7 +4847,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2019/2019 (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 540,
@@ -4317,7 +4856,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2019/2019 (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 541,
@@ -4325,7 +4865,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2019/2019 (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 542,
@@ -4333,7 +4874,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2019/2019 (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 543,
@@ -4341,7 +4883,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2020/2020 (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 544,
@@ -4349,7 +4892,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2020/2020 (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 545,
@@ -4357,7 +4901,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2021/2021 (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 546,
@@ -4365,7 +4910,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2021/2021 (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 547,
@@ -4373,7 +4919,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2021/2021 (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 548,
@@ -4381,7 +4928,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2021/2021 (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 549,
@@ -4389,7 +4937,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2021/2021 (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 550,
@@ -4397,7 +4946,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2021/2021 (6).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 551,
@@ -4405,7 +4955,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2021/2021 (7).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 552,
@@ -4413,7 +4964,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2021/2021 (8).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 553,
@@ -4421,7 +4973,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2022/2022 (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 554,
@@ -4429,7 +4982,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2022/2022 (10).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 555,
@@ -4437,7 +4991,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2022/2022 (11).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 556,
@@ -4445,7 +5000,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2022/2022 (12).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 557,
@@ -4453,7 +5009,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2022/2022 (13).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 558,
@@ -4461,7 +5018,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2022/2022 (14).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 559,
@@ -4469,7 +5027,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2022/2022 (15).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 560,
@@ -4477,7 +5036,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2022/2022 (16).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 561,
@@ -4485,7 +5045,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2022/2022 (17).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 562,
@@ -4493,7 +5054,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2022/2022 (18).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 563,
@@ -4501,7 +5063,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2022/2022 (19).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 564,
@@ -4509,7 +5072,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2022/2022 (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 565,
@@ -4517,7 +5081,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2022/2022 (20).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 566,
@@ -4525,7 +5090,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2022/2022 (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 567,
@@ -4533,7 +5099,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2022/2022 (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 568,
@@ -4541,7 +5108,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2022/2022 (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 569,
@@ -4549,7 +5117,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2022/2022 (6).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 570,
@@ -4557,7 +5126,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2022/2022 (7).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 571,
@@ -4565,7 +5135,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2022/2022 (8).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 572,
@@ -4573,7 +5144,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2022/2022 (9).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 573,
@@ -4581,7 +5153,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2023/2023 (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 574,
@@ -4589,7 +5162,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2023/2023 (10).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 575,
@@ -4597,7 +5171,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2023/2023 (11).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 576,
@@ -4605,7 +5180,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2023/2023 (12).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 577,
@@ -4613,7 +5189,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2023/2023 (13).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 578,
@@ -4621,7 +5198,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2023/2023 (14).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 579,
@@ -4629,7 +5207,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2023/2023 (15).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 580,
@@ -4637,7 +5216,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2023/2023 (16).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 581,
@@ -4645,7 +5225,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2023/2023 (17).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 582,
@@ -4653,7 +5234,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2023/2023 (18).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 583,
@@ -4661,7 +5243,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2023/2023 (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 584,
@@ -4669,7 +5252,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2023/2023 (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 585,
@@ -4677,7 +5261,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2023/2023 (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 586,
@@ -4685,7 +5270,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2023/2023 (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 587,
@@ -4693,7 +5279,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2023/2023 (6).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 588,
@@ -4701,7 +5288,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2023/2023 (7).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 589,
@@ -4709,7 +5297,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2023/2023 (8).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 590,
@@ -4717,7 +5306,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2023/2023 (9).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 591,
@@ -4725,7 +5315,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 592,
@@ -4733,7 +5324,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (10).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 593,
@@ -4741,7 +5333,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (11).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 594,
@@ -4749,7 +5342,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (12).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 595,
@@ -4757,7 +5351,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (13).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 596,
@@ -4765,7 +5360,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (14).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 597,
@@ -4773,7 +5369,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (15).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 598,
@@ -4781,7 +5378,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (16).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 599,
@@ -4789,7 +5387,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (17).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 600,
@@ -4797,7 +5396,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (18).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 601,
@@ -4805,7 +5405,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (19).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 602,
@@ -4813,7 +5414,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 603,
@@ -4821,7 +5423,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (20).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 604,
@@ -4829,7 +5432,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (21).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 605,
@@ -4837,7 +5441,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (22).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 606,
@@ -4845,7 +5450,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (23).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 607,
@@ -4853,7 +5459,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (24).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 608,
@@ -4861,7 +5468,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (25).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 609,
@@ -4869,7 +5477,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (26).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 610,
@@ -4877,7 +5486,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (27).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 611,
@@ -4885,7 +5495,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (28).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 612,
@@ -4893,7 +5504,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (29).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 613,
@@ -4901,7 +5513,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 614,
@@ -4909,7 +5522,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (30).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 615,
@@ -4917,7 +5531,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 616,
@@ -4925,7 +5540,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 617,
@@ -4933,7 +5549,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (6).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 618,
@@ -4941,7 +5558,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (7).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 619,
@@ -4949,7 +5567,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (8).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 620,
@@ -4957,7 +5576,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2024/2024 (9).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 621,
@@ -4965,7 +5585,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 622,
@@ -4973,7 +5594,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (10).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 623,
@@ -4981,7 +5603,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (11).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 624,
@@ -4989,7 +5612,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (12).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 625,
@@ -4997,7 +5621,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (13).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 626,
@@ -5005,7 +5630,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (14).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 627,
@@ -5013,7 +5639,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (15).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 628,
@@ -5021,7 +5648,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (16).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 629,
@@ -5029,7 +5657,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (17).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 630,
@@ -5037,7 +5666,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (18).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 631,
@@ -5045,7 +5675,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (19).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 632,
@@ -5053,7 +5684,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 633,
@@ -5061,7 +5693,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (20).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 634,
@@ -5069,7 +5702,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (21).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 635,
@@ -5077,7 +5711,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (22).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 636,
@@ -5085,7 +5720,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (23).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 637,
@@ -5093,7 +5729,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (24).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 638,
@@ -5101,7 +5738,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (25).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 639,
@@ -5109,7 +5747,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (26).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 640,
@@ -5117,7 +5756,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (27).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 641,
@@ -5125,7 +5765,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (28).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 642,
@@ -5133,7 +5774,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (29).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 643,
@@ -5141,7 +5783,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 644,
@@ -5149,7 +5792,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (30).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 645,
@@ -5157,7 +5801,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (31).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 646,
@@ -5165,7 +5810,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (32).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 647,
@@ -5173,7 +5819,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (33).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 648,
@@ -5181,7 +5828,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (34).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 649,
@@ -5189,7 +5837,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (35).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 650,
@@ -5197,7 +5846,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (36).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 651,
@@ -5205,7 +5855,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (37).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 652,
@@ -5213,7 +5864,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (38).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 653,
@@ -5221,7 +5873,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (39).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 654,
@@ -5229,7 +5882,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 655,
@@ -5237,7 +5891,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (40).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 656,
@@ -5245,7 +5900,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (41).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 657,
@@ -5253,7 +5909,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (42).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 658,
@@ -5261,7 +5918,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (43).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 659,
@@ -5269,7 +5927,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (44).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 660,
@@ -5277,7 +5936,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (45).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 661,
@@ -5285,7 +5945,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (46).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 662,
@@ -5293,7 +5954,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (5).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 663,
@@ -5301,7 +5963,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (6).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 664,
@@ -5309,7 +5972,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (7).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 665,
@@ -5317,7 +5981,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (8).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 666,
@@ -5325,7 +5990,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2025/2025 (9).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 667,
@@ -5333,7 +5999,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2026/2026 (1).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 668,
@@ -5341,7 +6008,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2026/2026 (2).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 669,
@@ -5349,7 +6017,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2026/2026 (3).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 670,
@@ -5357,7 +6026,8 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2026/2026 (4).jpg",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   },
   {
     "id": 671,
@@ -5365,6 +6035,7 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/web logo/未命名-2_工作區域 1.png",
-    "aspectRatio": "square"
+    "aspectRatio": "square",
+    "isCover": false
   }
 ]
