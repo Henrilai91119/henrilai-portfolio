@@ -115,6 +115,11 @@ function App() {
       if (item.title === '2024 雄女百年路跑' && item.imageUrl.includes('2024 roadrace(19).jpg')) {
         projectsMap[item.title] = item;
       }
+
+      // 特別指定：2024 潮旅行 形象 的封面更換為 fangliao (25)
+      if (item.title === '2024 潮旅行 形象' && item.imageUrl.includes('fangliao (25).jpg')) {
+        projectsMap[item.title] = item;
+      }
     });
 
     return Object.entries(projectsMap).sort((a, b) => {
