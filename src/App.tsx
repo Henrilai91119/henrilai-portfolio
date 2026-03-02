@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Instagram, Linkedin, X, ArrowLeft } from 'lucide-react';
+import { Instagram, X, ArrowLeft } from 'lucide-react';
 
 import GALLERY_ITEMS_JSON from './gallery-items.json';
 import PROJECT_DESCRIPTIONS from './project-descriptions.json';
@@ -59,7 +59,7 @@ const LazyImage = ({ src, alt, className, priority = false, showYear = false, ..
         transition={{ duration: 1.5, ease: "easeOut" }}
         onLoad={() => setIsLoaded(true)}
         src={src || ''}
-        alt={alt || ''}
+        alt={alt || 'Henri Lai Portfolio Work'}
         loading={priority ? "eager" : "lazy"}
         className={`w-full h-full object-cover ${props.imgClassName || ""}`}
         {...props}
@@ -88,6 +88,7 @@ function App() {
 
   const yearRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
+  // Reset states on category change
   useEffect(() => {
     setVisibleCount(ITEMS_PER_PAGE);
     if (activeCategory === 'Design') {
@@ -101,6 +102,7 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [activeCategory]);
 
+  // Scroll handler with throttling
   useEffect(() => {
     let ticking = false;
     const handleScroll = () => {
@@ -233,7 +235,7 @@ function App() {
     <div className="min-h-screen bg-white selection:bg-black selection:text-white font-sans text-black">
       <header className="p-8 md:p-12 lg:fixed lg:w-64 lg:h-screen lg:flex lg:flex-col lg:justify-between z-30 bg-white/80 backdrop-blur-sm lg:bg-transparent text-black">
         <div>
-          <h1 className="mb-12"><a href="/" className="hover:opacity-70 transition-opacity"><img src="/images/web logo/未命名-2_工作區域 1.png" alt="HENRI LAI" className="w-16 md:w-20 h-auto" /></a></h1>
+          <h1 className="mb-12"><a href="/" className="hover:opacity-70 transition-opacity"><img src="/images/web logo/未命名-2_工作區域 1.png" alt="HENRI LAI Logo" className="w-16 md:w-20 h-auto" /></a></h1>
           <nav>
             <ul className="space-y-4">
               {NAV_ITEMS.map((item) => (
@@ -244,7 +246,7 @@ function App() {
         </div>
         <footer className="mt-12 lg:mt-0 text-black">
           <div className="flex space-x-6 grayscale opacity-30 hover:opacity-100 transition-all duration-700 text-black">
-            <a href="https://www.instagram.com/henrilai.photography/" target="_blank" rel="noreferrer" className="hover:text-black"><Instagram size={16} strokeWidth={1.5} /></a>
+            <a href="https://www.instagram.com/henrilai.photography/" target="_blank" rel="noopener noreferrer" className="hover:text-black"><Instagram size={16} strokeWidth={1.5} /></a>
           </div>
           <p className="text-[0.56rem] text-gray-300 mt-6 uppercase tracking-[0.2em]">© 2026 Henri Lai</p>
         </footer>
@@ -253,7 +255,7 @@ function App() {
       <main className={`lg:ml-64 ${isSeamlessLayout ? 'p-0' : 'p-8 md:p-12 lg:p-16 lg:pt-12'} text-black`}>
         {activeCategory === 'BIO' ? (
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-xl mx-auto lg:mx-0 p-8 text-black">
-            <LazyImage src="/images/BIO/self.jpg" alt="Henri Lai" priority={true} className="aspect-[4/5] mb-16 w-full max-w-xs grayscale hover:grayscale-0 transition-all duration-1000" />
+            <LazyImage src="/images/BIO/self.jpg" alt="Henri Lai Profile" priority={true} className="aspect-[4/5] mb-16 w-full max-w-xs grayscale hover:grayscale-0 transition-all duration-1000" />
             <div className="space-y-10 text-[0.85rem] leading-[2] text-gray-600 tracking-wider text-black">
               <p className="font-semibold text-black tracking-[0.4em] uppercase text-[1.1rem]">HI , 我是賴昱成</p>
               <div className="space-y-6 text-black"><p>斜槓設計師、攝影師，目前為自由接案工作者</p><div className="space-y-2 text-black"><p><span className="text-black font-semibold mr-4 tracking-[0.2em]">設計</span> 專攻戶外用品設計、平面設計</p><p><span className="text-black font-semibold mr-4 tracking-[0.2em]">攝影</span> 商品攝影、活動攝影為主，並持續運用底片創作</p></div><p className="pt-4 text-black text-xs">歡迎透過各平台聯繫洽談商業合作內容 !</p></div>
@@ -265,20 +267,18 @@ function App() {
             {PRICE_ITEMS.map((item, index) => (
               <div key={item.title} className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 md:gap-24 items-center text-black`}>
                 <div className="w-full md:w-1/2 aspect-square">
-                  <LazyImage src={item.imageUrl} alt={item.title} className="w-full h-full" imgClassName="object-contain" />
+                  <LazyImage src={item.imageUrl} alt={`${item.title} pricing`} className="w-full h-full" imgClassName="object-contain" />
                 </div>
                 <div className="w-full md:w-1/2 space-y-8 text-black">
                   <h2 className="text-[1.1rem] font-bold tracking-[0.4em] uppercase border-b border-gray-100 pb-4 text-black">{item.title}</h2>
-                  <div className="text-[0.8rem] leading-[2.2] text-gray-600 tracking-wide whitespace-pre-wrap text-black font-sans">
-                    {item.content}
-                  </div>
+                  <div className="text-[0.8rem] leading-[2.2] text-gray-600 tracking-wide whitespace-pre-wrap text-black font-sans">{item.content}</div>
                 </div>
               </div>
             ))}
             {PRICE_ITEMS.length === 0 && (
-              <div className="h-[40vh] flex flex-col items-center justify-center text-center text-black">
+              <div className="h-[40vh] flex flex-col items-center justify-center text-center text-black font-sans">
                 <p className="text-[0.62rem] uppercase tracking-[0.5em] text-gray-300">Section under construction</p>
-                <h2 className="text-[0.85rem] font-bold tracking-[0.3em] uppercase text-black mt-4">正在建置中</h2>
+                <h2 className="text-[0.85rem] font-bold tracking-[0.3em] uppercase text-black mt-4 font-sans">正在建置中</h2>
               </div>
             )}
           </motion.div>
@@ -286,8 +286,8 @@ function App() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24 px-4 md:px-8 text-black">
             <AnimatePresence>
               {projectCovers.map(([title, item]) => (
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} key={title} onClick={() => { setSelectedProject(title); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="group cursor-pointer flex flex-col items-center text-center px-4 md:px-8 text-black">
-                  <div className="aspect-square mb-8 overflow-hidden bg-gray-50 w-full text-black"><img src={item.imageUrl} alt={title} loading="lazy" className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-1000 ease-out text-black" /></div>
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} key={title} onClick={() => { setSelectedProject(title); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="group cursor-pointer flex flex-col items-center text-center px-4 md:px-8 text-black text-black">
+                  <div className="aspect-square mb-8 overflow-hidden bg-gray-50 w-full text-black"><img src={item.imageUrl} alt={`${title} cover`} loading="lazy" className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-1000 ease-out text-black" /></div>
                   <h2 className="text-[1.125rem] font-medium tracking-[0.2em] uppercase text-black mb-2 leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity text-black font-sans">{title}</h2>
                 </motion.div>
               ))}
@@ -313,7 +313,7 @@ function App() {
               </header>
             )}
             {activeCategory === 'Commissioned' && selectedProject && (
-              <header className="mb-24 flex items-center justify-between border-b border-gray-100 pb-10 text-black font-sans">
+              <header className="mb-24 flex items-center justify-between border-b border-gray-100 pb-10 text-black font-sans text-black">
                 <div>
                   <button onClick={() => setSelectedProject(null)} className="flex items-center text-[0.62rem] uppercase tracking-[0.3em] text-gray-400 hover:text-black transition-colors mb-6 group text-black font-sans"><ArrowLeft size={12} className="mr-2 group-hover:-translate-x-1 transition-transform" />Back to Categories</button>
                   <h2 className="text-[1.125rem] font-medium tracking-[0.3em] uppercase text-black font-sans">{selectedProject}</h2>
@@ -336,7 +336,7 @@ function App() {
                   <section key={year} ref={el => yearRefs.current[year] = el} className="space-y-16 text-black">
                     <header className="border-b border-gray-100 pb-6 mb-12 ml-8 md:ml-12 text-black text-[0.875rem]"><h2 className="text-[0.875rem] font-bold tracking-[0.6em] text-black/30 uppercase italic text-black font-sans">{year}</h2></header>
                     <div className="columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24 text-black text-black">
-                      {items.map((item, index) => (<div key={item.id} onClick={() => setSelectedImage(item)} className="break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12 text-black"><LazyImage src={item.imageUrl} alt={item.title} priority={index < 6} showYear={false} imgClassName="h-auto transition-transform duration-1000 ease-out group-hover:scale-[1.01] text-black" /></div>))}
+                      {items.map((item, index) => (<div key={item.id} onClick={() => setSelectedImage(item)} className="break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12 text-black"><LazyImage src={item.imageUrl} alt={`${year} work ${index + 1}`} priority={index < 6} showYear={false} imgClassName="h-auto transition-transform duration-1000 ease-out group-hover:scale-[1.01] text-black" /></div>))}
                     </div>
                   </section>
                 ))}
@@ -345,7 +345,7 @@ function App() {
               <div className={isSeamlessLayout ? 'flex flex-col w-full max-w-2xl mx-auto text-black' : 'columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24 text-black'}>
                 {displayItems.map((item, index) => (
                   <div key={item.id} onClick={() => setSelectedImage(item)} className={isSeamlessLayout ? 'w-full text-black' : 'break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12 text-black'}>
-                    <LazyImage src={item.imageUrl} alt={item.title} priority={index < 6} showYear={false} imgClassName="h-auto w-full block" className={isSeamlessLayout ? 'bg-transparent text-black' : 'text-black'} />
+                    <LazyImage src={item.imageUrl} alt={item.title || 'Portfolio Work'} priority={index < 6} showYear={false} imgClassName="h-auto w-full block" className={isSeamlessLayout ? 'bg-transparent text-black' : 'text-black'} />
                     {(!selectedProject && activeCategory !== 'Moments in Time') && <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-right text-black font-sans"><p className="text-[0.56rem] uppercase tracking-[0.3em] text-gray-300 font-light text-black font-sans">{item.title}</p></div>}
                   </div>
                 ))}
@@ -360,7 +360,7 @@ function App() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center bg-white/98 p-4 md:p-12 lg:p-24 cursor-zoom-out text-black" onClick={() => setSelectedImage(null)}>
             <button className="absolute top-8 right-8 text-black hover:rotate-90 transition-transform duration-500 p-2 text-black"><X size={24} strokeWidth={1} /></button>
             <motion.img initial={{ scale: 0.98, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.98, opacity: 0 }} transition={{ type: "spring", damping: 30, stiffness: 200 }} src={selectedImage.imageUrl} alt={selectedImage.title} className="max-w-full max-h-full object-contain shadow-2xl" />
-            <div className="absolute bottom-12 left-12 text-left text-black">
+            <div className="absolute bottom-12 left-12 text-left text-black text-black">
               <p className="text-[0.56rem] uppercase tracking-[0.5em] text-gray-300 font-light text-black font-sans">{selectedImage.title} {selectedImage.subTitle ? `— ${selectedImage.subTitle}` : ''} <span className="ml-4 opacity-50 tracking-widest text-black">{selectedImage.imageUrl?.match(/\d{4}/)?.[0]}</span></p>
             </div>
           </motion.div>
