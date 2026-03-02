@@ -270,9 +270,14 @@ function App() {
         ) : activeCategory === 'Price List' ? (
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-5xl mx-auto p-8 space-y-32 py-20 text-black">
             {PRICE_ITEMS.map((item, index) => (
-              <div key={item.title} className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 md:gap-24 items-center text-black`}>
-                <div className="w-full md:w-1/2 aspect-square"><LazyImage src={item.imageUrl} alt={`${item.title} pricing`} className="w-full h-full" imgClassName="object-contain" /></div>
-                <div className="w-full md:w-1/2 space-y-8 text-black"><h2 className="text-[1.1rem] font-bold tracking-[0.4em] uppercase border-b border-gray-100 pb-4 text-black">{item.title}</h2><div className="text-[0.8rem] leading-[2.2] text-gray-600 tracking-wide whitespace-pre-wrap text-black font-sans">{item.content}</div></div>
+              <div key={item.title} className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 md:gap-24 items-start text-black`}>
+                <div className="w-full md:w-1/2">
+                  <LazyImage src={item.imageUrl} alt={`${item.title} pricing`} className="w-full h-auto" imgClassName="object-contain h-auto" />
+                </div>
+                <div className="w-full md:w-1/2 space-y-8 text-black pt-4">
+                  <h2 className="text-[1.1rem] font-bold tracking-[0.4em] uppercase border-b border-gray-100 pb-4 text-black">{item.title}</h2>
+                  <div className="text-[0.8rem] leading-[2.2] text-gray-600 tracking-wide whitespace-pre-wrap text-black font-sans">{item.content}</div>
+                </div>
               </div>
             ))}
             {PRICE_ITEMS.length === 0 && (<div className="h-[40vh] flex flex-col items-center justify-center text-center text-black font-sans"><p className="text-[0.62rem] uppercase tracking-[0.5em] text-gray-300">Section under construction</p><h2 className="text-[0.85rem] font-bold tracking-[0.3em] uppercase text-black mt-4 font-sans text-black">正在建置中</h2></div>)}
