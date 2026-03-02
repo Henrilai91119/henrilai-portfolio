@@ -92,12 +92,9 @@ function App() {
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          // 無限捲動
           if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 1200) {
             setVisibleCount(prev => prev + ITEMS_PER_PAGE);
           }
-
-          // 年份偵測邏輯
           if (activeCategory === 'Moments in Time') {
             const years = Object.keys(yearRefs.current);
             for (const year of years) {
@@ -213,6 +210,8 @@ function App() {
   const shouldShowContentDirectly = selectedProject && subProjectCovers.length === 1 && subProjectCovers[0][0] === 'Default';
   const isSeamlessLayout = selectedSubProject === '997' || selectedSubProject === 'gogoro' || (selectedProject === 'vehicle' && selectedSubProject === 'gogoro') || (selectedProject === 'vehicle' && selectedSubProject === '997');
 
+  const isEmptyCategory = filteredAndSortedItems.length === 0 && !['BIO', 'Price List'].includes(activeCategory);
+
   return (
     <div className="min-h-screen bg-white selection:bg-black selection:text-white font-sans text-black">
       <header className="p-8 md:p-12 lg:fixed lg:w-64 lg:h-screen lg:flex lg:flex-col lg:justify-between z-30 bg-white/80 backdrop-blur-sm lg:bg-transparent">
@@ -267,22 +266,20 @@ function App() {
             </div>
           </motion.div>
         ) : activeCategory === 'Price List' ? (
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-xl p-8">
-            <h2 className="text-[0.75rem] font-semibold tracking-[0.4em] mb-20 uppercase font-bold text-black">Price List</h2>
-            <div className="space-y-16">
-              <section>
-                <h3 className="text-[10px] uppercase tracking-[0.4em] text-gray-300 mb-8 font-bold">— Services</h3>
-                <ul className="space-y-6">
-                  <li className="flex justify-between border-b border-gray-50 pb-4 text-[0.68rem]"><span className="tracking-widest">Photography Session</span><span className="font-light text-gray-400">Contact for pricing</span></li>
-                </ul>
-              </section>
-            </div>
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-xl p-8 py-32 flex flex-col items-center justify-center text-center">
+            <p className="text-[0.62rem] uppercase tracking-[0.5em] text-gray-300">Section under construction</p>
+            <h2 className="text-[0.85rem] font-bold tracking-[0.3em] uppercase text-black mt-4">正在建置中</h2>
+          </motion.div>
+        ) : isEmptyCategory ? (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="w-full h-[60vh] flex flex-col items-center justify-center text-center">
+            <p className="text-[0.62rem] uppercase tracking-[0.5em] text-gray-300">Section under construction</p>
+            <h2 className="text-[0.85rem] font-bold tracking-[0.3em] uppercase text-black mt-4">正在建置中</h2>
           </motion.div>
         ) : isFolderView ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24 px-4 md:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24 px-4 md:px-8 text-black">
             <AnimatePresence>
               {projectCovers.map(([title, item]) => (
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} key={title} onClick={() => { setSelectedProject(title); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="group cursor-pointer flex flex-col items-center text-center px-4 md:px-8">
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} key={title} onClick={() => { setSelectedProject(title); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="group cursor-pointer flex flex-col items-center text-center px-4 md:px-8 text-black">
                   <div className="aspect-square mb-8 overflow-hidden bg-gray-50 w-full"><img src={item.imageUrl} alt={title} loading="lazy" className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-1000 ease-out" /></div>
                   <h2 className="text-[1.125rem] font-medium tracking-[0.2em] uppercase text-black mb-2 leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">{title}</h2>
                 </motion.div>
@@ -291,14 +288,14 @@ function App() {
           </div>
         ) : (isSubFolderView && !shouldShowContentDirectly) ? (
           <div className="space-y-12">
-            <header className="mb-24 flex items-center justify-between border-b border-gray-100 pb-10">
+            <header className="mb-24 flex items-center justify-between border-b border-gray-100 pb-10 text-black">
               <button onClick={() => setSelectedProject(null)} className="flex items-center text-[0.62rem] uppercase tracking-[0.3em] text-gray-400 hover:text-black transition-colors mb-6 group"><ArrowLeft size={12} className="mr-2 group-hover:-translate-x-1 transition-transform" />Back to Categories</button>
             </header>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24 px-4 md:px-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24 px-4 md:px-8 text-black">
               {subProjectCovers.map(([subTitle, item]) => (
-                <motion.div key={subTitle} onClick={() => { setSelectedSubProject(subTitle); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="group cursor-pointer flex flex-col items-center text-center px-4 md:px-8">
+                <motion.div layout key={subTitle} onClick={() => { setSelectedSubProject(subTitle); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="group cursor-pointer flex flex-col items-center text-center px-4 md:px-8 text-black">
                   <div className="aspect-square mb-8 overflow-hidden bg-gray-50 w-full"><img src={item.imageUrl} alt={subTitle} loading="lazy" className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-1000 ease-out" /></div>
-                  <h2 className="text-[1.125rem] font-medium tracking-[0.2em] uppercase text-black mb-2 leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">{subTitle === 'Default' ? selectedProject : subTitle}</h2>
+                  <h2 className="text-[18px] font-medium tracking-[0.2em] uppercase text-black mb-2 leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">{subTitle === 'Default' ? selectedProject : subTitle}</h2>
                 </motion.div>
               ))}
             </div>
@@ -309,7 +306,7 @@ function App() {
             <div className="space-y-48">
               {groupedVisibleItems.map(([year, items]) => (
                 <section key={year} ref={el => yearRefs.current[year] = el} className="space-y-16">
-                  <header className="border-b border-gray-100 pb-6 mb-12 ml-8 md:ml-12"><h2 className="text-[0.875rem] font-bold tracking-[0.6em] text-black/30 uppercase italic">{year}</h2></header>
+                  <header className="border-b border-gray-100 pb-6 mb-12 ml-8 md:ml-12 text-black"><h2 className="text-[0.875rem] font-bold tracking-[0.6em] text-black/30 uppercase italic text-black">{year}</h2></header>
                   <div className="columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24">
                     {items.map((item, index) => (<div key={item.id} onClick={() => setSelectedImage(item)} className="break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12 text-black"><LazyImage src={item.imageUrl} alt={item.title} priority={index < 6} showYear={activeCategory === 'Moments in Time'} imgClassName="h-auto transition-transform duration-1000 ease-out group-hover:scale-[1.01]" /></div>))}
                   </div>
@@ -332,9 +329,9 @@ function App() {
             <div className={isSeamlessLayout ? 'flex flex-col w-full' : 'columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24'}>
               <AnimatePresence>
                 {displayItems.map((item, index) => (
-                  <div key={item.id} onClick={() => setSelectedImage(item)} className={isSeamlessLayout ? 'w-full' : 'break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12 text-black'}>
+                  <div key={item.id} onClick={() => setSelectedImage(item)} className={isSeamlessLayout ? 'w-full' : 'break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12'}>
                     <LazyImage src={item.imageUrl} alt={item.title} priority={index < 6} showYear={activeCategory === 'Moments in Time'} imgClassName="h-auto w-full block" className={isSeamlessLayout ? 'bg-transparent' : ''} />
-                    {(!selectedProject && activeCategory !== 'Moments in Time') && <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-right"><p className="text-[0.56rem] uppercase tracking-[0.3em] text-gray-300 font-light text-black">{item.title}</p></div>}
+                    {(!selectedProject && activeCategory !== 'Moments in Time') && <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-right text-black"><p className="text-[0.56rem] uppercase tracking-[0.3em] text-gray-300 font-light text-black">{item.title}</p></div>}
                   </div>
                 ))}
               </AnimatePresence>
