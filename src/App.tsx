@@ -25,6 +25,30 @@ const NAV_ITEMS = [
   { label: 'Price List', href: '#' },
 ];
 
+// Reusable Image Component with Fade-in effect
+const LazyImage = ({ src, alt, className, ...props }: any) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  return (
+    <div className={`relative bg-gray-50 overflow-hidden ${className}`}>
+      <motion.img
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isLoaded ? 1 : 0 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+        onLoad={() => setIsLoaded(true)}
+        src={src}
+        alt={alt}
+        loading="lazy"
+        className={`w-full h-full object-cover ${props.imgClassName || ""}`}
+        {...props}
+      />
+      {!isLoaded && (
+        <div className="absolute inset-0 bg-gray-50" />
+      )}
+    </div>
+  );
+};
+
 function App() {
   const [activeCategory, setActiveCategory] = useState('Personal');
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
@@ -36,12 +60,10 @@ function App() {
     return items.sort((a, b) => {
       const yearA = a.imageUrl.match(/\d{4}/)?.[0] || "0";
       const yearB = b.imageUrl.match(/\d{4}/)?.[0] || "0";
-      // 依年份降序排列 (2026 -> 2023)
       return parseInt(yearB) - parseInt(yearA);
     });
   }, [activeCategory]);
 
-  // 分組邏輯：針對 Commissioned 進行專案分組
   const commissionedGroups = useMemo(() => {
     if (activeCategory !== 'Commissioned') return [];
     
@@ -53,7 +75,6 @@ function App() {
       groups[item.title].push(item);
     });
 
-    // 將群組按專案名稱中的年份排序
     return Object.entries(groups).sort((a, b) => {
       const yearA = a[0].match(/\d{4}/)?.[0] || "0";
       const yearB = b[0].match(/\d{4}/)?.[0] || "0";
@@ -63,7 +84,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white selection:bg-black selection:text-white font-sans">
-      {/* Sidebar Navigation */}
       <header className="p-8 md:p-12 lg:fixed lg:w-64 lg:h-screen lg:flex lg:flex-col lg:justify-between z-20 bg-white/80 backdrop-blur-sm lg:bg-transparent">
         <div>
           <h1 className="text-2xl font-semibold tracking-[0.3em] mb-12 uppercase">
@@ -107,7 +127,6 @@ function App() {
         </footer>
       </header>
 
-      {/* Main Content Area */}
       <main className="lg:ml-64 p-8 md:p-12 lg:p-16 lg:pt-12">
         {activeCategory === 'BIO' ? (
           <motion.div 
@@ -115,14 +134,11 @@ function App() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-xl mx-auto lg:mx-0"
           >
-            <div className="aspect-[4/5] bg-gray-50 mb-16 w-full max-w-sm grayscale hover:grayscale-0 transition-all duration-1000 overflow-hidden">
-              <img 
-                src="/images/BIO/profile.jpg" 
-                alt="Henri Lai" 
-                className="w-full h-full object-cover"
-                onError={(e) => (e.currentTarget.style.display = 'none')}
-              />
-            </div>
+            <LazyImage 
+              src="/images/BIO/profile.jpg" 
+              alt="Henri Lai" 
+              className="aspect-[4/5] mb-16 w-full max-w-sm grayscale hover:grayscale-0 transition-all duration-1000"
+            />
             <div className="space-y-8 text-[13px] leading-[1.8] text-gray-600 tracking-wide">
               <p className="font-semibold text-black tracking-[0.3em] uppercase text-xs">HENRI LAI</p>
               <p>這裡可以放您的自我介紹。</p>
@@ -140,7 +156,7 @@ function App() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-xl"
           >
-            <h2 className="text-xs font-semibold tracking-[0.4em] mb-20 uppercase">Price List</h2>
+            <h2 className="text-sm font-semibold tracking-[0.4em] mb-20 uppercase">Price List</h2>
             <div className="space-y-16">
               <section>
                 <h3 className="text-[10px] uppercase tracking-[0.4em] text-gray-300 mb-8 font-bold">— Services</h3>
@@ -154,7 +170,6 @@ function App() {
             </div>
           </motion.div>
         ) : activeCategory === 'Commissioned' ? (
-          /* Commissioned Page with Grouping */
           <div className="space-y-32 lg:space-y-48">
             <AnimatePresence mode="popLayout">
               {commissionedGroups.map(([projectTitle, items]) => (
@@ -175,11 +190,10 @@ function App() {
                         onClick={() => setSelectedImage(item)}
                         className="break-inside-avoid mb-12 lg:mb-16 group cursor-crosshair"
                       >
-                        <img 
+                        <LazyImage 
                           src={item.imageUrl} 
                           alt={item.title} 
-                          loading="lazy"
-                          className="w-full h-auto block group-hover:scale-[1.01] transition-transform duration-1000"
+                          imgClassName="h-auto group-hover:scale-[1.01] transition-transform duration-1000"
                         />
                       </motion.div>
                     ))}
@@ -189,7 +203,6 @@ function App() {
             </AnimatePresence>
           </div>
         ) : (
-          /* Other Categories (Personal, Design, etc.) */
           <div className="columns-1 sm:columns-2 md:columns-3 gap-12 lg:gap-16 space-y-12 lg:space-y-16">
             <AnimatePresence mode="popLayout">
               {filteredAndSortedItems.map((item) => (
@@ -203,14 +216,11 @@ function App() {
                   onClick={() => setSelectedImage(item)}
                   className="break-inside-avoid mb-12 lg:mb-16 group cursor-crosshair"
                 >
-                  <div className="bg-gray-50 transition-all duration-700">
-                    <img 
-                      src={item.imageUrl} 
-                      alt={item.title} 
-                      loading="lazy"
-                      className="w-full h-auto block transition-transform duration-1000 ease-out group-hover:scale-[1.01]"
-                    />
-                  </div>
+                  <LazyImage 
+                    src={item.imageUrl} 
+                    alt={item.title} 
+                    imgClassName="h-auto transition-transform duration-1000 ease-out group-hover:scale-[1.01]"
+                  />
                   <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     <p className="text-[9px] uppercase tracking-[0.3em] text-gray-300 font-light">{item.title}</p>
                   </div>
@@ -221,7 +231,6 @@ function App() {
         )}
       </main>
 
-      {/* Lightbox Modal */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div
