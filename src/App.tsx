@@ -130,6 +130,11 @@ function App() {
       if (item.title === '2024 念亭&智鴻' && item.imageUrl.includes('wedding (44).jpg')) {
         projectsMap[item.title] = item;
       }
+
+      // 特別指定：2024 PNGLx拓荒者 的封面更換為 2024 PNGL x Pioneer (2)
+      if (item.title === '2024 PNGLx拓荒者' && item.imageUrl.includes('2024 PNGL x Pioneer (2).jpg')) {
+        projectsMap[item.title] = item;
+      }
     });
 
     return Object.entries(projectsMap).sort((a, b) => {
