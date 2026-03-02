@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white text-black antialiased;
+  }
+}
+
+.nav-link {
+  @apply hover:text-gray-400 transition-colors duration-200 uppercase tracking-widest text-sm;
+}
