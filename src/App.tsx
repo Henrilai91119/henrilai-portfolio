@@ -40,20 +40,18 @@ const NAV_ITEMS = [
 
 const ITEMS_PER_PAGE = 30;
 
-// Reusable Image Component
-const LazyImage = ({ src, alt, className, priority = false, onImageLoad, ...props }: any) => {
+// Reusable Image Component with Elegant 2s Scroll Reveal
+const LazyImage = ({ src, alt, className, priority = false, ...props }: any) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <div className={`relative bg-transparent overflow-hidden ${className}`}>
       <motion.img
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isLoaded ? 1 : 0 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-        onLoad={() => {
-          setIsLoaded(true);
-          if (onImageLoad) onImageLoad();
-        }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 2.0, ease: [0.22, 1, 0.36, 1] }}
+        onLoad={() => setIsLoaded(true)}
         src={src || ''}
         alt={alt || 'Henri Lai Portfolio Work'}
         loading={priority ? "eager" : "lazy"}
@@ -71,18 +69,11 @@ function App() {
   const [selectedSubProject, setSelectedSubProject] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
   const [activeYear, setActiveYear] = useState<string | null>(null);
-  
-  // 記錄每個年份區塊已載入的圖片數量
-  const [loadedCounts, setLoadedCounts] = useState<{ [key: string]: number }>({});
-  // 記錄每個年份區塊是否已「準備好」顯示內容
-  const [readySections, setReadySections] = useState<{ [key: string]: boolean }>({});
 
   const yearRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   useEffect(() => {
     setVisibleCount(ITEMS_PER_PAGE);
-    setReadySections({});
-    setLoadedCounts({});
     if (activeCategory === 'Design') {
       setSelectedProject('graphic');
       setSelectedSubProject(null);
@@ -200,17 +191,6 @@ function App() {
     }, 100);
   };
 
-  const handleImageLoad = (year: string) => {
-    setLoadedCounts(prev => {
-      const newCount = (prev[year] || 0) + 1;
-      // 當一個年份載入超過 4 張圖時，我們視為「準備好顯示」
-      if (newCount >= 4 && !readySections[year]) {
-        setReadySections(r => ({ ...r, [year]: true }));
-      }
-      return { ...prev, [year]: newCount };
-    });
-  };
-
   const isSeamlessLayout = activeCategory === 'Design' && (selectedSubProject === '997' || selectedSubProject === 'gogoro' || selectedSubProject === 'wanderer' || (selectedProject === 'vehicle' && !selectedSubProject));
   const groupedVisibleItems = useMemo(() => {
     if (activeCategory !== 'Moments in Time') return [];
@@ -273,7 +253,7 @@ function App() {
                 <div className="w-full md:w-1/2 space-y-8 text-black pt-4 text-black"><h2 className="text-[1.1rem] font-bold tracking-[0.4em] uppercase border-b border-gray-100 pb-4 text-black text-black">{item.title}</h2><div className="text-[0.8rem] leading-[2.2] text-gray-600 tracking-wide whitespace-pre-wrap text-black font-sans text-black">{item.content}</div></div>
               </div>
             ))}
-            {PRICE_ITEMS.length === 0 && (<div className="h-[40vh] flex flex-col items-center justify-center text-center text-black font-sans text-black"><p className="text-[0.62rem] uppercase tracking-[0.5em] text-gray-300 text-black">Section under construction</p><h2 className="text-[0.85rem] font-bold tracking-[0.3em] uppercase text-black mt-4 font-sans text-black text-black">正在建置中</h2></div>)}
+            {PRICE_ITEMS.length === 0 && (<div className="h-[40vh] flex flex-col items-center justify-center text-center text-black font-sans"><p className="text-[0.62rem] uppercase tracking-[0.5em] text-gray-300 text-black">Section under construction</p><h2 className="text-[0.85rem] font-bold tracking-[0.3em] uppercase text-black mt-4 font-sans text-black text-black">正在建置中</h2></div>)}
           </motion.div>
         ) : activeCategory === 'Commissioned' && !selectedProject ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24 px-4 md:px-8 text-black">
@@ -281,7 +261,7 @@ function App() {
               {projectCovers.map(([title, item]) => (
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} key={title} onClick={() => { setSelectedProject(title); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="group cursor-pointer flex flex-col items-center text-center px-4 md:px-8 text-black">
                   <div className="aspect-square mb-8 overflow-hidden bg-gray-50 w-full text-black"><img src={item.imageUrl} alt={`${title} cover`} loading="lazy" className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-1000 ease-out text-black" /></div>
-                  <h2 className="text-[1.125rem] font-medium tracking-[0.2em] uppercase text-black mb-2 leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity text-black font-sans">{title}</h2>
+                  <h2 className="text-[1.125rem] font-medium tracking-[0.2em] uppercase text-black mb-2 leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity text-black font-sans text-black">{title}</h2>
                 </motion.div>
               ))}
             </AnimatePresence>
@@ -289,17 +269,17 @@ function App() {
         ) : (
           <div className={`${isSeamlessLayout ? 'w-full text-black' : 'space-y-12 text-black'}`}>
             {activeCategory === 'Moments in Time' && (
-              <nav className="sticky top-0 z-20 bg-white/90 backdrop-blur-md py-6 mb-16 border-b border-gray-50 flex justify-center space-x-8 md:space-x-12 px-8 overflow-x-auto no-scrollbar text-black font-sans">
+              <nav className="sticky top-0 z-20 bg-white/90 backdrop-blur-md py-6 mb-16 border-b border-gray-50 flex justify-center space-x-8 md:space-x-12 px-8 overflow-x-auto no-scrollbar text-black font-sans text-black">
                 {allYears.map(year => (<button key={year} onClick={() => scrollToYear(year)} className={`text-[0.62rem] uppercase tracking-[0.4em] transition-all duration-500 whitespace-nowrap ${activeYear === year ? 'text-black font-bold scale-110 underline decoration-1 underline-offset-8 text-black' : 'text-gray-300 hover:text-black text-gray-300'}`}>{year}</button>))}
               </nav>
             )}
             {activeCategory === 'Design' && (
-              <header className="sticky top-0 z-20 bg-white/90 backdrop-blur-md py-6 mb-16 border-b border-gray-50 space-y-6 text-black font-sans">
-                <nav className="flex justify-center space-x-8 md:space-x-12 px-8 overflow-x-auto no-scrollbar text-black font-sans">
+              <header className="sticky top-0 z-20 bg-white/90 backdrop-blur-md py-6 mb-16 border-b border-gray-50 space-y-6 text-black font-sans text-black">
+                <nav className="flex justify-center space-x-8 md:space-x-12 px-8 overflow-x-auto no-scrollbar text-black font-sans text-black">
                   {designParentCategories.map(cat => (<button key={cat} onClick={() => { setSelectedProject(cat); setSelectedSubProject(null); }} className={`text-[0.62rem] uppercase tracking-[0.4em] transition-all duration-500 ${selectedProject === cat ? 'text-black font-bold text-black' : 'text-gray-300 hover:text-black text-gray-300'}`}>{cat}</button>))}
                 </nav>
                 {selectedProject && subProjectList.length > 0 && (
-                  <nav className="flex justify-center space-x-6 md:space-x-8 px-8 overflow-x-auto no-scrollbar text-black pt-2 font-sans">
+                  <nav className="flex justify-center space-x-6 md:space-x-8 px-8 overflow-x-auto no-scrollbar text-black pt-2 font-sans text-black">
                     {subProjectList.map(sub => (<button key={sub} onClick={() => setSelectedSubProject(sub)} className={`text-[0.56rem] uppercase tracking-[0.3em] transition-all duration-500 ${selectedSubProject === sub ? 'text-black border-b border-black text-black' : 'text-gray-300 hover:text-black text-gray-300'}`}>{sub}</button>))}
                   </nav>
                 )}
@@ -307,66 +287,36 @@ function App() {
             )}
             {activeCategory === 'Commissioned' && selectedProject && (
               <header className="mb-24 flex items-center justify-between border-b border-gray-100 pb-10 text-black font-sans">
-                <div><button onClick={() => setSelectedProject(null)} className="flex items-center text-[0.62rem] uppercase tracking-[0.3em] text-gray-400 hover:text-black transition-colors mb-6 group text-black font-sans"><ArrowLeft size={12} className="mr-2 group-hover:-translate-x-1 transition-transform text-black" />Back to Categories</button><h2 className="text-[1.125rem] font-medium tracking-[0.3em] uppercase text-black font-sans">{selectedProject}</h2></div>
+                <div><button onClick={() => setSelectedProject(null)} className="flex items-center text-[0.62rem] uppercase tracking-[0.3em] text-gray-400 hover:text-black transition-colors mb-6 group text-black font-sans text-black"><ArrowLeft size={12} className="mr-2 group-hover:-translate-x-1 transition-transform text-black" />Back to Categories</button><h2 className="text-[1.125rem] font-medium tracking-[0.3em] uppercase text-black font-sans text-black">{selectedProject}</h2></div>
               </header>
             )}
             {currentDescription && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className={`max-w-2xl mx-auto mb-24 px-8 ${isSeamlessLayout ? 'mt-32 text-black' : ''} text-black`}>
-                <div className="text-[0.8rem] leading-[2.2] text-gray-500 tracking-wide font-light whitespace-pre-wrap text-center italic text-black font-sans">{currentDescription}</div>
+                <div className="text-[0.8rem] leading-[2.2] text-gray-500 tracking-wide font-light whitespace-pre-wrap text-center italic text-black font-sans text-black">{currentDescription}</div>
               </motion.div>
             )}
             {isEmptyCategory ? (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="w-full h-[40vh] flex flex-col items-center justify-center text-center text-black font-sans">
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="w-full h-[40vh] flex flex-col items-center justify-center text-center text-black font-sans text-black">
                 <p className="text-[0.62rem] uppercase tracking-[0.5em] text-gray-300 text-black">Section under construction</p>
                 <h2 className="text-[0.85rem] font-bold tracking-[0.3em] uppercase text-black mt-4 font-sans text-black text-black">正在建置中</h2>
               </motion.div>
             ) : activeCategory === 'Moments in Time' ? (
-              <div className="space-y-48 text-black">
+              <div className="space-y-48 text-black text-black">
                 {groupedVisibleItems.map(([year, items]) => (
-                  <section key={year} ref={el => yearRefs.current[year] = el} className="relative min-h-[40vh]">
-                    <header className="border-b border-gray-100 pb-6 mb-12 ml-8 md:ml-12 text-black"><h2 className="text-[0.875rem] font-bold tracking-[0.6em] text-black/30 uppercase italic text-black font-sans">{year}</h2></header>
-                    
-                    {/* Section Level Loader */}
-                    <AnimatePresence>
-                      {!readySections[year] && (
-                        <motion.div 
-                          exit={{ opacity: 0 }}
-                          transition={{ duration: 0.8 }}
-                          className="absolute inset-0 top-24 flex items-center justify-center z-10 bg-white"
-                        >
-                          <img src="/images/gif/loading.gif" alt="Loading Year..." className="w-16 h-16 opacity-20 object-contain" />
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-
-                    {/* Image Grid - only fully reveals when enough images are loaded */}
-                    <motion.div 
-                      animate={{ opacity: readySections[year] ? 1 : 0 }}
-                      transition={{ duration: 1.5 }}
-                      className="columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24 text-black"
-                    >
-                      {items.map((item, index) => (
-                        <div key={item.id} onClick={() => setSelectedImage(item)} className="break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12">
-                          <LazyImage 
-                            src={item.imageUrl} 
-                            alt={`${year} work`} 
-                            priority={index < 6} 
-                            onImageLoad={() => handleImageLoad(year)}
-                            imgClassName="h-auto transition-transform duration-1000 ease-out group-hover:scale-[1.01]" 
-                          />
-                        </div>
-                      ))}
-                    </motion.div>
+                  <section key={year} ref={el => yearRefs.current[year] = el} className="space-y-16 text-black text-black">
+                    <header className="border-b border-gray-100 pb-6 mb-12 ml-8 md:ml-12 text-black text-[0.875rem] text-black"><h2 className="text-[0.875rem] font-bold tracking-[0.6em] text-black/30 uppercase italic text-black font-sans text-black text-black">{year}</h2></header>
+                    <div className="columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24 text-black text-black text-black">
+                      {items.map((item, index) => (<div key={item.id} onClick={() => setSelectedImage(item)} className="break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12 text-black text-black"><LazyImage src={item.imageUrl} alt={`${year} work ${index + 1}`} priority={index < 6} showYear={false} imgClassName="h-auto transition-transform duration-1000 ease-out group-hover:scale-[1.01] text-black" /></div>))}
+                    </div>
                   </section>
                 ))}
               </div>
             ) : (
-              /* Other Views: Fallback to simpler loading if needed */
               <div className={isSeamlessLayout ? 'flex flex-col w-full max-w-2xl mx-auto text-black' : 'columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24 text-black'}>
                 {displayItems.map((item, index) => (
                   <div key={item.id} onClick={() => setSelectedImage(item)} className={isSeamlessLayout ? 'w-full text-black' : 'break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12 text-black'}>
-                    <LazyImage src={item.imageUrl} alt={item.title || 'Portfolio Work'} priority={index < 6} imgClassName="h-auto w-full block" className={isSeamlessLayout ? 'bg-transparent text-black' : 'text-black'} />
-                    {(!selectedProject && activeCategory !== 'Moments in Time') && <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-right text-black font-sans"><p className="text-[0.56rem] uppercase tracking-[0.3em] text-gray-300 font-light text-black font-sans">{item.title}</p></div>}
+                    <LazyImage src={item.imageUrl} alt={item.title || 'Portfolio Work'} priority={index < 6} showYear={false} imgClassName="h-auto w-full block" className={isSeamlessLayout ? 'bg-transparent text-black' : 'text-black'} />
+                    {(!selectedProject && activeCategory !== 'Moments in Time') && <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-right text-black font-sans text-black"><p className="text-[0.56rem] uppercase tracking-[0.3em] text-gray-300 font-light text-black font-sans text-black">{item.title}</p></div>}
                   </div>
                 ))}
               </div>
@@ -377,11 +327,11 @@ function App() {
 
       <AnimatePresence>
         {selectedImage && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center bg-white/98 p-4 md:p-12 lg:p-24 cursor-zoom-out text-black" onClick={() => setSelectedImage(null)}>
-            <button className="absolute top-8 right-8 text-black hover:rotate-90 transition-transform duration-500 p-2"><X size={24} strokeWidth={1} /></button>
-            <motion.img initial={{ scale: 0.98, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.98, opacity: 0 }} transition={{ type: "spring", damping: 30, stiffness: 200 }} src={selectedImage.imageUrl} alt={selectedImage.title} className="max-w-full max-h-full object-contain shadow-2xl" />
-            <div className="absolute bottom-12 left-12 text-left text-black">
-              <p className="text-[0.56rem] uppercase tracking-[0.5em] text-gray-300 font-light text-black font-sans">{selectedImage.title} {selectedImage.subTitle ? `— ${selectedImage.subTitle}` : ''} <span className="ml-4 opacity-50 tracking-widest text-black">{selectedImage.imageUrl?.match(/\d{4}/)?.[0]}</span></p>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center bg-white/98 p-4 md:p-12 lg:p-24 cursor-zoom-out text-black text-black" onClick={() => setSelectedImage(null)}>
+            <button className="absolute top-8 right-8 text-black hover:rotate-90 transition-transform duration-500 p-2 text-black text-black text-black"><X size={24} strokeWidth={1} /></button>
+            <motion.img initial={{ scale: 0.98, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.98, opacity: 0 }} transition={{ type: "spring", damping: 30, stiffness: 200 }} src={selectedImage.imageUrl} alt={selectedImage.title} className="max-w-full max-h-full object-contain shadow-2xl text-black" />
+            <div className="absolute bottom-12 left-12 text-left text-black text-black">
+              <p className="text-[0.56rem] uppercase tracking-[0.5em] text-gray-300 font-light text-black font-sans text-black text-black">{selectedImage.title} {selectedImage.subTitle ? `— ${selectedImage.subTitle}` : ''} <span className="ml-4 opacity-50 tracking-widest text-black text-black">{selectedImage.imageUrl?.match(/\d{4}/)?.[0]}</span></p>
             </div>
           </motion.div>
         )}
