@@ -57,7 +57,7 @@ const LazyImage = ({ src, alt, className, priority = false, showYear = false, ..
       {!isLoaded && (
         <div className="absolute inset-0 bg-gray-50" />
       )}
-      {/* Year Label Overlay */}
+      {/* Year Label Overlay - Default to hidden */}
       {isLoaded && showYear && year && (
         <div className="absolute top-4 right-4 pointer-events-none">
           <p className="text-[0.5rem] font-light tracking-[0.4em] text-black/20 uppercase italic">
@@ -79,6 +79,24 @@ function App() {
 
   const yearRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
+  const filteredItemsByCategory = useMemo(() => {
+    const categoryToMatch = activeCategory === 'Moments in Time' ? 'Personal' : activeCategory;
+    return GALLERY_ITEMS.filter(item => item.category === categoryToMatch);
+  }, [activeCategory]);
+
+  const sortedItems = useMemo(() => {
+    return [...filteredItemsByCategory].sort((a, b) => {
+      const yearA = a.imageUrl?.match(/\d{4}/)?.[0] || "0";
+      const yearB = b.imageUrl?.match(/\d{4}/)?.[0] || "0";
+      return parseInt(yearB) - parseInt(yearA);
+    });
+  }, [filteredItemsByCategory]);
+
+  const designParentCategories = useMemo(() => {
+    if (activeCategory !== 'Design') return [];
+    return Array.from(new Set(sortedItems.map(item => item.title))).filter(Boolean).sort() as string[];
+  }, [activeCategory, sortedItems]);
+
   useEffect(() => {
     setVisibleCount(ITEMS_PER_PAGE);
     
@@ -93,6 +111,18 @@ function App() {
     setActiveYear(null);
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [activeCategory]);
+
+  // 當選取到 Outdoor 時，預設選取第一個子專案
+  useEffect(() => {
+    if (activeCategory === 'Design' && selectedProject === 'outdoor') {
+      const subs = Array.from(new Set(
+        sortedItems.filter(item => item.title === 'outdoor').map(item => item.subTitle).filter(Boolean)
+      )) as string[];
+      if (subs.length > 0 && !selectedSubProject) {
+        setSelectedSubProject(subs[0]);
+      }
+    }
+  }, [activeCategory, selectedProject, sortedItems]);
 
   useEffect(() => {
     let ticking = false;
@@ -124,36 +154,20 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [activeCategory]);
 
-  const filteredAndSortedItems = useMemo(() => {
-    const categoryToMatch = activeCategory === 'Moments in Time' ? 'Personal' : activeCategory;
-    const items = GALLERY_ITEMS.filter(item => item.category === categoryToMatch);
-    // 使用拷貝進行排序，防止變動原數據
-    return [...items].sort((a, b) => {
-      const yearA = a.imageUrl?.match(/\d{4}/)?.[0] || "0";
-      const yearB = b.imageUrl?.match(/\d{4}/)?.[0] || "0";
-      return parseInt(yearB) - parseInt(yearA);
-    });
-  }, [activeCategory]);
-
-  const designParentCategories = useMemo(() => {
-    if (activeCategory !== 'Design') return [];
-    return Array.from(new Set(filteredAndSortedItems.map(item => item.title))).filter(Boolean).sort() as string[];
-  }, [activeCategory, filteredAndSortedItems]);
-
   const subProjectList = useMemo(() => {
     if (!selectedProject || activeCategory !== 'Design') return [];
     return Array.from(new Set(
-      filteredAndSortedItems
+      sortedItems
         .filter(item => item.title === selectedProject)
         .map(item => item.subTitle)
         .filter(Boolean)
     )).sort() as string[];
-  }, [selectedProject, activeCategory, filteredAndSortedItems]);
+  }, [selectedProject, activeCategory, sortedItems]);
 
   const projectCovers = useMemo(() => {
     if (activeCategory !== 'Commissioned') return [];
     const projectsMap: { [key: string]: GalleryItem } = {};
-    filteredAndSortedItems.forEach(item => {
+    sortedItems.forEach(item => {
       if (!projectsMap[item.title] || item.isCover) projectsMap[item.title] = item;
     });
     return Object.entries(projectsMap).sort((a, b) => {
@@ -161,40 +175,39 @@ function App() {
       const yearB = b[0].match(/\d{4}/)?.[0] || "0";
       return parseInt(yearB) - parseInt(yearA);
     });
-  }, [activeCategory, filteredAndSortedItems]);
+  }, [activeCategory, sortedItems]);
 
   const allYears = useMemo(() => {
     if (activeCategory !== 'Moments in Time') return [];
-    const years = Array.from(new Set(filteredAndSortedItems.map(item => item.imageUrl?.match(/\d{4}/)?.[0]).filter(Boolean))) as string[];
+    const years = Array.from(new Set(sortedItems.map(item => item.imageUrl?.match(/\d{4}/)?.[0]).filter(Boolean))) as string[];
     return years.sort((a, b) => parseInt(b) - parseInt(a));
-  }, [activeCategory, filteredAndSortedItems]);
+  }, [activeCategory, sortedItems]);
 
   const displayItems = useMemo(() => {
     if (activeCategory === 'Commissioned' && selectedProject) {
-      return filteredAndSortedItems.filter(item => item.title === selectedProject);
+      return sortedItems.filter(item => item.title === selectedProject);
     }
     
     if (activeCategory === 'Design') {
       const projectToMatch = selectedProject || 'graphic';
-      let items = filteredAndSortedItems.filter(item => item.title === projectToMatch);
+      let items = sortedItems.filter(item => item.title === projectToMatch);
       
       if (selectedSubProject) {
         items = items.filter(item => item.subTitle === selectedSubProject);
       }
       
-      const isSeamless = selectedSubProject === '997' || selectedSubProject === 'gogoro' || (projectToMatch === 'vehicle' && !selectedSubProject);
+      const isSeamless = selectedSubProject === '997' || selectedSubProject === 'gogoro' || selectedSubProject === 'wanderer' || (projectToMatch === 'vehicle' && !selectedSubProject);
       if (isSeamless) {
-        // 使用拷貝進行排序
         return [...items].sort((a, b) => (a.imageUrl || '').localeCompare(b.imageUrl || ''));
       }
       return items.slice(0, visibleCount);
     }
     
-    return filteredAndSortedItems.slice(0, visibleCount);
-  }, [filteredAndSortedItems, visibleCount, selectedProject, selectedSubProject, activeCategory]);
+    return sortedItems.slice(0, visibleCount);
+  }, [sortedItems, visibleCount, selectedProject, selectedSubProject, activeCategory]);
 
   const scrollToYear = (year: string) => {
-    const targetIdx = filteredAndSortedItems.findIndex(item => item.imageUrl?.includes(year));
+    const targetIdx = sortedItems.findIndex(item => item.imageUrl?.includes(year));
     if (targetIdx >= visibleCount) setVisibleCount(targetIdx + 30);
     setTimeout(() => {
       const element = yearRefs.current[year];
@@ -206,10 +219,10 @@ function App() {
     }, 100);
   };
 
-  const isSeamlessLayout = activeCategory === 'Design' && (selectedSubProject === '997' || selectedSubProject === 'gogoro' || (selectedProject === 'vehicle' && !selectedSubProject));
+  const isSeamlessLayout = activeCategory === 'Design' && (selectedSubProject === '997' || selectedSubProject === 'gogoro' || selectedSubProject === 'wanderer' || (selectedProject === 'vehicle' && !selectedSubProject));
   const groupedVisibleItems = useMemo(() => {
     if (activeCategory !== 'Moments in Time') return [];
-    const visible = filteredAndSortedItems.slice(0, visibleCount);
+    const visible = sortedItems.slice(0, visibleCount);
     const groups: { [key: string]: GalleryItem[] } = {};
     visible.forEach(item => {
       const year = item.imageUrl?.match(/\d{4}/)?.[0] || "Others";
@@ -221,13 +234,13 @@ function App() {
       if (b[0] === "Others") return -1;
       return parseInt(b[0]) - parseInt(a[0]);
     });
-  }, [filteredAndSortedItems, visibleCount, activeCategory]);
+  }, [sortedItems, visibleCount, activeCategory]);
 
-  const isEmptyCategory = filteredAndSortedItems.length === 0 && !['BIO', 'Price List'].includes(activeCategory);
+  const isEmptyCategory = sortedItems.length === 0 && !['BIO', 'Price List'].includes(activeCategory);
 
   return (
     <div className="min-h-screen bg-white selection:bg-black selection:text-white font-sans text-black">
-      <header className="p-8 md:p-12 lg:fixed lg:w-64 lg:h-screen lg:flex lg:flex-col lg:justify-between z-30 bg-white/80 backdrop-blur-sm lg:bg-transparent">
+      <header className="p-8 md:p-12 lg:fixed lg:w-64 lg:h-screen lg:flex lg:flex-col lg:justify-between z-30 bg-white/80 backdrop-blur-sm lg:bg-transparent text-black">
         <div>
           <h1 className="mb-12">
             <a href="/" className="hover:opacity-70 transition-opacity">
@@ -339,7 +352,7 @@ function App() {
               <div className={isSeamlessLayout ? 'flex flex-col w-full text-black' : 'columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24 text-black'}>
                 {displayItems.map((item, index) => (
                   <div key={item.id} onClick={() => setSelectedImage(item)} className={isSeamlessLayout ? 'w-full text-black' : 'break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12 text-black'}>
-                    <LazyImage src={item.imageUrl} alt={item.title} priority={index < 6} showYear={false} imgClassName="h-auto w-full block" className={isSeamlessLayout ? 'bg-transparent text-black' : 'text-black'} />
+                    <LazyImage src={item.imageUrl} alt={item.title} priority={index < 6} showYear={false} imgClassName="h-auto w-full block" className={isSeamlessLayout ? 'bg-transparent' : ''} />
                     {(!selectedProject && activeCategory !== 'Moments in Time') && <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-right text-black font-sans"><p className="text-[0.56rem] uppercase tracking-[0.3em] text-gray-300 font-light text-black">{item.title}</p></div>}
                   </div>
                 ))}
