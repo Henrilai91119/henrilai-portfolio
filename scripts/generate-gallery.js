@@ -48,6 +48,19 @@ function getHierarchy(relativePath) {
         subTitle = parts[commissionedIdx + 2];
       }
     }
+  } else if (category === 'Design') {
+    const designIdx = parts.indexOf('design');
+    if (designIdx !== -1 && parts.length > designIdx + 1) {
+      title = parts[designIdx + 1]; // "vehicle"
+      if (parts.length > designIdx + 2) {
+        // 如果還有下一層，則最後一層前的資料夾為 subTitle (即專案名)
+        // 範例: design/vehicle/997/1.jpg -> title="vehicle", subTitle="997"
+        const projectParts = parts.slice(designIdx + 2);
+        if (projectParts.length >= 2) {
+          subTitle = projectParts[0]; 
+        }
+      }
+    }
   } else if (category === 'Personal') {
     const momentsIdx = parts.indexOf('moments in time');
     if (momentsIdx !== -1 && parts.length > momentsIdx + 1) {
@@ -76,7 +89,6 @@ try {
       category: category,
       imageUrl: '/' + relativePath.split(path.sep).join('/'),
       aspectRatio: 'square',
-      // 自動偵測：如果檔名包含 'cover'，標記為封面
       isCover: fileName.toLowerCase().includes('cover')
     };
   });
