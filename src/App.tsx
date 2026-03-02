@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Instagram, Linkedin, X } from 'lucide-react';
+import { Instagram, Linkedin, X, ArrowLeft } from 'lucide-react';
 
 import GALLERY_ITEMS_JSON from './gallery-items.json';
 
@@ -25,7 +25,7 @@ const NAV_ITEMS = [
   { label: 'Price List', href: '#' },
 ];
 
-const ITEMS_PER_PAGE = 21; // 每次加載 21 張 (3欄的倍數)
+const ITEMS_PER_PAGE = 21;
 
 // Reusable Image Component with Scroll Reveal and Priority Support
 const LazyImage = ({ src, alt, className, priority = false, ...props }: any) => {
@@ -62,15 +62,17 @@ const LazyImage = ({ src, alt, className, priority = false, ...props }: any) => 
 function App() {
   const [activeCategory, setActiveCategory] = useState('Personal');
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
+  const [selectedProject, setSelectedProject] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
 
-  // 當切換分類時，重置顯示數量
+  // 當切換主分類時，重置所有狀態
   useEffect(() => {
     setVisibleCount(ITEMS_PER_PAGE);
+    setSelectedProject(null);
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [activeCategory]);
 
-  // 無限捲動邏輯
+  // 無限捲動邏輯 (僅在非專案選擇模式下或專案內生效)
   useEffect(() => {
     const handleScroll = () => {
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 800) {
@@ -81,10 +83,9 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // 自動排序邏輯：提取路徑中的四位數字年份進行比較
+  // 1. 基本排序與過濾 (依年份降序)
   const filteredAndSortedItems = useMemo(() => {
     const items = GALLERY_ITEMS.filter(item => item.category === activeCategory);
-    
     return items.sort((a, b) => {
       const yearA = a.imageUrl.match(/\d{4}/)?.[0] || "0";
       const yearB = b.imageUrl.match(/\d{4}/)?.[0] || "0";
@@ -92,32 +93,36 @@ function App() {
     });
   }, [activeCategory]);
 
-  // 僅取目前可見的照片
-  const visibleItems = useMemo(() => {
-    return filteredAndSortedItems.slice(0, visibleCount);
-  }, [filteredAndSortedItems, visibleCount]);
-
-  const commissionedGroups = useMemo(() => {
+  // 2. 針對 Commissioned 進行專案封面提取
+  const projectCovers = useMemo(() => {
     if (activeCategory !== 'Commissioned') return [];
     
-    const groups: { [key: string]: GalleryItem[] } = {};
+    const projectsMap: { [key: string]: GalleryItem } = {};
     filteredAndSortedItems.forEach(item => {
-      if (!groups[item.title]) {
-        groups[item.title] = [];
+      if (!projectsMap[item.title]) {
+        projectsMap[item.title] = item; // 預設拿該資料夾的第一張
       }
-      groups[item.title].push(item);
     });
 
-    return Object.entries(groups).sort((a, b) => {
+    return Object.entries(projectsMap).sort((a, b) => {
       const yearA = a[0].match(/\d{4}/)?.[0] || "0";
       const yearB = b[0].match(/\d{4}/)?.[0] || "0";
       return parseInt(yearB) - parseInt(yearA);
     });
   }, [activeCategory, filteredAndSortedItems]);
 
+  // 3. 目前應顯示的內容 (如果是專案內，就顯示專案圖；如果是一般分類，就顯示 visibleCount)
+  const displayItems = useMemo(() => {
+    if (activeCategory === 'Commissioned' && selectedProject) {
+      return filteredAndSortedItems.filter(item => item.title === selectedProject);
+    }
+    return filteredAndSortedItems.slice(0, visibleCount);
+  }, [filteredAndSortedItems, visibleCount, selectedProject, activeCategory]);
+
   return (
     <div className="min-h-screen bg-white selection:bg-black selection:text-white font-sans">
-      <header className="p-8 md:p-12 lg:fixed lg:w-64 lg:h-screen lg:flex lg:flex-col lg:justify-between z-20 bg-white/80 backdrop-blur-sm lg:bg-transparent">
+      {/* Sidebar Navigation */}
+      <header className="p-8 md:p-12 lg:fixed lg:w-64 lg:h-screen lg:flex lg:flex-col lg:justify-between z-20 bg-white/80 backdrop-blur-sm lg:bg-transparent text-black">
         <div>
           <h1 className="text-2xl font-semibold tracking-[0.3em] mb-12 uppercase">
             <a href="/" className="hover:opacity-70 transition-opacity">HENRI LAI</a>
@@ -157,36 +162,22 @@ function App() {
         </footer>
       </header>
 
+      {/* Main Content Area */}
       <main className="lg:ml-64 p-8 md:p-12 lg:p-16 lg:pt-12">
         {activeCategory === 'BIO' ? (
-          <motion.div 
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-xl mx-auto lg:mx-0"
-          >
-            <LazyImage 
-              src="/images/BIO/profile.jpg" 
-              alt="Henri Lai" 
-              priority={true}
-              className="aspect-[4/5] mb-16 w-full max-w-sm grayscale hover:grayscale-0 transition-all duration-1000"
-            />
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-xl mx-auto lg:mx-0">
+            <LazyImage src="/images/BIO/profile.jpg" alt="Henri Lai" priority={true} className="aspect-[4/5] mb-16 w-full max-w-sm grayscale hover:grayscale-0 transition-all duration-1000" />
             <div className="space-y-8 text-[13px] leading-[1.8] text-gray-600 tracking-wide">
               <p className="font-semibold text-black tracking-[0.3em] uppercase text-xs">HENRI LAI</p>
               <p>這裡可以放您的自我介紹。</p>
               <div className="pt-16 border-t border-gray-100">
                 <p className="uppercase tracking-[0.3em] text-[9px] text-gray-400 mb-4 font-bold">Contact</p>
-                <a href="mailto:hello@henrilai.com" className="hover:text-black underline underline-offset-8 transition-colors text-gray-400">
-                  hello@henrilai.com
-                </a>
+                <a href="mailto:hello@henrilai.com" className="hover:text-black underline underline-offset-8 transition-colors text-gray-400">hello@henrilai.com</a>
               </div>
             </div>
           </motion.div>
         ) : activeCategory === 'Price List' ? (
-          <motion.div 
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-xl"
-          >
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-xl">
             <h2 className="text-sm font-semibold tracking-[0.4em] mb-20 uppercase">Price List</h2>
             <div className="space-y-16">
               <section>
@@ -200,61 +191,86 @@ function App() {
               </section>
             </div>
           </motion.div>
-        ) : activeCategory === 'Commissioned' ? (
-          <div className="space-y-32 lg:space-y-48">
+        ) : activeCategory === 'Commissioned' && !selectedProject ? (
+          /* Commissioned: Project List View */
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 lg:gap-24">
             <AnimatePresence mode="popLayout">
-              {commissionedGroups.map(([projectTitle, items]) => (
-                <section key={projectTitle} className="space-y-12">
-                  <header className="max-w-2xl border-l border-black pl-6 mb-16">
-                    <h2 className="text-[11px] font-bold tracking-[0.5em] uppercase text-black">
-                      {projectTitle}
-                    </h2>
-                  </header>
-                  <div className="columns-1 sm:columns-2 md:columns-3 gap-12 lg:gap-16 space-y-12 lg:space-y-16">
-                    {items.map((item, index) => (
-                      <div
-                        key={item.id}
-                        onClick={() => setSelectedImage(item)}
-                        className="break-inside-avoid mb-12 lg:mb-16 group cursor-crosshair"
-                      >
-                        <LazyImage 
-                          src={item.imageUrl} 
-                          alt={item.title} 
-                          priority={index < 6}
-                          imgClassName="h-auto group-hover:scale-[1.01] transition-transform duration-1000"
-                        />
-                      </div>
-                    ))}
+              {projectCovers.map(([title, item]) => (
+                <motion.div
+                  layout
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  key={title}
+                  onClick={() => {
+                    setSelectedProject(title);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="group cursor-pointer"
+                >
+                  <div className="aspect-[3/4] mb-8 overflow-hidden bg-gray-50">
+                    <img 
+                      src={item.imageUrl} 
+                      alt={title} 
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
+                    />
                   </div>
-                </section>
+                  <h2 className="text-[10px] font-bold tracking-[0.4em] uppercase text-black mb-2 leading-relaxed">
+                    {title}
+                  </h2>
+                </motion.div>
               ))}
             </AnimatePresence>
           </div>
         ) : (
-          <div className="columns-1 sm:columns-2 md:columns-3 gap-12 lg:gap-16 space-y-12 lg:space-y-16">
-            <AnimatePresence mode="popLayout">
-              {visibleItems.map((item, index) => (
-                <div
-                  key={item.id}
-                  onClick={() => setSelectedImage(item)}
-                  className="break-inside-avoid mb-12 lg:mb-16 group cursor-crosshair"
-                >
-                  <LazyImage 
-                    src={item.imageUrl} 
-                    alt={item.title} 
-                    priority={index < 6}
-                    imgClassName="h-auto transition-transform duration-1000 ease-out group-hover:scale-[1.01]"
-                  />
-                  <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <p className="text-[9px] uppercase tracking-[0.3em] text-gray-300 font-light">{item.title}</p>
-                  </div>
+          /* General Category or Commissioned Detail View */
+          <div className="space-y-12">
+            {selectedProject && (
+              <header className="mb-20 flex items-center justify-between border-b border-gray-100 pb-8">
+                <div>
+                  <button 
+                    onClick={() => setSelectedProject(null)}
+                    className="flex items-center text-[10px] uppercase tracking-[0.3em] text-gray-400 hover:text-black transition-colors mb-4 group"
+                  >
+                    <ArrowLeft size={12} className="mr-2 group-hover:-translate-x-1 transition-transform" />
+                    Back to Projects
+                  </button>
+                  <h2 className="text-[12px] font-bold tracking-[0.5em] uppercase text-black">
+                    {selectedProject}
+                  </h2>
                 </div>
-              ))}
-            </AnimatePresence>
+              </header>
+            )}
+            
+            <div className="columns-1 sm:columns-2 md:columns-3 gap-12 lg:gap-16 space-y-12 lg:space-y-16">
+              <AnimatePresence mode="popLayout">
+                {displayItems.map((item, index) => (
+                  <div
+                    key={item.id}
+                    onClick={() => setSelectedImage(item)}
+                    className="break-inside-avoid mb-12 lg:mb-16 group cursor-crosshair"
+                  >
+                    <LazyImage 
+                      src={item.imageUrl} 
+                      alt={item.title} 
+                      priority={index < 6}
+                      imgClassName="h-auto transition-transform duration-1000 ease-out group-hover:scale-[1.01]"
+                    />
+                    {!selectedProject && (
+                      <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-right">
+                        <p className="text-[9px] uppercase tracking-[0.3em] text-gray-300 font-light">{item.title}</p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </AnimatePresence>
+            </div>
           </div>
         )}
       </main>
 
+      {/* Lightbox Modal */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div
@@ -264,10 +280,7 @@ function App() {
             className="fixed inset-0 z-50 flex items-center justify-center bg-white/98 p-4 md:p-12 lg:p-24 cursor-zoom-out"
             onClick={() => setSelectedImage(null)}
           >
-            <button 
-              className="absolute top-8 right-8 text-black hover:rotate-90 transition-transform duration-500 p-2"
-              onClick={() => setSelectedImage(null)}
-            >
+            <button className="absolute top-8 right-8 text-black hover:rotate-90 transition-transform duration-500 p-2">
               <X size={24} strokeWidth={1} />
             </button>
             <motion.img
@@ -280,9 +293,7 @@ function App() {
               className="max-w-full max-h-full object-contain shadow-2xl"
             />
             <div className="absolute bottom-12 left-12 text-left">
-              <p className="text-[9px] uppercase tracking-[0.5em] text-gray-300 font-light">
-                {selectedImage.title}
-              </p>
+              <p className="text-[9px] uppercase tracking-[0.5em] text-gray-300 font-light">{selectedImage.title}</p>
             </div>
           </motion.div>
         )}
