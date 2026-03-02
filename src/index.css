@@ -3,11 +3,43 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    /* 預設根字體 16px */
+    font-size: 16px;
+    background-color: white;
+    color: black;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Full HD 顯示器範圍 (通常為 1920x1080) */
+  /* 當螢幕寬度在 1400px 到 2000px 之間時，縮小根字體 */
+  @media (min-width: 1400px) and (max-width: 2000px) {
+    html {
+      font-size: 10px; /* 大約縮小至原本的 60% (比 50% 稍微好讀一點，增加高級感) */
+    }
+  }
+
+  /* 2K / 4K 顯示器範圍 */
+  @media (min-width: 2001px) {
+    html {
+      font-size: 16px; /* 恢復正常比例，依靠大螢幕的物理尺寸呈現高級感 */
+    }
+  }
+
   body {
     @apply bg-white text-black antialiased;
   }
 }
 
 .nav-link {
-  @apply hover:text-gray-400 transition-colors duration-200 uppercase tracking-widest text-sm;
+  @apply hover:text-gray-400 transition-colors duration-200 uppercase tracking-widest;
+}
+
+/* 隱藏滾動條但保持功能 */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
