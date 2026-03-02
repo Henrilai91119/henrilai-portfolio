@@ -4,21 +4,30 @@ import path from 'path';
 const imagesDir = path.join(process.cwd(), 'public', 'images');
 const outputFile = path.join(process.cwd(), 'src', 'gallery-items.json');
 
-const EXCLUDED_DIRS = ['.DS_Store', 'BIO', 'Price list'];
+// 排除系統檔案與特定功能資料夾
+const EXCLUDED_DIRS = ['.DS_Store', 'BIO', 'Price list', 'web logo'];
 
 function getFiles(dir, allFiles = []) {
+  if (!fs.existsSync(dir)) return allFiles;
+  
   const files = fs.readdirSync(dir);
   
   files.forEach(file => {
     const filePath = path.join(dir, file);
-    if (fs.statSync(filePath).isDirectory()) {
-      if (!EXCLUDED_DIRS.includes(file)) {
-        getFiles(filePath, allFiles);
+    try {
+      const stats = fs.statSync(filePath);
+      if (stats.isDirectory()) {
+        if (!EXCLUDED_DIRS.includes(file) && !file.startsWith('.')) {
+          getFiles(filePath, allFiles);
+        }
+      } else {
+        // 只抓取常見圖片格式，排除隱藏檔
+        if (/\.(jpg|jpeg|png|webp|gif)$/i.test(file) && !file.startsWith('.')) {
+          allFiles.push(filePath);
+        }
       }
-    } else {
-      if (/\.(jpg|jpeg|png|webp|gif)$/i.test(file) && !file.startsWith('.')) {
-        allFiles.push(filePath);
-      }
+    } catch (e) {
+      console.warn(`Skipping inaccessible file: ${filePath}`);
     }
   });
   
@@ -26,10 +35,11 @@ function getFiles(dir, allFiles = []) {
 }
 
 function mapToCategory(relativePath) {
-  if (relativePath.includes('moments in time')) return 'Personal';
-  if (relativePath.includes('commissioned')) return 'Commissioned';
-  if (relativePath.includes('design')) return 'Design';
-  if (relativePath.includes('Motion')) return 'Motion';
+  const lowerPath = relativePath.toLowerCase();
+  if (lowerPath.includes('moments in time')) return 'Personal';
+  if (lowerPath.includes('commissioned')) return 'Commissioned';
+  if (lowerPath.includes('design')) return 'Design';
+  if (lowerPath.includes('motion')) return 'Motion';
   return 'Personal';
 }
 
@@ -51,14 +61,10 @@ function getHierarchy(relativePath) {
   } else if (category === 'Design') {
     const designIdx = parts.indexOf('design');
     if (designIdx !== -1 && parts.length > designIdx + 1) {
-      title = parts[designIdx + 1]; // "vehicle"
+      title = parts[designIdx + 1];
       if (parts.length > designIdx + 2) {
-        // 如果還有下一層，則最後一層前的資料夾為 subTitle (即專案名)
-        // 範例: design/vehicle/997/1.jpg -> title="vehicle", subTitle="997"
         const projectParts = parts.slice(designIdx + 2);
-        if (projectParts.length >= 2) {
-          subTitle = projectParts[0]; 
-        }
+        if (projectParts.length >= 2) subTitle = projectParts[0]; 
       }
     }
   } else if (category === 'Personal') {
@@ -75,6 +81,7 @@ function getHierarchy(relativePath) {
 }
 
 try {
+  console.log('Cleaning up gallery data...');
   const allImages = getFiles(imagesDir);
   const galleryItems = allImages.map((filePath, index) => {
     const relativePath = path.relative(path.join(process.cwd(), 'public'), filePath);
@@ -93,8 +100,12 @@ try {
     };
   });
 
+  // 確保輸出目錄存在
+  const outputDir = path.dirname(outputFile);
+  if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true });
+
   fs.writeFileSync(outputFile, JSON.stringify(galleryItems, null, 2));
-  console.log(`Successfully generated ${galleryItems.length} items to ${outputFile}`);
+  console.log(`✨ Successfully generated ${galleryItems.length} items.`);
 } catch (error) {
-  console.error('Error generating gallery items:', error);
+  console.error('❌ Error during gallery generation:', error.message);
 }

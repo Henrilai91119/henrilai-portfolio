@@ -4783,9 +4783,9 @@
     "title": "vehicle",
     "subTitle": "gogoro",
     "category": "Design",
-    "imageUrl": "/images/design/vehicle/gogoro/gogoro.jpg",
+    "imageUrl": "/images/design/vehicle/gogoro/gogoro_cover.jpg",
     "aspectRatio": "square",
-    "isCover": false
+    "isCover": true
   },
   {
     "id": 533,
@@ -6026,15 +6026,6 @@
     "subTitle": null,
     "category": "Personal",
     "imageUrl": "/images/moments in time/2026/2026 (4).jpg",
-    "aspectRatio": "square",
-    "isCover": false
-  },
-  {
-    "id": 671,
-    "title": "Untitled",
-    "subTitle": null,
-    "category": "Personal",
-    "imageUrl": "/images/web logo/未命名-2_工作區域 1.png",
     "aspectRatio": "square",
     "isCover": false
   }

@@ -88,22 +88,32 @@ function App() {
   }, [activeCategory]);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 1000) {
-        setVisibleCount(prev => prev + ITEMS_PER_PAGE);
-      }
-      if (activeCategory === 'Moments in Time') {
-        const years = Object.keys(yearRefs.current);
-        for (const year of years) {
-          const element = yearRefs.current[year];
-          if (element) {
-            const rect = element.getBoundingClientRect();
-            if (rect.top >= -100 && rect.top <= 300) {
-              setActiveYear(year);
-              break;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          // 無限捲動
+          if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 1200) {
+            setVisibleCount(prev => prev + ITEMS_PER_PAGE);
+          }
+
+          // 年份偵測邏輯
+          if (activeCategory === 'Moments in Time') {
+            const years = Object.keys(yearRefs.current);
+            for (const year of years) {
+              const element = yearRefs.current[year];
+              if (element) {
+                const rect = element.getBoundingClientRect();
+                if (rect.top >= -100 && rect.top <= 350) {
+                  setActiveYear(year);
+                  break;
+                }
+              }
             }
           }
-        }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
     window.addEventListener('scroll', handleScroll);
