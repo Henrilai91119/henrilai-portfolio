@@ -125,6 +125,11 @@ function App() {
       if (item.title === '2024 潮旅行 活動' && item.imageUrl.includes('Fangliao (25).jpg')) {
         projectsMap[item.title] = item;
       }
+
+      // 特別指定：2024 念亭&智鴻 的封面更換為 wedding (44)
+      if (item.title === '2024 念亭&智鴻' && item.imageUrl.includes('wedding (44).jpg')) {
+        projectsMap[item.title] = item;
+      }
     });
 
     return Object.entries(projectsMap).sort((a, b) => {
