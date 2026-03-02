@@ -82,35 +82,94 @@ function App() {
 
       {/* Main Content Area */}
       <main className="lg:ml-64 p-8 md:p-12">
-        <motion.div 
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {filteredItems.map((item) => (
-            <motion.div
-              layout
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.4 }}
-              key={item.id}
-              className={`
-                relative group overflow-hidden cursor-pointer bg-gray-50
-                ${item.aspectRatio === 'square' ? 'aspect-square' : ''}
-                ${item.aspectRatio === 'portrait' ? 'aspect-[3/4]' : ''}
-                ${item.aspectRatio === 'video' ? 'aspect-video' : ''}
-              `}
-            >
-              <div className="absolute inset-0 flex items-center justify-center text-gray-300 group-hover:scale-110 transition-transform duration-700 ease-out">
-                {/* Image will go here */}
-                <span className="text-xs uppercase tracking-widest">{item.title}</span>
+        {activeCategory === 'BIO' ? (
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="max-w-2xl"
+          >
+            <div className="aspect-[4/5] bg-gray-100 mb-12 w-full max-w-sm grayscale hover:grayscale-0 transition-all duration-1000">
+              {/* Profile Image placeholder */}
+              <div className="w-full h-full flex items-center justify-center text-gray-300 uppercase tracking-widest text-xs">Profile Image</div>
+            </div>
+            <div className="space-y-6 text-sm leading-relaxed text-gray-800">
+              <p className="font-semibold text-lg mb-8 tracking-widest">HENRI LAI</p>
+              <p>
+                這裡放您的自我介紹。例如：我是一位專注於視覺設計與動態影像的創作者，
+                擁有多年的跨領域經驗，擅長將故事轉化為具備感染力的視覺語言。
+              </p>
+              <p>
+                我的工作涵蓋了從個人藝術創作到商業委託的各種範疇。
+                我相信設計不只是視覺的呈現，更是溝通與連結的橋樑。
+              </p>
+              <div className="pt-12">
+                <p className="uppercase tracking-widest text-[10px] text-gray-400 mb-4">Contact</p>
+                <a href="mailto:hello@henrilai.com" className="hover:text-gray-400 underline underline-offset-4 transition-colors">
+                  hello@henrilai.com
+                </a>
               </div>
-              
-              {/* Overlay on Hover */}
-              <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </motion.div>
-          ))}
-        </motion.div>
+            </div>
+          </motion.div>
+        ) : activeCategory === 'Price List' ? (
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="max-w-2xl"
+          >
+            <h2 className="text-xl font-semibold tracking-widest mb-12 uppercase">Price List</h2>
+            <div className="space-y-12">
+              <section>
+                <h3 className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-6">— Photography</h3>
+                <ul className="space-y-4">
+                  <li className="flex justify-between border-b border-gray-100 pb-2">
+                    <span>Portrait Session</span>
+                    <span className="font-mono">$200+</span>
+                  </li>
+                  <li className="flex justify-between border-b border-gray-100 pb-2">
+                    <span>Event Coverage</span>
+                    <span className="font-mono">$150/hr</span>
+                  </li>
+                </ul>
+              </section>
+              <section>
+                <h3 className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-6">— Motion Design</h3>
+                <ul className="space-y-4">
+                  <li className="flex justify-between border-b border-gray-100 pb-2">
+                    <span>Animation (15s)</span>
+                    <span className="font-mono">$500+</span>
+                  </li>
+                </ul>
+              </section>
+            </div>
+          </motion.div>
+        ) : (
+          <motion.div 
+            layout
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {filteredItems.map((item) => (
+              <motion.div
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.4 }}
+                key={item.id}
+                className={`
+                  relative group overflow-hidden cursor-pointer bg-gray-50
+                  ${item.aspectRatio === 'square' ? 'aspect-square' : ''}
+                  ${item.aspectRatio === 'portrait' ? 'aspect-[3/4]' : ''}
+                  ${item.aspectRatio === 'video' ? 'aspect-video' : ''}
+                `}
+              >
+                <div className="absolute inset-0 flex items-center justify-center text-gray-300 group-hover:scale-110 transition-transform duration-700 ease-out">
+                  <span className="text-xs uppercase tracking-widest">{item.title}</span>
+                </div>
+                <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
       </main>
     </div>
   )
