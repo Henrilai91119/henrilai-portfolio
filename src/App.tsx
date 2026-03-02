@@ -150,6 +150,11 @@ function App() {
       if (item.title === '2025 PNGL' && item.imageUrl.includes('2025 PNGL (19).jpg')) {
         projectsMap[item.title] = item;
       }
+
+      // 特別指定：2026 潮旅行 活動 的封面更換為 2026 Chouzhou Travel 活動 (18)
+      if (item.title === '2026 潮旅行 活動' && item.imageUrl.includes('2026 Chouzhou Travel 活動 (18).jpg')) {
+        projectsMap[item.title] = item;
+      }
     });
 
     return Object.entries(projectsMap).sort((a, b) => {
