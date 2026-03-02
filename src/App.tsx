@@ -26,7 +26,7 @@ const NAV_ITEMS = [
   { label: 'Price List', href: '#' },
 ];
 
-const ITEMS_PER_PAGE = 21;
+const ITEMS_PER_PAGE = 24;
 
 // Reusable Image Component with Elegant 1.5s Scroll Reveal
 const LazyImage = ({ src, alt, className, priority = false, ...props }: any) => {
@@ -56,14 +56,6 @@ const LazyImage = ({ src, alt, className, priority = false, ...props }: any) => 
       {!isLoaded && (
         <div className="absolute inset-0 bg-gray-50" />
       )}
-      {/* Year Label Overlay (Only for Personal Category) */}
-      {isLoaded && props.showYear && (
-        <div className="absolute top-4 right-4 pointer-events-none">
-          <p className="text-[8px] font-light tracking-[0.4em] text-black/20 uppercase italic">
-            {src.match(/\d{4}/)?.[0]}
-          </p>
-        </div>
-      )}
     </motion.div>
   );
 };
@@ -92,6 +84,7 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // 1. 基本排序與過濾 (依年份降序)
   const filteredAndSortedItems = useMemo(() => {
     const items = GALLERY_ITEMS.filter(item => item.category === activeCategory);
     return items.sort((a, b) => {
@@ -101,6 +94,7 @@ function App() {
     });
   }, [activeCategory]);
 
+  // 2. 針對 Commissioned 進行專案封面提取
   const projectCovers = useMemo(() => {
     if (activeCategory !== 'Commissioned') return [];
     const projectsMap: { [key: string]: GalleryItem } = {};
@@ -113,6 +107,24 @@ function App() {
       return parseInt(yearB) - parseInt(yearA);
     });
   }, [activeCategory, filteredAndSortedItems]);
+
+  // 3. 分區邏輯 (用於 Personal 頁面年份分區)
+  const groupedVisibleItems = useMemo(() => {
+    const visible = filteredAndSortedItems.slice(0, visibleCount);
+    const groups: { [key: string]: GalleryItem[] } = {};
+    
+    visible.forEach(item => {
+      const year = item.imageUrl.match(/\d{4}/)?.[0] || "Others";
+      if (!groups[year]) groups[year] = [];
+      groups[year].push(item);
+    });
+
+    return Object.entries(groups).sort((a, b) => {
+      if (a[0] === "Others") return 1;
+      if (b[0] === "Others") return -1;
+      return parseInt(b[0]) - parseInt(a[0]);
+    });
+  }, [filteredAndSortedItems, visibleCount]);
 
   const projectSubTitles = useMemo(() => {
     if (!selectedProject) return [];
@@ -184,7 +196,6 @@ function App() {
             </div>
           </motion.div>
         ) : activeCategory === 'Commissioned' && !selectedProject ? (
-          /* Commissioned: Project List View (Large Font) */
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24 px-4 md:px-8">
             <AnimatePresence mode="popLayout">
               {projectCovers.map(([title, item]) => (
@@ -192,14 +203,33 @@ function App() {
                   <div className="aspect-square mb-8 overflow-hidden bg-gray-50 w-full">
                     <img src={item.imageUrl} alt={title} loading="lazy" className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-1000 ease-out" />
                   </div>
-                  <h2 className="text-[18px] font-medium tracking-[0.2em] uppercase text-black mb-2 leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">
-                    {title}
-                  </h2>
+                  <h2 className="text-[18px] font-medium tracking-[0.2em] uppercase text-black mb-2 leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">{title}</h2>
                 </motion.div>
               ))}
             </AnimatePresence>
           </div>
+        ) : activeCategory === 'Personal' ? (
+          /* Personal: Year Sectioned View */
+          <div className="space-y-32">
+            {groupedVisibleItems.map(([year, items]) => (
+              <section key={year} className="space-y-12">
+                <header className="border-b border-gray-100 pb-6 mb-12">
+                  <h2 className="text-[14px] font-bold tracking-[0.6em] text-black/30 uppercase italic">{year}</h2>
+                </header>
+                <div className="columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24">
+                  <AnimatePresence mode="popLayout">
+                    {items.map((item, index) => (
+                      <div key={item.id} onClick={() => setSelectedImage(item)} className="break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12">
+                        <LazyImage src={item.imageUrl} alt={item.title} priority={index < 6} imgClassName="h-auto transition-transform duration-1000 ease-out group-hover:scale-[1.01]" />
+                      </div>
+                    ))}
+                  </AnimatePresence>
+                </div>
+              </section>
+            ))}
+          </div>
         ) : (
+          /* Design, Motion, Blog or Commissioned Detail View */
           <div className="space-y-12">
             {selectedProject && (
               <header className="mb-24 space-y-8">
@@ -221,7 +251,7 @@ function App() {
               <AnimatePresence mode="popLayout">
                 {displayItems.map((item, index) => (
                   <div key={item.id} onClick={() => setSelectedImage(item)} className="break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12">
-                    <LazyImage src={item.imageUrl} alt={item.title} priority={index < 6} showYear={activeCategory === 'Personal'} imgClassName="h-auto transition-transform duration-1000 ease-out group-hover:scale-[1.01]" />
+                    <LazyImage src={item.imageUrl} alt={item.title} priority={index < 6} imgClassName="h-auto transition-transform duration-1000 ease-out group-hover:scale-[1.01]" />
                     {!selectedProject && (
                       <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-right">
                         <p className="text-[9px] uppercase tracking-[0.3em] text-gray-300 font-light">{item.title}</p>
