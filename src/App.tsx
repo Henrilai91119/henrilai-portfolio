@@ -116,8 +116,8 @@ function App() {
         projectsMap[item.title] = item;
       }
 
-      // 特別指定：2024 潮旅行 形象 的封面更換為 fangliao (25)
-      if (item.title === '2024 潮旅行 形象' && item.imageUrl.includes('fangliao (25).jpg')) {
+      // 特別指定：2024 潮旅行 形象 的封面更換為 The kingfolk (5)
+      if (item.title === '2024 潮旅行 形象' && item.imageUrl.includes('The kingfolk (5).jpg')) {
         projectsMap[item.title] = item;
       }
 
