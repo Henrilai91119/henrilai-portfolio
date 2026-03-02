@@ -41,22 +41,19 @@ function getHierarchy(relativePath) {
   let subTitle = null;
 
   if (category === 'Commissioned') {
-    // 範例路徑: images/commissioned/2023 PNGL/Part 1/photo.jpg
     const commissionedIdx = parts.indexOf('commissioned');
     if (commissionedIdx !== -1 && parts.length > commissionedIdx + 1) {
-      title = parts[commissionedIdx + 1]; // "2023 PNGL"
+      title = parts[commissionedIdx + 1];
       if (parts.length > commissionedIdx + 3) {
-        subTitle = parts[commissionedIdx + 2]; // "Part 1"
+        subTitle = parts[commissionedIdx + 2];
       }
     }
   } else if (category === 'Personal') {
-    // 範例路徑: images/moments in time/2024/photo.jpg
     const momentsIdx = parts.indexOf('moments in time');
     if (momentsIdx !== -1 && parts.length > momentsIdx + 1) {
-      title = parts[momentsIdx + 1]; // "2024"
+      title = parts[momentsIdx + 1];
     }
   } else {
-    // Design, Motion 等
     const idx = parts.length - 2;
     if (idx >= 0) title = parts[idx];
   }
@@ -70,6 +67,7 @@ try {
     const relativePath = path.relative(path.join(process.cwd(), 'public'), filePath);
     const category = mapToCategory(relativePath);
     const { title, subTitle } = getHierarchy(relativePath);
+    const fileName = path.basename(filePath);
     
     return {
       id: index + 1,
@@ -77,7 +75,9 @@ try {
       subTitle: subTitle,
       category: category,
       imageUrl: '/' + relativePath.split(path.sep).join('/'),
-      aspectRatio: 'square'
+      aspectRatio: 'square',
+      // 自動偵測：如果檔名包含 'cover'，標記為封面
+      isCover: fileName.toLowerCase().includes('cover')
     };
   });
 

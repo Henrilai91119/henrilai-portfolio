@@ -101,58 +101,9 @@ function App() {
     
     // 取得所有 Commissioned 作品
     filteredAndSortedItems.forEach(item => {
-      // 預設邏輯：拿該專案的第一張圖
-      if (!projectsMap[item.title]) {
-        projectsMap[item.title] = item;
-      }
-      
-      // 特別指定：2023 PNGL 的封面更換為 Part 2 (6)
-      if (item.title === '2023 PNGL' && item.imageUrl.includes('Part 2 (6).jpg')) {
-        projectsMap[item.title] = item;
-      }
-
-      // 特別指定：2024 雄女百年路跑 的封面更換為 2024 Roadrace (19)
-      if (item.title === '2024 雄女百年路跑' && item.imageUrl.includes('2024 Roadrace (19).jpg')) {
-        projectsMap[item.title] = item;
-      }
-
-      // 特別指定：2024 潮旅行 形象 的封面更換為 The kingfolk (5)
-      if (item.title === '2024 潮旅行 形象' && item.imageUrl.includes('The kingfolk (5).jpg')) {
-        projectsMap[item.title] = item;
-      }
-
-      // 特別指定：2024 潮旅行 活動 的封面更換為 Fangliao (25)
-      if (item.title === '2024 潮旅行 活動' && item.imageUrl.includes('Fangliao (25).jpg')) {
-        projectsMap[item.title] = item;
-      }
-
-      // 特別指定：2024 念亭&智鴻 的封面更換為 wedding (44)
-      if (item.title === '2024 念亭&智鴻' && item.imageUrl.includes('wedding (44).jpg')) {
-        projectsMap[item.title] = item;
-      }
-
-      // 特別指定：2024 PNGLx拓荒者 的封面更換為 2024 PNGL x Pioneer (2)
-      if (item.title === '2024 PNGLx拓荒者' && item.imageUrl.includes('2024 PNGL x Pioneer (2).jpg')) {
-        projectsMap[item.title] = item;
-      }
-
-      // 特別指定：2025 潮旅行 形象 的封面更換為 2025 Chouzhou Travel 形象 (17)
-      if (item.title === '2025 潮旅行 形象' && item.imageUrl.includes('2025 Chouzhou Travel 形象 (17).jpg')) {
-        projectsMap[item.title] = item;
-      }
-
-      // 特別指定：2025 洛豪&怡帆 的封面更換為 2025 Wedding (48)
-      if (item.title === '2025 洛豪&怡帆' && item.imageUrl.includes('2025 Wedding (48).jpg')) {
-        projectsMap[item.title] = item;
-      }
-
-      // 特別指定：2025 PNGL 的封面更換為 2025 PNGL (19)
-      if (item.title === '2025 PNGL' && item.imageUrl.includes('2025 PNGL (19).jpg')) {
-        projectsMap[item.title] = item;
-      }
-
-      // 特別指定：2026 潮旅行 活動 的封面更換為 2026 Chouzhou Travel 活動 (18)
-      if (item.title === '2026 潮旅行 活動' && item.imageUrl.includes('2026 Chouzhou Travel 活動 (18).jpg')) {
+      // 如果還沒設定封面，或者當前項目被標記為封面 (isCover)
+      // 這樣會讓標記為 covers 的圖片優先取代預設的第一張圖
+      if (!projectsMap[item.title] || item.isCover) {
         projectsMap[item.title] = item;
       }
     });
