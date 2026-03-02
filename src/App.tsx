@@ -265,7 +265,7 @@ function App() {
             {PRICE_ITEMS.map((item, index) => (
               <div key={item.title} className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 md:gap-24 items-center text-black`}>
                 <div className="w-full md:w-1/2 aspect-square">
-                  <LazyImage src={item.imageUrl} alt={item.title} className="w-full h-full shadow-sm" />
+                  <LazyImage src={item.imageUrl} alt={item.title} className="w-full h-full" imgClassName="object-contain" />
                 </div>
                 <div className="w-full md:w-1/2 space-y-8 text-black">
                   <h2 className="text-[1.1rem] font-bold tracking-[0.4em] uppercase border-b border-gray-100 pb-4 text-black">{item.title}</h2>
