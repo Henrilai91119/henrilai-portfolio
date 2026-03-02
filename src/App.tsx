@@ -41,8 +41,28 @@ function App() {
     });
   }, [activeCategory]);
 
+  // 分組邏輯：針對 Commissioned 進行專案分組
+  const commissionedGroups = useMemo(() => {
+    if (activeCategory !== 'Commissioned') return [];
+    
+    const groups: { [key: string]: GalleryItem[] } = {};
+    filteredAndSortedItems.forEach(item => {
+      if (!groups[item.title]) {
+        groups[item.title] = [];
+      }
+      groups[item.title].push(item);
+    });
+
+    // 將群組按專案名稱中的年份排序
+    return Object.entries(groups).sort((a, b) => {
+      const yearA = a[0].match(/\d{4}/)?.[0] || "0";
+      const yearB = b[0].match(/\d{4}/)?.[0] || "0";
+      return parseInt(yearB) - parseInt(yearA);
+    });
+  }, [activeCategory, filteredAndSortedItems]);
+
   return (
-    <div className="min-h-screen bg-white selection:bg-black selection:text-white">
+    <div className="min-h-screen bg-white selection:bg-black selection:text-white font-sans">
       {/* Sidebar Navigation */}
       <header className="p-8 md:p-12 lg:fixed lg:w-64 lg:h-screen lg:flex lg:flex-col lg:justify-between z-20 bg-white/80 backdrop-blur-sm lg:bg-transparent">
         <div>
@@ -104,10 +124,10 @@ function App() {
               />
             </div>
             <div className="space-y-8 text-[13px] leading-[1.8] text-gray-600 tracking-wide">
-              <p className="font-semibold text-black tracking-[0.3em] uppercase">HENRI LAI</p>
+              <p className="font-semibold text-black tracking-[0.3em] uppercase text-xs">HENRI LAI</p>
               <p>這裡可以放您的自我介紹。</p>
               <div className="pt-16 border-t border-gray-100">
-                <p className="uppercase tracking-[0.3em] text-[9px] text-gray-400 mb-4">Contact</p>
+                <p className="uppercase tracking-[0.3em] text-[9px] text-gray-400 mb-4 font-bold">Contact</p>
                 <a href="mailto:hello@henrilai.com" className="hover:text-black underline underline-offset-8 transition-colors text-gray-400">
                   hello@henrilai.com
                 </a>
@@ -120,12 +140,12 @@ function App() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-xl"
           >
-            <h2 className="text-sm font-semibold tracking-[0.4em] mb-20 uppercase">Price List</h2>
+            <h2 className="text-xs font-semibold tracking-[0.4em] mb-20 uppercase">Price List</h2>
             <div className="space-y-16">
               <section>
-                <h3 className="text-[10px] uppercase tracking-[0.4em] text-gray-300 mb-8">— Services</h3>
+                <h3 className="text-[10px] uppercase tracking-[0.4em] text-gray-300 mb-8 font-bold">— Services</h3>
                 <ul className="space-y-6">
-                  <li className="flex justify-between border-b border-gray-50 pb-4 text-xs">
+                  <li className="flex justify-between border-b border-gray-50 pb-4 text-[11px]">
                     <span className="tracking-widest">Photography Session</span>
                     <span className="font-light text-gray-400">Contact for pricing</span>
                   </li>
@@ -133,8 +153,43 @@ function App() {
               </section>
             </div>
           </motion.div>
+        ) : activeCategory === 'Commissioned' ? (
+          /* Commissioned Page with Grouping */
+          <div className="space-y-32 lg:space-y-48">
+            <AnimatePresence mode="popLayout">
+              {commissionedGroups.map(([projectTitle, items]) => (
+                <section key={projectTitle} className="space-y-12">
+                  <header className="max-w-2xl border-l border-black pl-6 mb-16">
+                    <h2 className="text-[11px] font-bold tracking-[0.5em] uppercase text-black">
+                      {projectTitle}
+                    </h2>
+                  </header>
+                  <div className="columns-1 sm:columns-2 md:columns-3 gap-12 lg:gap-16 space-y-12 lg:space-y-16">
+                    {items.map((item) => (
+                      <motion.div
+                        layout
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        key={item.id}
+                        onClick={() => setSelectedImage(item)}
+                        className="break-inside-avoid mb-12 lg:mb-16 group cursor-crosshair"
+                      >
+                        <img 
+                          src={item.imageUrl} 
+                          alt={item.title} 
+                          loading="lazy"
+                          className="w-full h-auto block group-hover:scale-[1.01] transition-transform duration-1000"
+                        />
+                      </motion.div>
+                    ))}
+                  </div>
+                </section>
+              ))}
+            </AnimatePresence>
+          </div>
         ) : (
-          /* Masonry Layout: 3 Columns on Desktop */
+          /* Other Categories (Personal, Design, etc.) */
           <div className="columns-1 sm:columns-2 md:columns-3 gap-12 lg:gap-16 space-y-12 lg:space-y-16">
             <AnimatePresence mode="popLayout">
               {filteredAndSortedItems.map((item) => (
@@ -156,7 +211,6 @@ function App() {
                       className="w-full h-auto block transition-transform duration-1000 ease-out group-hover:scale-[1.01]"
                     />
                   </div>
-                  {/* Subtle Title hidden initially, shown on hover */}
                   <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     <p className="text-[9px] uppercase tracking-[0.3em] text-gray-300 font-light">{item.title}</p>
                   </div>
@@ -183,7 +237,6 @@ function App() {
             >
               <X size={24} strokeWidth={1} />
             </button>
-            
             <motion.img
               initial={{ scale: 0.98, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -191,11 +244,10 @@ function App() {
               transition={{ type: "spring", damping: 30, stiffness: 200 }}
               src={selectedImage.imageUrl}
               alt={selectedImage.title}
-              className="max-w-full max-h-full object-contain"
+              className="max-w-full max-h-full object-contain shadow-2xl"
             />
-            
             <div className="absolute bottom-12 left-12 text-left">
-              <p className="text-[10px] uppercase tracking-[0.4em] text-gray-300 font-light">
+              <p className="text-[9px] uppercase tracking-[0.5em] text-gray-300 font-light">
                 {selectedImage.title}
               </p>
             </div>
