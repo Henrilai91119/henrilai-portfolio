@@ -44,7 +44,7 @@ function App() {
   return (
     <div className="min-h-screen bg-white selection:bg-black selection:text-white">
       {/* Sidebar Navigation */}
-      <header className="p-8 md:p-12 lg:fixed lg:w-64 lg:h-screen lg:flex lg:flex-col lg:justify-between z-10">
+      <header className="p-8 md:p-12 lg:fixed lg:w-64 lg:h-screen lg:flex lg:flex-col lg:justify-between z-20 bg-white/80 backdrop-blur-sm lg:bg-transparent">
         <div>
           <h1 className="text-2xl font-semibold tracking-[0.3em] mb-12 uppercase">
             <a href="/" className="hover:opacity-70 transition-opacity">HENRI LAI</a>
@@ -60,8 +60,8 @@ function App() {
                     }}
                     className={`nav-link block w-full text-left transition-all duration-500 tracking-[0.2em] ${
                       activeCategory === item.label 
-                        ? 'font-bold border-b border-black inline-block pb-1 text-black text-xs' 
-                        : 'text-gray-300 hover:text-black text-xs'
+                        ? 'font-bold border-b border-black inline-block pb-1 text-black text-[11px]' 
+                        : 'text-gray-300 hover:text-black text-[11px]'
                     }`}
                   >
                     {item.label}
@@ -88,7 +88,7 @@ function App() {
       </header>
 
       {/* Main Content Area */}
-      <main className="lg:ml-64 p-8 md:p-12 lg:p-20">
+      <main className="lg:ml-64 p-8 md:p-12 lg:p-16 lg:pt-12">
         {activeCategory === 'BIO' ? (
           <motion.div 
             initial={{ opacity: 0, y: 10 }}
@@ -134,10 +134,8 @@ function App() {
             </div>
           </motion.div>
         ) : (
-          <motion.div 
-            layout
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-16 md:gap-20"
-          >
+          /* Masonry Layout: 3 Columns on Desktop */
+          <div className="columns-1 sm:columns-2 md:columns-3 gap-12 lg:gap-16 space-y-12 lg:space-y-16">
             <AnimatePresence mode="popLayout">
               {filteredAndSortedItems.map((item) => (
                 <motion.div
@@ -145,27 +143,27 @@ function App() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+                  transition={{ duration: 0.8 }}
                   key={item.id}
                   onClick={() => setSelectedImage(item)}
-                  className="relative group cursor-crosshair"
+                  className="break-inside-avoid mb-12 lg:mb-16 group cursor-crosshair"
                 >
-                  <div className="overflow-hidden bg-gray-50 transition-all duration-700">
+                  <div className="bg-gray-50 transition-all duration-700">
                     <img 
                       src={item.imageUrl} 
                       alt={item.title} 
                       loading="lazy"
-                      className="w-full h-auto object-contain transition-transform duration-1000 ease-out group-hover:scale-[1.02]"
+                      className="w-full h-auto block transition-transform duration-1000 ease-out group-hover:scale-[1.01]"
                     />
                   </div>
-                  {/* Subtle Title shown on hover */}
+                  {/* Subtle Title hidden initially, shown on hover */}
                   <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <p className="text-[8px] uppercase tracking-[0.3em] text-gray-400">{item.title}</p>
+                    <p className="text-[9px] uppercase tracking-[0.3em] text-gray-300 font-light">{item.title}</p>
                   </div>
                 </motion.div>
               ))}
             </AnimatePresence>
-          </motion.div>
+          </div>
         )}
       </main>
 
@@ -176,28 +174,28 @@ function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-white/95 p-4 md:p-12 cursor-zoom-out"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-white/98 p-4 md:p-12 lg:p-24 cursor-zoom-out"
             onClick={() => setSelectedImage(null)}
           >
             <button 
-              className="absolute top-8 right-8 text-black hover:rotate-90 transition-transform duration-500"
+              className="absolute top-8 right-8 text-black hover:rotate-90 transition-transform duration-500 p-2"
               onClick={() => setSelectedImage(null)}
             >
               <X size={24} strokeWidth={1} />
             </button>
             
             <motion.img
-              initial={{ scale: 0.9, opacity: 0 }}
+              initial={{ scale: 0.98, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              exit={{ scale: 0.98, opacity: 0 }}
+              transition={{ type: "spring", damping: 30, stiffness: 200 }}
               src={selectedImage.imageUrl}
               alt={selectedImage.title}
-              className="max-w-full max-h-full object-contain shadow-2xl"
+              className="max-w-full max-h-full object-contain"
             />
             
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
-              <p className="text-[10px] uppercase tracking-[0.4em] text-gray-400 font-light">
+            <div className="absolute bottom-12 left-12 text-left">
+              <p className="text-[10px] uppercase tracking-[0.4em] text-gray-300 font-light">
                 {selectedImage.title}
               </p>
             </div>
