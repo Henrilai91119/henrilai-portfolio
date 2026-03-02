@@ -253,7 +253,7 @@ function App() {
                 </div>
                 <p className="pt-4">歡迎透過各平台聯繫洽談商業合作內容 !</p>
               </div>
-              <div className="pt-16 border-t border-gray-100"><p className="uppercase tracking-[0.3em] text-[0.56rem] text-gray-400 mb-4 font-bold">Contact</p><a href="mailto:hello@henrilai.com" className="hover:text-black underline underline-offset-8 transition-colors text-gray-400">hello@henrilai.com</a></div>
+              <div className="pt-16 border-t border-gray-100"><p className="uppercase tracking-[0.3em] text-[0.56rem] text-gray-400 mb-4 font-bold">Contact</p><a href="mailto:lai91119@gmail.com" className="hover:text-black underline underline-offset-8 transition-colors text-gray-400">lai91119@gmail.com</a></div>
             </div>
           </motion.div>
         ) : activeCategory === 'Price List' ? (
