@@ -184,6 +184,7 @@ function App() {
             </div>
           </motion.div>
         ) : activeCategory === 'Commissioned' && !selectedProject ? (
+          /* Commissioned: Project List View (Large Font) */
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24 px-4 md:px-8">
             <AnimatePresence mode="popLayout">
               {projectCovers.map(([title, item]) => (
@@ -191,7 +192,9 @@ function App() {
                   <div className="aspect-square mb-8 overflow-hidden bg-gray-50 w-full">
                     <img src={item.imageUrl} alt={title} loading="lazy" className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-1000 ease-out" />
                   </div>
-                  <h2 className="text-[9px] font-bold tracking-[0.4em] uppercase text-black mb-2 leading-relaxed opacity-60 group-hover:opacity-100 transition-opacity">{title}</h2>
+                  <h2 className="text-[18px] font-medium tracking-[0.2em] uppercase text-black mb-2 leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">
+                    {title}
+                  </h2>
                 </motion.div>
               ))}
             </AnimatePresence>
@@ -203,7 +206,7 @@ function App() {
                 <div className="flex items-center justify-between border-b border-gray-100 pb-10">
                   <div>
                     <button onClick={() => { setSelectedProject(null); setActiveSubTitle(null); }} className="flex items-center text-[10px] uppercase tracking-[0.3em] text-gray-400 hover:text-black transition-colors mb-6 group"><ArrowLeft size={12} className="mr-2 group-hover:-translate-x-1 transition-transform" />Back to Projects</button>
-                    <h2 className="text-[12px] font-bold tracking-[0.5em] uppercase text-black">{selectedProject}</h2>
+                    <h2 className="text-[18px] font-medium tracking-[0.3em] uppercase text-black">{selectedProject}</h2>
                   </div>
                 </div>
                 {projectSubTitles.length > 0 && (
