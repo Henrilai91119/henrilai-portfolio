@@ -88,32 +88,22 @@ function App() {
   }, [activeCategory]);
 
   useEffect(() => {
-    let ticking = false;
     const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          // 無限捲動
-          if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 1200) {
-            setVisibleCount(prev => prev + ITEMS_PER_PAGE);
-          }
-
-          // 年份偵測邏輯
-          if (activeCategory === 'Moments in Time') {
-            const years = Object.keys(yearRefs.current);
-            for (const year of years) {
-              const element = yearRefs.current[year];
-              if (element) {
-                const rect = element.getBoundingClientRect();
-                if (rect.top >= -100 && rect.top <= 350) {
-                  setActiveYear(year);
-                  break;
-                }
-              }
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 1000) {
+        setVisibleCount(prev => prev + ITEMS_PER_PAGE);
+      }
+      if (activeCategory === 'Moments in Time') {
+        const years = Object.keys(yearRefs.current);
+        for (const year of years) {
+          const element = yearRefs.current[year];
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            if (rect.top >= -100 && rect.top <= 300) {
+              setActiveYear(year);
+              break;
             }
           }
-          ticking = false;
-        });
-        ticking = true;
+        }
       }
     };
     window.addEventListener('scroll', handleScroll);
@@ -182,7 +172,8 @@ function App() {
         if (!selectedSubProject || selectedSubProject === 'Default') return item.title === selectedProject;
         return item.title === selectedProject && item.subTitle === selectedSubProject;
       }).sort((a, b) => {
-        if (selectedSubProject === '997' || (selectedProject === 'vehicle' && selectedSubProject === '997')) {
+        // 997 與 gogoro 特別排序
+        if (selectedSubProject === '997' || selectedSubProject === 'gogoro' || selectedProject === 'vehicle') {
           return a.imageUrl.localeCompare(b.imageUrl);
         }
         return 0;
@@ -192,13 +183,10 @@ function App() {
   }, [filteredAndSortedItems, visibleCount, selectedProject, selectedSubProject, activeCategory]);
 
   const scrollToYear = (year: string) => {
-    // 關鍵修正：如果年份還沒被加載，暫時增加顯示數量
     const targetIdx = filteredAndSortedItems.findIndex(item => item.imageUrl.includes(year));
     if (targetIdx >= visibleCount) {
       setVisibleCount(targetIdx + 30);
     }
-
-    // 等待 React 重新渲染後再捲動
     setTimeout(() => {
       const element = yearRefs.current[year];
       if (element) {
@@ -214,9 +202,12 @@ function App() {
   const isFolderView = (activeCategory === 'Commissioned' || activeCategory === 'Design') && !selectedProject;
   const isSubFolderView = (activeCategory === 'Commissioned' || activeCategory === 'Design') && selectedProject && !selectedSubProject;
   const shouldShowContentDirectly = selectedProject && subProjectCovers.length === 1 && subProjectCovers[0][0] === 'Default';
+  
+  // 判斷目前是否處於 997 或 gogoro 的單欄模式
+  const isSeamlessLayout = selectedSubProject === '997' || selectedSubProject === 'gogoro' || (selectedProject === 'vehicle' && selectedSubProject === 'gogoro') || (selectedProject === 'vehicle' && selectedSubProject === '997');
 
   return (
-    <div className="min-h-screen bg-white selection:bg-black selection:text-white font-sans text-black text-xs">
+    <div className="min-h-screen bg-white selection:bg-black selection:text-white font-sans text-black">
       <header className="p-8 md:p-12 lg:fixed lg:w-64 lg:h-screen lg:flex lg:flex-col lg:justify-between z-30 bg-white/80 backdrop-blur-sm lg:bg-transparent">
         <div>
           <h1 className="mb-12">
@@ -248,7 +239,7 @@ function App() {
         </footer>
       </header>
 
-      <main className={`lg:ml-64 ${selectedSubProject === '997' ? 'p-0' : 'p-8 md:p-12 lg:p-16 lg:pt-12'}`}>
+      <main className={`lg:ml-64 ${isSeamlessLayout ? 'p-0' : 'p-8 md:p-12 lg:p-16 lg:pt-12'}`}>
         {activeCategory === 'BIO' ? (
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-xl mx-auto lg:mx-0 p-8">
             <LazyImage src="/images/BIO/profile.jpg" alt="Henri Lai" priority={true} className="aspect-[4/5] mb-16 w-full max-w-xs grayscale hover:grayscale-0 transition-all duration-1000" />
@@ -313,24 +304,26 @@ function App() {
             </div>
           </div>
         ) : (
-          <div className={`${selectedSubProject === '997' ? 'w-full' : 'space-y-12'}`}>
+          <div className={`${isSeamlessLayout ? 'w-full' : 'space-y-12'}`}>
             {(selectedProject || selectedSubProject) && (
-              <header className={`mb-24 space-y-8 ${selectedSubProject === '997' ? 'p-8 md:p-12 lg:p-16' : ''}`}>
+              <header className={`mb-24 space-y-8 ${isSeamlessLayout ? 'p-8 md:p-12 lg:p-16' : ''}`}>
                 <div className="flex items-center justify-between border-b border-gray-100 pb-10">
                   <div>
                     <button onClick={() => { if (selectedSubProject && !shouldShowContentDirectly) setSelectedSubProject(null); else { setSelectedProject(null); setSelectedSubProject(null); } window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="flex items-center text-[0.62rem] uppercase tracking-[0.3em] text-gray-400 hover:text-black transition-colors mb-6 group"><ArrowLeft size={12} className="mr-2 group-hover:-translate-x-1 transition-transform" />Back to {selectedSubProject && !shouldShowContentDirectly ? selectedProject : 'Category'}</button>
-                    <h2 className="text-[1.125rem] font-medium tracking-[0.3em] uppercase text-black">{selectedSubProject === '997' ? '997' : (selectedSubProject && selectedSubProject !== 'Default' ? selectedSubProject : selectedProject)}</h2>
+                    <h2 className="text-[1.125rem] font-medium tracking-[0.3em] uppercase text-black">{isSeamlessLayout ? (selectedSubProject || selectedProject) : (selectedSubProject && selectedSubProject !== 'Default' ? selectedSubProject : selectedProject)}</h2>
                   </div>
                 </div>
               </header>
             )}
-            <div className={selectedSubProject === '997' ? 'flex flex-col w-full' : 'columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24'}>
-              {displayItems.map((item, index) => (
-                <div key={item.id} onClick={() => setSelectedImage(item)} className={selectedSubProject === '997' ? 'w-full' : 'break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12'}>
-                  <LazyImage src={item.imageUrl} alt={item.title} priority={index < 6} showYear={activeCategory === 'Moments in Time'} imgClassName="h-auto w-full block" className={selectedSubProject === '997' ? 'bg-transparent' : ''} />
-                  {(!selectedProject && activeCategory !== 'Moments in Time') && <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-right"><p className="text-[0.56rem] uppercase tracking-[0.3em] text-gray-300 font-light">{item.title}</p></div>}
-                </div>
-              ))}
+            <div className={isSeamlessLayout ? 'flex flex-col w-full' : 'columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24'}>
+              <AnimatePresence>
+                {displayItems.map((item, index) => (
+                  <div key={item.id} onClick={() => setSelectedImage(item)} className={isSeamlessLayout ? 'w-full' : 'break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12'}>
+                    <LazyImage src={item.imageUrl} alt={item.title} priority={index < 6} showYear={activeCategory === 'Moments in Time'} imgClassName="h-auto w-full block" className={isSeamlessLayout ? 'bg-transparent' : ''} />
+                    {(!selectedProject && activeCategory !== 'Moments in Time') && <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-right"><p className="text-[0.56rem] uppercase tracking-[0.3em] text-gray-300 font-light">{item.title}</p></div>}
+                  </div>
+                ))}
+              </AnimatePresence>
             </div>
           </div>
         )}
