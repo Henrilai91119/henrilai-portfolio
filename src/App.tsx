@@ -357,11 +357,13 @@ function App() {
               <motion.img key={selectedImage.id} initial={{ x: 20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -20, opacity: 0 }} transition={{ type: "spring", damping: 30, stiffness: 200 }} src={selectedImage.imageUrl} alt={selectedImage.title} className="max-w-full max-h-[85vh] object-contain shadow-2xl" />
               
               {/* Sidebar Year Label in Lightbox */}
-              <div className="absolute -right-12 md:-right-16 top-1/2 -translate-y-1/2 rotate-90 origin-center pointer-events-none">
-                <p className="text-[0.6rem] md:text-[0.75rem] font-light tracking-[0.8em] text-black/30 uppercase italic whitespace-nowrap">
-                  {selectedImage.imageUrl?.match(/\d{4}/)?.[0] || 'Unknown Year'}
-                </p>
-              </div>
+              {selectedImage.imageUrl?.match(/\d{4}/) && (
+                <div className="absolute -right-12 md:-right-16 top-1/2 -translate-y-1/2 rotate-90 origin-center pointer-events-none">
+                  <p className="text-[0.6rem] md:text-[0.75rem] font-light tracking-[0.8em] text-black/30 uppercase italic whitespace-nowrap">
+                    {selectedImage.imageUrl?.match(/\d{4}/)?.[0]}
+                  </p>
+                </div>
+              )}
             </div>
 
             <div className="absolute bottom-12 left-12 text-left">
