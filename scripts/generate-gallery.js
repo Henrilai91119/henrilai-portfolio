@@ -33,13 +33,35 @@ function mapToCategory(relativePath) {
   return 'Personal';
 }
 
-function getTitle(relativePath) {
+function getHierarchy(relativePath) {
   const parts = relativePath.split(path.sep);
-  // Get the most relevant folder name
-  if (parts.length > 2) {
-    return parts[parts.length - 2];
+  const category = mapToCategory(relativePath);
+  
+  let title = 'Untitled';
+  let subTitle = null;
+
+  if (category === 'Commissioned') {
+    // 範例路徑: images/commissioned/2023 PNGL/Part 1/photo.jpg
+    const commissionedIdx = parts.indexOf('commissioned');
+    if (commissionedIdx !== -1 && parts.length > commissionedIdx + 1) {
+      title = parts[commissionedIdx + 1]; // "2023 PNGL"
+      if (parts.length > commissionedIdx + 3) {
+        subTitle = parts[commissionedIdx + 2]; // "Part 1"
+      }
+    }
+  } else if (category === 'Personal') {
+    // 範例路徑: images/moments in time/2024/photo.jpg
+    const momentsIdx = parts.indexOf('moments in time');
+    if (momentsIdx !== -1 && parts.length > momentsIdx + 1) {
+      title = parts[momentsIdx + 1]; // "2024"
+    }
+  } else {
+    // Design, Motion 等
+    const idx = parts.length - 2;
+    if (idx >= 0) title = parts[idx];
   }
-  return 'Untitled';
+
+  return { title, subTitle };
 }
 
 try {
@@ -47,14 +69,15 @@ try {
   const galleryItems = allImages.map((filePath, index) => {
     const relativePath = path.relative(path.join(process.cwd(), 'public'), filePath);
     const category = mapToCategory(relativePath);
-    const title = getTitle(relativePath);
+    const { title, subTitle } = getHierarchy(relativePath);
     
     return {
       id: index + 1,
       title: title,
+      subTitle: subTitle,
       category: category,
       imageUrl: '/' + relativePath.split(path.sep).join('/'),
-      aspectRatio: 'square' // Default to square, can be adjusted manually later
+      aspectRatio: 'square'
     };
   });
 

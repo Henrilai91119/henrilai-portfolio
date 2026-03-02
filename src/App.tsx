@@ -8,6 +8,7 @@ import GALLERY_ITEMS_JSON from './gallery-items.json';
 interface GalleryItem {
   id: number;
   title: string;
+  subTitle?: string | null;
   category: string;
   imageUrl: string;
   aspectRatio: 'square' | 'portrait' | 'video';
@@ -63,11 +64,13 @@ function App() {
   const [activeCategory, setActiveCategory] = useState('Personal');
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
+  const [activeSubTitle, setActiveSubTitle] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
 
   useEffect(() => {
     setVisibleCount(ITEMS_PER_PAGE);
     setSelectedProject(null);
+    setActiveSubTitle(null);
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [activeCategory]);
 
@@ -81,6 +84,7 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // 1. 基本排序與過濾 (依年份降序)
   const filteredAndSortedItems = useMemo(() => {
     const items = GALLERY_ITEMS.filter(item => item.category === activeCategory);
     return items.sort((a, b) => {
@@ -90,6 +94,7 @@ function App() {
     });
   }, [activeCategory]);
 
+  // 2. 針對 Commissioned 進行專案封面提取
   const projectCovers = useMemo(() => {
     if (activeCategory !== 'Commissioned') return [];
     const projectsMap: { [key: string]: GalleryItem } = {};
@@ -103,12 +108,25 @@ function App() {
     });
   }, [activeCategory, filteredAndSortedItems]);
 
+  // 3. 獲取當前專案的所有子分類
+  const projectSubTitles = useMemo(() => {
+    if (!selectedProject) return [];
+    const items = filteredAndSortedItems.filter(item => item.title === selectedProject);
+    const subs = Array.from(new Set(items.map(item => item.subTitle).filter(Boolean))) as string[];
+    return subs.sort();
+  }, [selectedProject, filteredAndSortedItems]);
+
+  // 4. 目前應顯示的內容
   const displayItems = useMemo(() => {
     if (activeCategory === 'Commissioned' && selectedProject) {
-      return filteredAndSortedItems.filter(item => item.title === selectedProject);
+      let items = filteredAndSortedItems.filter(item => item.title === selectedProject);
+      if (activeSubTitle) {
+        items = items.filter(item => item.subTitle === activeSubTitle);
+      }
+      return items;
     }
     return filteredAndSortedItems.slice(0, visibleCount);
-  }, [filteredAndSortedItems, visibleCount, selectedProject, activeCategory]);
+  }, [filteredAndSortedItems, visibleCount, selectedProject, activeSubTitle, activeCategory]);
 
   return (
     <div className="min-h-screen bg-white selection:bg-black selection:text-white font-sans">
@@ -178,8 +196,8 @@ function App() {
             </div>
           </motion.div>
         ) : activeCategory === 'Commissioned' && !selectedProject ? (
-          /* Commissioned: Project List View (Reduced Size) */
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-20 gap-y-32 lg:gap-x-32 lg:gap-y-48 px-4 md:px-12 lg:px-16">
+          /* Commissioned: Project List View (Square Covers) */
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24 px-4 md:px-8">
             <AnimatePresence mode="popLayout">
               {projectCovers.map(([title, item]) => (
                 <motion.div
@@ -189,15 +207,15 @@ function App() {
                   transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
                   key={title}
                   onClick={() => { setSelectedProject(title); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                  className="group cursor-pointer flex flex-col items-center text-center"
+                  className="group cursor-pointer flex flex-col items-center text-center px-4 md:px-8"
                 >
-                  <div className="aspect-[3/4] mb-10 overflow-hidden bg-gray-50 w-full">
+                  <div className="aspect-square mb-8 overflow-hidden bg-gray-50 w-full">
                     <img 
                       src={item.imageUrl} alt={title} loading="lazy"
                       className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-1000 ease-out"
                     />
                   </div>
-                  <h2 className="text-[10px] font-bold tracking-[0.4em] uppercase text-black mb-2 leading-relaxed opacity-60 group-hover:opacity-100 transition-opacity">
+                  <h2 className="text-[9px] font-bold tracking-[0.4em] uppercase text-black mb-2 leading-relaxed opacity-60 group-hover:opacity-100 transition-opacity">
                     {title}
                   </h2>
                 </motion.div>
@@ -205,17 +223,40 @@ function App() {
             </AnimatePresence>
           </div>
         ) : (
-          /* General Category or Commissioned Detail View (Reduced Size) */
+          /* General Category or Commissioned Detail View */
           <div className="space-y-12">
             {selectedProject && (
-              <header className="mb-24 flex items-center justify-between border-b border-gray-100 pb-10">
-                <div>
-                  <button onClick={() => setSelectedProject(null)} className="flex items-center text-[10px] uppercase tracking-[0.3em] text-gray-400 hover:text-black transition-colors mb-6 group">
-                    <ArrowLeft size={12} className="mr-2 group-hover:-translate-x-1 transition-transform" />
-                    Back to Projects
-                  </button>
-                  <h2 className="text-[12px] font-bold tracking-[0.5em] uppercase text-black">{selectedProject}</h2>
+              <header className="mb-24 space-y-8">
+                <div className="flex items-center justify-between border-b border-gray-100 pb-10">
+                  <div>
+                    <button onClick={() => { setSelectedProject(null); setActiveSubTitle(null); }} className="flex items-center text-[10px] uppercase tracking-[0.3em] text-gray-400 hover:text-black transition-colors mb-6 group">
+                      <ArrowLeft size={12} className="mr-2 group-hover:-translate-x-1 transition-transform" />
+                      Back to Projects
+                    </button>
+                    <h2 className="text-[12px] font-bold tracking-[0.5em] uppercase text-black">{selectedProject}</h2>
+                  </div>
                 </div>
+                
+                {/* Sub-navigation for Parts */}
+                {projectSubTitles.length > 0 && (
+                  <nav className="flex space-x-8 border-b border-gray-50 pb-6">
+                    <button 
+                      onClick={() => setActiveSubTitle(null)}
+                      className={`text-[9px] uppercase tracking-[0.3em] transition-colors ${!activeSubTitle ? 'text-black font-bold border-b border-black pb-1' : 'text-gray-300 hover:text-black'}`}
+                    >
+                      All
+                    </button>
+                    {projectSubTitles.map(sub => (
+                      <button 
+                        key={sub}
+                        onClick={() => setActiveSubTitle(sub)}
+                        className={`text-[9px] uppercase tracking-[0.3em] transition-colors ${activeSubTitle === sub ? 'text-black font-bold border-b border-black pb-1' : 'text-gray-300 hover:text-black'}`}
+                      >
+                        {sub}
+                      </button>
+                    ))}
+                  </nav>
+                )}
               </header>
             )}
             
@@ -260,7 +301,7 @@ function App() {
               className="max-w-full max-h-full object-contain shadow-2xl"
             />
             <div className="absolute bottom-12 left-12 text-left">
-              <p className="text-[9px] uppercase tracking-[0.5em] text-gray-300 font-light">{selectedImage.title}</p>
+              <p className="text-[9px] uppercase tracking-[0.5em] text-gray-300 font-light">{selectedImage.title} {selectedImage.subTitle ? `— ${selectedImage.subTitle}` : ''}</p>
             </div>
           </motion.div>
         )}
