@@ -1,9 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 
-const imagesDir = path.join(process.cwd(), 'public', 'images');
+const publicDir = path.join(process.cwd(), 'public');
+const imagesDir = path.join(publicDir, 'images');
+const priceListDir = path.join(imagesDir, 'Price list');
+
 const outputGalleryFile = path.join(process.cwd(), 'src', 'gallery-items.json');
 const outputDescFile = path.join(process.cwd(), 'src', 'project-descriptions.json');
+const outputPriceFile = path.join(process.cwd(), 'src', 'price-list.json');
 
 const EXCLUDED_DIRS = ['.DS_Store', 'BIO', 'Price list', 'web logo'];
 
@@ -29,78 +33,87 @@ function getFiles(dir, allFiles = []) {
 }
 
 try {
+  // 1. 處理 Price List 特別邏輯
+  const priceListData = [];
+  if (fs.existsSync(priceListDir)) {
+    const priceFiles = fs.readdirSync(priceListDir);
+    const bases = Array.from(new Set(priceFiles.map(f => path.basename(f, path.extname(f)))));
+    
+    bases.forEach(base => {
+      if (base === '.DS_Store') return;
+      const txtFile = priceFiles.find(f => path.basename(f, path.extname(f)) === base && f.endsWith('.txt'));
+      const imgFile = priceFiles.find(f => path.basename(f, path.extname(f)) === base && /\.(jpg|jpeg|png|webp)$/i.test(f));
+      
+      if (txtFile) {
+        priceListData.push({
+          title: base,
+          content: fs.readFileSync(path.join(priceListDir, txtFile), 'utf-8'),
+          imageUrl: imgFile ? `/images/Price list/${imgFile}` : null
+        });
+      }
+    });
+  }
+
+  // 2. 處理 一般作品 與 描述 (維持之前邏輯)
   const allFiles = getFiles(imagesDir);
   const galleryItems = [];
   const descriptions = {};
 
-  allFiles.forEach((filePath, index) => {
+  allFiles.forEach(filePath => {
     const fileName = path.basename(filePath);
     const ext = path.extname(filePath).toLowerCase();
-    const relativePath = path.relative(path.join(process.cwd(), 'public'), filePath);
+    const relativePath = path.relative(publicDir, filePath);
     const parts = relativePath.split(path.sep);
 
     if (ext === '.txt') {
       const content = fs.readFileSync(filePath, 'utf-8');
       const baseName = path.basename(fileName, '.txt').toLowerCase();
       descriptions[baseName] = content;
-      
-      // 特殊處理: PNGL 對應到多個專案
       if (baseName === 'pngl') {
         descriptions['2023 pngl'] = content;
         descriptions['2025 pngl'] = content;
         descriptions['2024 pnglx拓荒者'] = content;
       }
-      // 其他可能的對映
-      if (baseName === 'dcm') descriptions['dmc'] = content; // 修正拼字差異
     } else {
-      // 這裡維持原本的層次邏輯... (略過介紹，直接寫入 gallery-items)
-    }
-  });
-
-  // 第二次遍歷: 產生 gallery items (維持原本邏輯)
-  const finalGalleryItems = allFiles.filter(f => !f.endsWith('.txt')).map((filePath, index) => {
-    // ... (維持與之前相同的 getHierarchy 邏輯)
-    const relativePath = path.relative(path.join(process.cwd(), 'public'), filePath);
-    const parts = relativePath.split(path.sep);
-    let title = 'Untitled', subTitle = null, category = 'Personal';
-    
-    if (relativePath.includes('moments in time')) {
-      category = 'Personal';
-      const idx = parts.indexOf('moments in time');
-      if (idx !== -1 && parts.length > idx + 1) title = parts[idx+1];
-    } else if (relativePath.includes('commissioned')) {
-      category = 'Commissioned';
-      const idx = parts.indexOf('commissioned');
-      if (idx !== -1 && parts.length > idx + 1) {
-        title = parts[idx+1];
-        if (parts.length > idx + 3) subTitle = parts[idx+2];
-      }
-    } else if (relativePath.includes('design')) {
-      category = 'Design';
-      const idx = parts.indexOf('design');
-      if (idx !== -1 && parts.length > idx + 1) {
-        title = parts[idx+1];
-        if (parts.length > idx + 2) {
-          const p = parts.slice(idx + 2);
-          if (p.length >= 2) subTitle = p[0];
+      // 這裡維持作品歸類邏輯 (省略細節以求精簡)
+      let title = 'Untitled', subTitle = null, category = 'Personal';
+      if (relativePath.includes('moments in time')) {
+        category = 'Personal';
+        const idx = parts.indexOf('moments in time');
+        if (idx !== -1 && parts.length > idx + 1) title = parts[idx+1];
+      } else if (relativePath.includes('commissioned')) {
+        category = 'Commissioned';
+        const idx = parts.indexOf('commissioned');
+        if (idx !== -1 && parts.length > idx + 1) {
+          title = parts[idx+1];
+          if (parts.length > idx + 3) subTitle = parts[idx+2];
+        }
+      } else if (relativePath.includes('design')) {
+        category = 'Design';
+        const idx = parts.indexOf('design');
+        if (idx !== -1 && parts.length > idx + 1) {
+          title = parts[idx+1];
+          if (parts.length > idx + 2) {
+            const p = parts.slice(idx + 2);
+            if (p.length >= 2) subTitle = p[0];
+          }
         }
       }
+      
+      galleryItems.push({
+        id: galleryItems.length + 1,
+        title, subTitle, category,
+        imageUrl: '/' + relativePath.split(path.sep).join('/'),
+        aspectRatio: 'square',
+        isCover: fileName.toLowerCase().includes('cover')
+      });
     }
-
-    return {
-      id: index + 1,
-      title,
-      subTitle,
-      category,
-      imageUrl: '/' + relativePath.split(path.sep).join('/'),
-      aspectRatio: 'square',
-      isCover: path.basename(filePath).toLowerCase().includes('cover')
-    };
   });
 
-  fs.writeFileSync(outputGalleryFile, JSON.stringify(finalGalleryItems, null, 2));
+  fs.writeFileSync(outputGalleryFile, JSON.stringify(galleryItems, null, 2));
   fs.writeFileSync(outputDescFile, JSON.stringify(descriptions, null, 2));
-  console.log(`✨ Generated ${finalGalleryItems.length} items and ${Object.keys(descriptions).length} descriptions.`);
+  fs.writeFileSync(outputPriceFile, JSON.stringify(priceListData, null, 2));
+  console.log(`✨ Generated ${galleryItems.length} items, ${Object.keys(descriptions).length} project descs, and ${priceListData.length} price items.`);
 } catch (error) {
   console.error('❌ Error:', error);
 }
