@@ -20,6 +20,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
 ];
 
 const NAV_ITEMS = [
+  { label: 'All', href: '#' },
   { label: 'Personal', href: '#' },
   { label: 'Commissioned', href: '#' },
   { label: 'Design', href: '#' },
@@ -30,10 +31,10 @@ const NAV_ITEMS = [
 ];
 
 function App() {
-  const [activeCategory, setActiveCategory] = useState('Personal');
+  const [activeCategory, setActiveCategory] = useState('All');
 
   const filteredItems = GALLERY_ITEMS.filter(item => 
-    activeCategory === 'Personal' || item.category === activeCategory
+    activeCategory === 'All' || item.category === activeCategory
   );
 
   return (
