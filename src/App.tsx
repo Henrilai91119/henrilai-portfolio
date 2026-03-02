@@ -175,7 +175,7 @@ function App() {
         <div>
           <h1 className="mb-12">
             <a href="/" className="hover:opacity-70 transition-opacity">
-              <img src="/images/web logo/未命名-2_工作區域 1.png" alt="HENRI LAI" className="w-32 md:w-40 h-auto" />
+              <img src="/images/web logo/未命名-2_工作區域 1.png" alt="HENRI LAI" className="w-16 md:w-20 h-auto" />
             </a>
           </h1>
           <nav>
