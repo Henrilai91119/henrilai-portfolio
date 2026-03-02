@@ -121,10 +121,9 @@ function App() {
         projectsMap[item.title] = item;
       }
 
-      // 特別指定：2024 潮旅行 活動 的封面更換為 The kingfolk (5)
-      // 注意：這張照片位於 形象 資料夾下，但我們要用它當 活動 的封面
-      if (item.imageUrl.includes('The kingfolk (5).jpg')) {
-        projectsMap['2024 潮旅行 活動'] = item;
+      // 特別指定：2024 潮旅行 活動 的封面更換為 Fangliao (25)
+      if (item.title === '2024 潮旅行 活動' && item.imageUrl.includes('Fangliao (25).jpg')) {
+        projectsMap[item.title] = item;
       }
     });
 
