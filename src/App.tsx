@@ -29,12 +29,42 @@ const NAV_ITEMS = [
 
 const ITEMS_PER_PAGE = 30;
 
-const LazyImage = ({ src, alt, className, priority = false, ...props }: any) => {
+// Reusable Image Component with Elegant 1.5s Scroll Reveal
+const LazyImage = ({ src, alt, className, priority = false, showYear = false, ...props }: any) => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const yearMatch = src.match(/\d{4}/);
+  const year = yearMatch ? yearMatch[0] : null;
+
   return (
-    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }} className={`relative bg-gray-50 overflow-hidden ${className}`}>
-      <motion.img initial={{ opacity: 0 }} animate={{ opacity: isLoaded ? 1 : 0 }} transition={{ duration: 1.5, ease: "easeOut" }} onLoad={() => setIsLoaded(true)} src={src} alt={alt} loading={priority ? "eager" : "lazy"} className={`w-full h-full object-cover ${props.imgClassName || ""}`} {...props} />
-      {!isLoaded && <div className="absolute inset-0 bg-gray-50" />}
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+      className={`relative bg-gray-50 overflow-hidden ${className}`}
+    >
+      <motion.img
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isLoaded ? 1 : 0 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
+        onLoad={() => setIsLoaded(true)}
+        src={src}
+        alt={alt}
+        loading={priority ? "eager" : "lazy"}
+        className={`w-full h-full object-cover ${props.imgClassName || ""}`}
+        {...props}
+      />
+      {!isLoaded && (
+        <div className="absolute inset-0 bg-gray-50" />
+      )}
+      {/* Year Label Overlay - Safe Check added */}
+      {isLoaded && showYear && year && (
+        <div className="absolute top-4 right-4 pointer-events-none">
+          <p className="text-[8px] font-light tracking-[0.4em] text-black/20 uppercase italic">
+            {year}
+          </p>
+        </div>
+      )}
     </motion.div>
   );
 };
@@ -68,7 +98,10 @@ function App() {
           const element = yearRefs.current[year];
           if (element) {
             const rect = element.getBoundingClientRect();
-            if (rect.top >= 0 && rect.top <= 200) { setActiveYear(year); break; }
+            if (rect.top >= 0 && rect.top <= 250) {
+              setActiveYear(year);
+              break;
+            }
           }
         }
       }
@@ -87,12 +120,13 @@ function App() {
     });
   }, [activeCategory]);
 
-  // 1. 父目錄 (如 vehicle, graphic)
   const projectCovers = useMemo(() => {
     if (activeCategory !== 'Commissioned' && activeCategory !== 'Design') return [];
     const projectsMap: { [key: string]: GalleryItem } = {};
     filteredAndSortedItems.forEach(item => {
-      if (!projectsMap[item.title] || item.isCover) projectsMap[item.title] = item;
+      if (!projectsMap[item.title] || item.isCover) {
+        projectsMap[item.title] = item;
+      }
     });
     return Object.entries(projectsMap).sort((a, b) => {
       const yearA = a[0].match(/\d{4}/)?.[0] || "0";
@@ -101,7 +135,6 @@ function App() {
     });
   }, [activeCategory, filteredAndSortedItems]);
 
-  // 2. 子目錄 (如 997, gogoro)
   const subProjectCovers = useMemo(() => {
     if (!selectedProject) return [];
     const itemsInProject = filteredAndSortedItems.filter(item => item.title === selectedProject);
@@ -113,6 +146,21 @@ function App() {
     return Object.entries(subProjectsMap).sort();
   }, [selectedProject, filteredAndSortedItems]);
 
+  const groupedVisibleItems = useMemo(() => {
+    const visible = filteredAndSortedItems.slice(0, visibleCount);
+    const groups: { [key: string]: GalleryItem[] } = {};
+    visible.forEach(item => {
+      const year = item.imageUrl.match(/\d{4}/)?.[0] || "Others";
+      if (!groups[year]) groups[year] = [];
+      groups[year].push(item);
+    });
+    return Object.entries(groups).sort((a, b) => {
+      if (a[0] === "Others") return 1;
+      if (b[0] === "Others") return -1;
+      return parseInt(b[0]) - parseInt(a[0]);
+    });
+  }, [filteredAndSortedItems, visibleCount]);
+
   const allYears = useMemo(() => {
     if (activeCategory !== 'Moments in Time') return [];
     const years = Array.from(new Set(filteredAndSortedItems.map(item => item.imageUrl.match(/\d{4}/)?.[0]).filter(Boolean))) as string[];
@@ -120,19 +168,20 @@ function App() {
   }, [activeCategory, filteredAndSortedItems]);
 
   const displayItems = useMemo(() => {
-    if (selectedSubProject) {
+    const isProjectView = activeCategory === 'Commissioned' || activeCategory === 'Design';
+    if (isProjectView && selectedProject) {
       const subKey = selectedSubProject === 'Default' ? null : selectedSubProject;
-      let items = filteredAndSortedItems.filter(item => item.title === selectedProject && item.subTitle === subKey);
+      let items = filteredAndSortedItems.filter(item => {
+        if (!selectedSubProject || selectedSubProject === 'Default') {
+          return item.title === selectedProject;
+        }
+        return item.title === selectedProject && item.subTitle === selectedSubProject;
+      });
       if (selectedSubProject === '997') return items.sort((a, b) => a.imageUrl.localeCompare(b.imageUrl));
       return items;
     }
-    // 如果進入了父目錄但該專案沒有分「子專案」，則直接顯示該父目錄下的所有作品
-    const hasOnlyDefaultSub = subProjectCovers.length === 1 && subProjectCovers[0][0] === 'Default';
-    if (selectedProject && hasOnlyDefaultSub) {
-      return filteredAndSortedItems.filter(item => item.title === selectedProject);
-    }
     return filteredAndSortedItems.slice(0, visibleCount);
-  }, [filteredAndSortedItems, visibleCount, selectedProject, selectedSubProject, subProjectCovers]);
+  }, [filteredAndSortedItems, visibleCount, selectedProject, selectedSubProject, activeCategory]);
 
   const isFolderView = (activeCategory === 'Commissioned' || activeCategory === 'Design') && !selectedProject;
   const isSubFolderView = (activeCategory === 'Commissioned' || activeCategory === 'Design') && selectedProject && !selectedSubProject;
@@ -142,17 +191,25 @@ function App() {
     <div className="min-h-screen bg-white selection:bg-black selection:text-white font-sans text-black text-xs">
       <header className="p-8 md:p-12 lg:fixed lg:w-64 lg:h-screen lg:flex lg:flex-col lg:justify-between z-30 bg-white/80 backdrop-blur-sm lg:bg-transparent">
         <div>
-          <h1 className="mb-12"><a href="/" className="hover:opacity-70 transition-opacity"><img src="/images/web logo/未命名-2_工作區域 1.png" alt="HENRI LAI" className="w-32 md:w-40 h-auto" /></a></h1>
+          <h1 className="mb-12">
+            <a href="/" className="hover:opacity-70 transition-opacity">
+              <img src="/images/web logo/未命名-2_工作區域 1.png" alt="HENRI LAI" className="w-32 md:w-40 h-auto" />
+            </a>
+          </h1>
           <nav>
             <ul className="space-y-4">
               {NAV_ITEMS.map((item) => (
-                <li key={item.label}><button onClick={() => setActiveCategory(item.label)} className={`nav-link block w-full text-left transition-all duration-500 tracking-[0.2em] ${activeCategory === item.label ? 'font-bold border-b border-black inline-block pb-1 text-black text-[11px]' : 'text-gray-300 hover:text-black text-[11px]'}`}>{item.label}</button></li>
+                <li key={item.label}>
+                  <button onClick={() => setActiveCategory(item.label)} className={`nav-link block w-full text-left transition-all duration-500 tracking-[0.2em] ${activeCategory === item.label ? 'font-bold border-b border-black inline-block pb-1 text-black text-[11px]' : 'text-gray-300 hover:text-black text-[11px]'}`}>
+                    {item.label}
+                  </button>
+                </li>
               ))}
             </ul>
           </nav>
         </div>
         <footer className="mt-12 lg:mt-0">
-          <div className="flex space-x-6 grayscale opacity-30 hover:opacity-100 transition-all duration-700">
+          <div className="flex space-x-6 grayscale opacity-30 hover:opacity-100 transition-all duration-700 text-black">
             <a href="https://www.instagram.com/henrilai.photography/" target="_blank" rel="noreferrer" className="hover:text-black"><Instagram size={16} strokeWidth={1.5} /></a>
             <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-black"><Linkedin size={16} strokeWidth={1.5} /></a>
           </div>
@@ -162,9 +219,29 @@ function App() {
 
       <main className={`lg:ml-64 ${selectedSubProject === '997' ? 'p-0' : 'p-8 md:p-12 lg:p-16 lg:pt-12'}`}>
         {activeCategory === 'BIO' ? (
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-xl mx-auto lg:mx-0 p-8 text-black"><LazyImage src="/images/BIO/profile.jpg" alt="Henri Lai" priority={true} className="aspect-[4/5] mb-16 w-full max-w-xs grayscale hover:grayscale-0 transition-all duration-1000" /><div className="space-y-8 text-[13px] leading-[1.8] text-gray-600 tracking-wide"><p className="font-semibold text-black tracking-[0.3em] uppercase text-xs">HENRI LAI</p><p>這裡可以放您的自我介紹。</p><div className="pt-16 border-t border-gray-100"><p className="uppercase tracking-[0.3em] text-[9px] text-gray-400 mb-4 font-bold">Contact</p><a href="mailto:hello@henrilai.com" className="hover:text-black underline underline-offset-8 transition-colors text-gray-400">hello@henrilai.com</a></div></div></motion.div>
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-xl mx-auto lg:mx-0 p-8 text-black">
+            <LazyImage src="/images/BIO/profile.jpg" alt="Henri Lai" priority={true} className="aspect-[4/5] mb-16 w-full max-w-xs grayscale hover:grayscale-0 transition-all duration-1000" />
+            <div className="space-y-8 text-[13px] leading-[1.8] text-gray-600 tracking-wide text-black">
+              <p className="font-semibold text-black tracking-[0.3em] uppercase text-xs">HENRI LAI</p>
+              <p>這裡可以放您的自我介紹。</p>
+              <div className="pt-16 border-t border-gray-100 text-black">
+                <p className="uppercase tracking-[0.3em] text-[9px] text-gray-400 mb-4 font-bold font-sans">Contact</p>
+                <a href="mailto:hello@henrilai.com" className="hover:text-black underline underline-offset-8 transition-colors text-gray-400 font-sans">hello@henrilai.com</a>
+              </div>
+            </div>
+          </motion.div>
         ) : activeCategory === 'Price List' ? (
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-xl p-8"><h2 className="text-sm font-semibold tracking-[0.4em] mb-20 uppercase font-bold">Price List</h2><div className="space-y-16"><section><h3 className="text-[10px] uppercase tracking-[0.4em] text-gray-300 mb-8 font-bold">— Services</h3><ul className="space-y-6"><li className="flex justify-between border-b border-gray-50 pb-4 text-[11px] font-sans"><span className="tracking-widest">Photography Session</span><span className="font-light text-gray-400">Contact for pricing</span></li></ul></section></div></motion.div>
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-xl p-8">
+            <h2 className="text-sm font-semibold tracking-[0.4em] mb-20 uppercase font-bold text-black">Price List</h2>
+            <div className="space-y-16 text-black font-sans">
+              <section>
+                <h3 className="text-[10px] uppercase tracking-[0.4em] text-gray-300 mb-8 font-bold">— Services</h3>
+                <ul className="space-y-6">
+                  <li className="flex justify-between border-b border-gray-50 pb-4 text-[11px] text-black"><span className="tracking-widest">Photography Session</span><span className="font-light text-gray-400">Contact for pricing</span></li>
+                </ul>
+              </section>
+            </div>
+          </motion.div>
         ) : isFolderView ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24 px-4 md:px-8">
             <AnimatePresence mode="popLayout">
@@ -192,8 +269,17 @@ function App() {
           </div>
         ) : activeCategory === 'Moments in Time' ? (
           <div className="space-y-12">
-            <nav className="sticky top-0 z-20 bg-white/90 backdrop-blur-md py-6 mb-16 border-b border-gray-50 flex justify-center space-x-8 md:space-x-12 px-8 overflow-x-auto no-scrollbar text-black">{allYears.map(year => (<button key={year} onClick={() => { const el = yearRefs.current[year]; if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: 'smooth' }); }} className={`text-[10px] uppercase tracking-[0.4em] transition-all duration-500 whitespace-nowrap ${activeYear === year ? 'text-black font-bold scale-110' : 'text-gray-300 hover:text-black'}`}>{year}</button>))}</nav>
-            <div className="space-y-48">{groupedVisibleItems.map(([year, items]) => (<section key={year} ref={el => yearRefs.current[year] = el} className="space-y-16"><header className="border-b border-gray-100 pb-6 mb-12 ml-8 md:ml-12"><h2 className="text-[14px] font-bold tracking-[0.6em] text-black/30 uppercase italic">{year}</h2></header><div className="columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24 text-black"><AnimatePresence mode="popLayout">{items.map((item, index) => (<div key={item.id} onClick={() => setSelectedImage(item)} className="break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12"><LazyImage src={item.imageUrl} alt={item.title} priority={index < 6} imgClassName="h-auto transition-transform duration-1000 ease-out group-hover:scale-[1.01]" /></div>))}</AnimatePresence></div></section>))}</div>
+            <nav className="sticky top-0 z-20 bg-white/90 backdrop-blur-md py-6 mb-16 border-b border-gray-50 flex justify-center space-x-8 md:space-x-12 px-8 overflow-x-auto no-scrollbar">{allYears.map(year => (<button key={year} onClick={() => { const el = yearRefs.current[year]; if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: 'smooth' }); }} className={`text-[10px] uppercase tracking-[0.4em] transition-all duration-500 whitespace-nowrap ${activeYear === year ? 'text-black font-bold scale-110' : 'text-gray-300 hover:text-black'}`}>{year}</button>))}</nav>
+            <div className="space-y-48">
+              {groupedVisibleItems.map(([year, items]) => (
+                <section key={year} ref={el => yearRefs.current[year] = el} className="space-y-16">
+                  <header className="border-b border-gray-100 pb-6 mb-12 ml-8 md:ml-12"><h2 className="text-[14px] font-bold tracking-[0.6em] text-black/30 uppercase italic">{year}</h2></header>
+                  <div className="columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24">
+                    <AnimatePresence mode="popLayout">{items.map((item, index) => (<div key={item.id} onClick={() => setSelectedImage(item)} className="break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12"><LazyImage src={item.imageUrl} alt={item.title} priority={index < 6} imgClassName="h-auto transition-transform duration-1000 ease-out group-hover:scale-[1.01]" /></div>))}</AnimatePresence>
+                  </div>
+                </section>
+              ))}
+            </div>
           </div>
         ) : (
           <div className={`${selectedSubProject === '997' ? 'w-full' : 'space-y-12'}`}>
@@ -201,7 +287,7 @@ function App() {
               <header className={`mb-24 space-y-8 ${selectedSubProject === '997' ? 'p-8 md:p-12 lg:p-16' : ''}`}>
                 <div className="flex items-center justify-between border-b border-gray-100 pb-10">
                   <div>
-                    <button onClick={() => { if (selectedSubProject && !shouldShowContentDirectly) setSelectedSubProject(null); else { setSelectedProject(null); setSelectedSubProject(null); } window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="flex items-center text-[10px] uppercase tracking-[0.3em] text-gray-400 hover:text-black transition-colors mb-6 group"><ArrowLeft size={12} className="mr-2 group-hover:-translate-x-1 transition-transform" />Back to {selectedSubProject && !shouldShowContentDirectly ? selectedProject : 'Gallery'}</button>
+                    <button onClick={() => { if (selectedSubProject && !shouldShowContentDirectly) setSelectedSubProject(null); else { setSelectedProject(null); setSelectedSubProject(null); } window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="flex items-center text-[10px] uppercase tracking-[0.3em] text-gray-400 hover:text-black transition-colors mb-6 group"><ArrowLeft size={12} className="mr-2 group-hover:-translate-x-1 transition-transform" />Back to {selectedSubProject && !shouldShowContentDirectly ? selectedProject : 'Category'}</button>
                     <h2 className="text-[18px] font-medium tracking-[0.3em] uppercase text-black">{selectedSubProject === '997' ? '997' : (selectedSubProject && selectedSubProject !== 'Default' ? selectedSubProject : selectedProject)}</h2>
                   </div>
                 </div>
