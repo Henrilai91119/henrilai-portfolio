@@ -27,22 +27,22 @@ const NAV_ITEMS = [
 
 const ITEMS_PER_PAGE = 21;
 
-// Reusable Image Component with Scroll Reveal and Priority Support
+// Reusable Image Component with Elegant 1.5s Scroll Reveal
 const LazyImage = ({ src, alt, className, priority = false, ...props }: any) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <motion.div 
-      initial={priority ? { opacity: 0 } : { opacity: 0, y: 15 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, ease: [0.215, 0.61, 0.355, 1] }}
+      transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }} // Smooth, slow ease
       className={`relative bg-gray-50 overflow-hidden ${className}`}
     >
       <motion.img
         initial={{ opacity: 0 }}
         animate={{ opacity: isLoaded ? 1 : 0 }}
-        transition={{ duration: 0.4 }}
+        transition={{ duration: 1.5, ease: "easeOut" }} // Slow 1.5s fade-in
         onLoad={() => setIsLoaded(true)}
         src={src}
         alt={alt}
@@ -72,7 +72,7 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [activeCategory]);
 
-  // 無限捲動邏輯 (僅在非專案選擇模式下或專案內生效)
+  // 無限捲動邏輯
   useEffect(() => {
     const handleScroll = () => {
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 800) {
@@ -100,7 +100,7 @@ function App() {
     const projectsMap: { [key: string]: GalleryItem } = {};
     filteredAndSortedItems.forEach(item => {
       if (!projectsMap[item.title]) {
-        projectsMap[item.title] = item; // 預設拿該資料夾的第一張
+        projectsMap[item.title] = item;
       }
     });
 
@@ -111,7 +111,7 @@ function App() {
     });
   }, [activeCategory, filteredAndSortedItems]);
 
-  // 3. 目前應顯示的內容 (如果是專案內，就顯示專案圖；如果是一般分類，就顯示 visibleCount)
+  // 3. 目前應顯示的內容
   const displayItems = useMemo(() => {
     if (activeCategory === 'Commissioned' && selectedProject) {
       return filteredAndSortedItems.filter(item => item.title === selectedProject);
@@ -198,9 +198,10 @@ function App() {
               {projectCovers.map(([title, item]) => (
                 <motion.div
                   layout
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
                   key={title}
                   onClick={() => {
                     setSelectedProject(title);
