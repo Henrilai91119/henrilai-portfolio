@@ -88,22 +88,32 @@ function App() {
   }, [activeCategory]);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 1000) {
-        setVisibleCount(prev => prev + ITEMS_PER_PAGE);
-      }
-      if (activeCategory === 'Moments in Time') {
-        const years = Object.keys(yearRefs.current);
-        for (const year of years) {
-          const element = yearRefs.current[year];
-          if (element) {
-            const rect = element.getBoundingClientRect();
-            if (rect.top >= -100 && rect.top <= 300) {
-              setActiveYear(year);
-              break;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          // 無限捲動
+          if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 1200) {
+            setVisibleCount(prev => prev + ITEMS_PER_PAGE);
+          }
+
+          // 年份偵測邏輯
+          if (activeCategory === 'Moments in Time') {
+            const years = Object.keys(yearRefs.current);
+            for (const year of years) {
+              const element = yearRefs.current[year];
+              if (element) {
+                const rect = element.getBoundingClientRect();
+                if (rect.top >= -100 && rect.top <= 350) {
+                  setActiveYear(year);
+                  break;
+                }
+              }
             }
           }
-        }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
     window.addEventListener('scroll', handleScroll);
@@ -172,7 +182,6 @@ function App() {
         if (!selectedSubProject || selectedSubProject === 'Default') return item.title === selectedProject;
         return item.title === selectedProject && item.subTitle === selectedSubProject;
       }).sort((a, b) => {
-        // 997 與 gogoro 特別排序
         if (selectedSubProject === '997' || selectedSubProject === 'gogoro' || selectedProject === 'vehicle') {
           return a.imageUrl.localeCompare(b.imageUrl);
         }
@@ -202,8 +211,6 @@ function App() {
   const isFolderView = (activeCategory === 'Commissioned' || activeCategory === 'Design') && !selectedProject;
   const isSubFolderView = (activeCategory === 'Commissioned' || activeCategory === 'Design') && selectedProject && !selectedSubProject;
   const shouldShowContentDirectly = selectedProject && subProjectCovers.length === 1 && subProjectCovers[0][0] === 'Default';
-  
-  // 判斷目前是否處於 997 或 gogoro 的單欄模式
   const isSeamlessLayout = selectedSubProject === '997' || selectedSubProject === 'gogoro' || (selectedProject === 'vehicle' && selectedSubProject === 'gogoro') || (selectedProject === 'vehicle' && selectedSubProject === '997');
 
   return (
@@ -243,9 +250,16 @@ function App() {
         {activeCategory === 'BIO' ? (
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-xl mx-auto lg:mx-0 p-8">
             <LazyImage src="/images/BIO/profile.jpg" alt="Henri Lai" priority={true} className="aspect-[4/5] mb-16 w-full max-w-xs grayscale hover:grayscale-0 transition-all duration-1000" />
-            <div className="space-y-8 text-[0.8rem] leading-[1.8] text-gray-600 tracking-wide">
-              <p className="font-semibold text-black tracking-[0.3em] uppercase text-[0.75rem]">HENRI LAI</p>
-              <p>這裡可以放您的自我介紹。</p>
+            <div className="space-y-10 text-[0.85rem] leading-[2] text-gray-600 tracking-wider">
+              <p className="font-semibold text-black tracking-[0.4em] uppercase text-[1.1rem]">HI , 我是賴昱成</p>
+              <div className="space-y-6">
+                <p>斜槓設計師、攝影師，目前為自由接案工作者</p>
+                <div className="space-y-2">
+                  <p><span className="text-black font-semibold mr-4 tracking-[0.2em]">設計</span> 專攻戶外用品設計、平面設計</p>
+                  <p><span className="text-black font-semibold mr-4 tracking-[0.2em]">攝影</span> 商品攝影、活動攝影為主，並持續運用底片創作</p>
+                </div>
+                <p className="pt-4">歡迎透過各平台聯繫洽談商業合作內容 !</p>
+              </div>
               <div className="pt-16 border-t border-gray-100">
                 <p className="uppercase tracking-[0.3em] text-[0.56rem] text-gray-400 mb-4 font-bold">Contact</p>
                 <a href="mailto:hello@henrilai.com" className="hover:text-black underline underline-offset-8 transition-colors text-gray-400">hello@henrilai.com</a>
@@ -297,7 +311,7 @@ function App() {
                 <section key={year} ref={el => yearRefs.current[year] = el} className="space-y-16">
                   <header className="border-b border-gray-100 pb-6 mb-12 ml-8 md:ml-12"><h2 className="text-[0.875rem] font-bold tracking-[0.6em] text-black/30 uppercase italic">{year}</h2></header>
                   <div className="columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24">
-                    {items.map((item, index) => (<div key={item.id} onClick={() => setSelectedImage(item)} className="break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12"><LazyImage src={item.imageUrl} alt={item.title} priority={index < 6} showYear={activeCategory === 'Moments in Time'} imgClassName="h-auto transition-transform duration-1000 ease-out group-hover:scale-[1.01]" /></div>))}
+                    {items.map((item, index) => (<div key={item.id} onClick={() => setSelectedImage(item)} className="break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12 text-black"><LazyImage src={item.imageUrl} alt={item.title} priority={index < 6} showYear={activeCategory === 'Moments in Time'} imgClassName="h-auto transition-transform duration-1000 ease-out group-hover:scale-[1.01]" /></div>))}
                   </div>
                 </section>
               ))}
@@ -318,9 +332,9 @@ function App() {
             <div className={isSeamlessLayout ? 'flex flex-col w-full' : 'columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24'}>
               <AnimatePresence>
                 {displayItems.map((item, index) => (
-                  <div key={item.id} onClick={() => setSelectedImage(item)} className={isSeamlessLayout ? 'w-full' : 'break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12'}>
+                  <div key={item.id} onClick={() => setSelectedImage(item)} className={isSeamlessLayout ? 'w-full' : 'break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12 text-black'}>
                     <LazyImage src={item.imageUrl} alt={item.title} priority={index < 6} showYear={activeCategory === 'Moments in Time'} imgClassName="h-auto w-full block" className={isSeamlessLayout ? 'bg-transparent' : ''} />
-                    {(!selectedProject && activeCategory !== 'Moments in Time') && <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-right"><p className="text-[0.56rem] uppercase tracking-[0.3em] text-gray-300 font-light">{item.title}</p></div>}
+                    {(!selectedProject && activeCategory !== 'Moments in Time') && <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-right"><p className="text-[0.56rem] uppercase tracking-[0.3em] text-gray-300 font-light text-black">{item.title}</p></div>}
                   </div>
                 ))}
               </AnimatePresence>
