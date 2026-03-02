@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import sharp from 'sharp';
 
 const publicDir = path.join(process.cwd(), 'public');
 const imagesDir = path.join(publicDir, 'images');
@@ -10,6 +11,37 @@ const outputDescFile = path.join(process.cwd(), 'src', 'project-descriptions.jso
 const outputPriceFile = path.join(process.cwd(), 'src', 'price-list.json');
 
 const EXCLUDED_DIRS = ['.DS_Store', 'BIO', 'price-list', 'web logo'];
+
+// 將 RGB 轉換為 Hue (色相)
+function rgbToHue(r, g, b) {
+  r /= 255; g /= 255; b /= 255;
+  const max = Math.max(r, g, b), min = Math.min(r, g, b);
+  let h;
+  if (max === min) h = 0;
+  else if (max === r) h = (g - b) / (max - min) + (g < b ? 6 : 0);
+  else if (max === g) h = (b - r) / (max - min) + 2;
+  else if (max === b) h = (r - g) / (max - min) + 4;
+  return Math.round(h * 60);
+}
+
+// 取得圖片的主色調 Hue
+async function getDominantHue(filePath) {
+  try {
+    const { data } = await sharp(filePath)
+      .resize(5, 5, { fit: 'cover' }) // 縮小到 5x5 取得平均色
+      .raw()
+      .toBuffer({ resolveWithObject: true });
+    
+    let r = 0, g = 0, b = 0;
+    for (let i = 0; i < data.length; i += 3) {
+      r += data[i]; g += data[i+1]; b += data[i+2];
+    }
+    const count = data.length / 3;
+    return rgbToHue(r / count, g / count, b / count);
+  } catch (e) {
+    return 0;
+  }
+}
 
 function getFiles(dir, allFiles = []) {
   if (!fs.existsSync(dir)) return allFiles;
@@ -32,92 +64,103 @@ function getFiles(dir, allFiles = []) {
   return allFiles;
 }
 
-try {
-  // 1. 處理 Price List 特別邏輯
-  const priceListData = [];
-  if (fs.existsSync(priceListDir)) {
-    const priceFiles = fs.readdirSync(priceListDir);
-    const bases = Array.from(new Set(priceFiles.map(f => path.basename(f, path.extname(f)))));
-    bases.forEach(base => {
-      if (base === '.DS_Store') return;
-      const txtFile = priceFiles.find(f => path.basename(f, path.extname(f)) === base && f.endsWith('.txt'));
-      const imgFile = priceFiles.find(f => path.basename(f, path.extname(f)) === base && /\.(jpg|jpeg|png|webp)$/i.test(f));
-      if (txtFile) {
-        priceListData.push({
-          title: base,
-          content: fs.readFileSync(path.join(priceListDir, txtFile), 'utf-8'),
-          imageUrl: imgFile ? `/images/price-list/${imgFile}` : null
-        });
+function getHierarchy(relativePath) {
+  const parts = relativePath.split(path.sep);
+  let title = 'Untitled', subTitle = null, category = 'Personal';
+  
+  if (relativePath.includes('moments in time')) {
+    category = 'Personal';
+    const idx = parts.indexOf('moments in time');
+    if (idx !== -1 && parts.length > idx + 1) title = parts[idx+1];
+  } else if (relativePath.includes('commissioned')) {
+    category = 'Commissioned';
+    const idx = parts.indexOf('commissioned');
+    if (idx !== -1 && parts.length > idx + 1) {
+      title = parts[idx+1];
+      if (parts.length > idx + 3) subTitle = parts[idx+2];
+    }
+  } else if (relativePath.includes('design')) {
+    category = 'Design';
+    const idx = parts.indexOf('design');
+    if (idx !== -1 && parts.length > idx + 1) {
+      title = parts[idx+1];
+      if (parts.length > idx + 2) {
+        const p = parts.slice(idx + 2);
+        if (p.length >= 2) subTitle = p[0];
       }
-    });
+    }
   }
+  return { title, subTitle, category };
+}
 
-  // 2. 處理 一般作品 與 描述
-  const allFiles = getFiles(imagesDir);
-  const galleryItems = [];
-  const descriptions = {};
+async function run() {
+  try {
+    console.log('🎨 Analyzing images and generating gallery data...');
+    const allFiles = getFiles(imagesDir);
+    const galleryItems = [];
+    const descriptions = {};
+    const priceListData = [];
 
-  allFiles.forEach(filePath => {
-    const fileName = path.basename(filePath);
-    const ext = path.extname(filePath).toLowerCase();
-    const relativePath = path.relative(publicDir, filePath);
-    const parts = relativePath.split(path.sep);
-
-    if (ext === '.txt') {
-      const content = fs.readFileSync(filePath, 'utf-8');
-      const baseName = path.basename(fileName, '.txt').toLowerCase();
-      
-      // 核心修正：只有在 Design > Outdoor 資料夾下的 PNGL.txt 才會被套用
-      // 排除 Commissioned 分類自動抓取
-      if (relativePath.includes('design') && relativePath.includes('outdoor')) {
-        descriptions[baseName] = content;
-        if (baseName === 'pngl') {
-          // 僅針對 outdoor 裡面的 PNGL 項目生效
-          descriptions['pngl'] = content;
+    // 1. 處理 Price List
+    if (fs.existsSync(priceListDir)) {
+      const priceFiles = fs.readdirSync(priceListDir);
+      const bases = Array.from(new Set(priceFiles.map(f => path.basename(f, path.extname(f)))));
+      bases.forEach(base => {
+        if (base === '.DS_Store') return;
+        const txtFile = priceFiles.find(f => path.basename(f, path.extname(f)) === base && f.endsWith('.txt'));
+        const imgFile = priceFiles.find(f => path.basename(f, path.extname(f)) === base && /\.(jpg|jpeg|png|webp)$/i.test(f));
+        if (txtFile) {
+          priceListData.push({
+            title: base,
+            content: fs.readFileSync(path.join(priceListDir, txtFile), 'utf-8'),
+            imageUrl: imgFile ? `/images/price-list/${imgFile}` : null
+          });
         }
-      } else {
-        // 如果是資料夾內的 TXT，只給該資料夾用
-        descriptions[baseName] = content;
-      }
-    } else if (ext !== '.txt' && !relativePath.includes('price-list')) {
-      let title = 'Untitled', subTitle = null, category = 'Personal';
-      if (relativePath.includes('moments in time')) {
-        category = 'Personal';
-        const idx = parts.indexOf('moments in time');
-        if (idx !== -1 && parts.length > idx + 1) title = parts[idx+1];
-      } else if (relativePath.includes('commissioned')) {
-        category = 'Commissioned';
-        const idx = parts.indexOf('commissioned');
-        if (idx !== -1 && parts.length > idx + 1) {
-          title = parts[idx+1];
-          if (parts.length > idx + 3) subTitle = parts[idx+2];
-        }
-      } else if (relativePath.includes('design')) {
-        category = 'Design';
-        const idx = parts.indexOf('design');
-        if (idx !== -1 && parts.length > idx + 1) {
-          title = parts[idx+1];
-          if (parts.length > idx + 2) {
-            const p = parts.slice(idx + 2);
-            if (p.length >= 2) subTitle = p[0];
-          }
-        }
-      }
-      
-      galleryItems.push({
-        id: galleryItems.length + 1,
-        title, subTitle, category,
-        imageUrl: '/' + relativePath.split(path.sep).join('/'),
-        aspectRatio: 'square',
-        isCover: fileName.toLowerCase().includes('cover')
       });
     }
-  });
 
-  fs.writeFileSync(outputGalleryFile, JSON.stringify(galleryItems, null, 2));
-  fs.writeFileSync(outputDescFile, JSON.stringify(descriptions, null, 2));
-  fs.writeFileSync(outputPriceFile, JSON.stringify(priceListData, null, 2));
-  console.log(`✨ Generated ${galleryItems.length} items and ${Object.keys(descriptions).length} descs.`);
-} catch (error) {
-  console.error('❌ Error:', error);
+    // 2. 處理 描述 與 作品
+    for (const filePath of allFiles) {
+      const fileName = path.basename(filePath);
+      const ext = path.extname(filePath).toLowerCase();
+      const relativePath = path.relative(publicDir, filePath);
+
+      if (ext === '.txt') {
+        const content = fs.readFileSync(filePath, 'utf-8');
+        const baseName = path.basename(fileName, '.txt').toLowerCase();
+        if (relativePath.includes('design') && relativePath.includes('outdoor')) {
+          descriptions[baseName] = content;
+          if (baseName === 'pngl') descriptions['pngl'] = content;
+        } else {
+          descriptions[baseName] = content;
+        }
+      } else if (ext !== '.txt' && !relativePath.includes('price-list')) {
+        const { title, subTitle, category } = getHierarchy(relativePath);
+        
+        // 核心更新：只有 Personal (Moments in Time) 的圖片才需要進行昂貴的色彩分析
+        let hue = 0;
+        if (category === 'Personal') {
+          hue = await getDominantHue(filePath);
+        }
+
+        galleryItems.push({
+          id: galleryItems.length + 1,
+          title, subTitle, category,
+          imageUrl: '/' + relativePath.split(path.sep).join('/'),
+          aspectRatio: 'square',
+          isCover: fileName.toLowerCase().includes('cover'),
+          hue: hue
+        });
+      }
+    }
+
+    fs.writeFileSync(outputGalleryFile, JSON.stringify(galleryItems, null, 2));
+    fs.writeFileSync(outputDescFile, JSON.stringify(descriptions, null, 2));
+    fs.writeFileSync(outputPriceFile, JSON.stringify(priceListData, null, 2));
+    console.log(`✨ Successfully generated ${galleryItems.length} items. Color analysis completed for Personal works.`);
+  } catch (error) {
+    console.error('❌ Error:', error);
+  }
 }
+
+run();

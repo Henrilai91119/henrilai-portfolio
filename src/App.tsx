@@ -15,17 +15,18 @@ interface GalleryItem {
   imageUrl: string;
   aspectRatio: 'square' | 'portrait' | 'video';
   isCover?: boolean;
+  hue?: number; // 色相數值 (0-360)
 }
+
+const GALLERY_ITEMS = GALLERY_ITEMS_JSON as GalleryItem[];
+const DESCRIPTIONS = PROJECT_DESCRIPTIONS as { [key: string]: string };
+const PRICE_ITEMS = PRICE_LIST_JSON as PriceItem[];
 
 interface PriceItem {
   title: string;
   content: string;
   imageUrl: string | null;
 }
-
-const GALLERY_ITEMS = GALLERY_ITEMS_JSON as GalleryItem[];
-const DESCRIPTIONS = PROJECT_DESCRIPTIONS as { [key: string]: string };
-const PRICE_ITEMS = PRICE_LIST_JSON as PriceItem[];
 
 const NAV_ITEMS = [
   { label: 'Moments in Time', href: '#' },
@@ -69,9 +70,7 @@ const LazyImage = ({ src, alt, className, priority = false, showYear = false, ..
       )}
       {isLoaded && showYear && year && (
         <div className="absolute top-4 right-4 pointer-events-none text-black">
-          <p className="text-[0.5rem] font-light tracking-[0.4em] text-black/20 uppercase italic">
-            {year}
-          </p>
+          <p className="text-[0.5rem] font-light tracking-[0.4em] text-black/20 uppercase italic">{year}</p>
         </div>
       )}
     </motion.div>
@@ -88,7 +87,6 @@ function App() {
 
   const yearRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
-  // Reset states on category change
   useEffect(() => {
     setVisibleCount(ITEMS_PER_PAGE);
     if (activeCategory === 'Design') {
@@ -102,7 +100,6 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [activeCategory]);
 
-  // Scroll handler with throttling
   useEffect(() => {
     let ticking = false;
     const handleScroll = () => {
@@ -136,10 +133,17 @@ function App() {
   const filteredAndSortedItems = useMemo(() => {
     const categoryToMatch = activeCategory === 'Moments in Time' ? 'Personal' : activeCategory;
     const items = GALLERY_ITEMS.filter(item => item.category === categoryToMatch);
+    
+    // 方案 A：依年份降序排列，年份內部依色彩 (Hue) 排序
     return [...items].sort((a, b) => {
       const yearA = a.imageUrl?.match(/\d{4}/)?.[0] || "0";
       const yearB = b.imageUrl?.match(/\d{4}/)?.[0] || "0";
-      return parseInt(yearB) - parseInt(yearA);
+      
+      if (yearA !== yearB) {
+        return parseInt(yearB) - parseInt(yearA); // 年份不同，由新到舊
+      }
+      // 年份相同，依色相 Hue 排序 (0-360)
+      return (a.hue || 0) - (b.hue || 0);
     });
   }, [activeCategory]);
 
@@ -188,6 +192,7 @@ function App() {
       let items = filteredAndSortedItems.filter(item => item.title === projectToMatch);
       if (selectedSubProject) items = items.filter(item => item.subTitle === selectedSubProject && !item.isCover);
       else if (projectToMatch !== 'graphic') items = items.filter(item => !item.isCover);
+      
       const isSeamless = selectedSubProject === '997' || selectedSubProject === 'gogoro' || selectedSubProject === 'wanderer' || (projectToMatch === 'vehicle' && !selectedSubProject);
       if (isSeamless) return [...items].sort((a, b) => (a.imageUrl || '').localeCompare(b.imageUrl || ''));
       return items.slice(0, visibleCount);
@@ -266,29 +271,19 @@ function App() {
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-5xl mx-auto p-8 space-y-32 py-20 text-black">
             {PRICE_ITEMS.map((item, index) => (
               <div key={item.title} className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 md:gap-24 items-center text-black`}>
-                <div className="w-full md:w-1/2 aspect-square">
-                  <LazyImage src={item.imageUrl} alt={`${item.title} pricing`} className="w-full h-full" imgClassName="object-contain" />
-                </div>
-                <div className="w-full md:w-1/2 space-y-8 text-black">
-                  <h2 className="text-[1.1rem] font-bold tracking-[0.4em] uppercase border-b border-gray-100 pb-4 text-black">{item.title}</h2>
-                  <div className="text-[0.8rem] leading-[2.2] text-gray-600 tracking-wide whitespace-pre-wrap text-black font-sans">{item.content}</div>
-                </div>
+                <div className="w-full md:w-1/2 aspect-square"><LazyImage src={item.imageUrl} alt={`${item.title} pricing`} className="w-full h-full" imgClassName="object-contain" /></div>
+                <div className="w-full md:w-1/2 space-y-8 text-black"><h2 className="text-[1.1rem] font-bold tracking-[0.4em] uppercase border-b border-gray-100 pb-4 text-black">{item.title}</h2><div className="text-[0.8rem] leading-[2.2] text-gray-600 tracking-wide whitespace-pre-wrap text-black font-sans">{item.content}</div></div>
               </div>
             ))}
-            {PRICE_ITEMS.length === 0 && (
-              <div className="h-[40vh] flex flex-col items-center justify-center text-center text-black font-sans">
-                <p className="text-[0.62rem] uppercase tracking-[0.5em] text-gray-300">Section under construction</p>
-                <h2 className="text-[0.85rem] font-bold tracking-[0.3em] uppercase text-black mt-4 font-sans">正在建置中</h2>
-              </div>
-            )}
+            {PRICE_ITEMS.length === 0 && (<div className="h-[40vh] flex flex-col items-center justify-center text-center text-black font-sans"><p className="text-[0.62rem] uppercase tracking-[0.5em] text-gray-300">Section under construction</p><h2 className="text-[0.85rem] font-bold tracking-[0.3em] uppercase text-black mt-4 font-sans text-black">正在建置中</h2></div>)}
           </motion.div>
         ) : activeCategory === 'Commissioned' && !selectedProject ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24 px-4 md:px-8 text-black">
             <AnimatePresence>
               {projectCovers.map(([title, item]) => (
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} key={title} onClick={() => { setSelectedProject(title); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="group cursor-pointer flex flex-col items-center text-center px-4 md:px-8 text-black text-black">
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} key={title} onClick={() => { setSelectedProject(title); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="group cursor-pointer flex flex-col items-center text-center px-4 md:px-8 text-black">
                   <div className="aspect-square mb-8 overflow-hidden bg-gray-50 w-full text-black"><img src={item.imageUrl} alt={`${title} cover`} loading="lazy" className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-1000 ease-out text-black" /></div>
-                  <h2 className="text-[1.125rem] font-medium tracking-[0.2em] uppercase text-black mb-2 leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity text-black font-sans">{title}</h2>
+                  <h2 className="text-[1.125rem] font-medium tracking-[0.2em] uppercase text-black mb-2 leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity text-black font-sans text-black">{title}</h2>
                 </motion.div>
               ))}
             </AnimatePresence>
@@ -313,11 +308,8 @@ function App() {
               </header>
             )}
             {activeCategory === 'Commissioned' && selectedProject && (
-              <header className="mb-24 flex items-center justify-between border-b border-gray-100 pb-10 text-black font-sans text-black">
-                <div>
-                  <button onClick={() => setSelectedProject(null)} className="flex items-center text-[0.62rem] uppercase tracking-[0.3em] text-gray-400 hover:text-black transition-colors mb-6 group text-black font-sans"><ArrowLeft size={12} className="mr-2 group-hover:-translate-x-1 transition-transform" />Back to Categories</button>
-                  <h2 className="text-[1.125rem] font-medium tracking-[0.3em] uppercase text-black font-sans">{selectedProject}</h2>
-                </div>
+              <header className="mb-24 flex items-center justify-between border-b border-gray-100 pb-10 text-black font-sans">
+                <div><button onClick={() => setSelectedProject(null)} className="flex items-center text-[0.62rem] uppercase tracking-[0.3em] text-gray-400 hover:text-black transition-colors mb-6 group text-black font-sans"><ArrowLeft size={12} className="mr-2 group-hover:-translate-x-1 transition-transform" />Back to Categories</button><h2 className="text-[1.125rem] font-medium tracking-[0.3em] uppercase text-black font-sans">{selectedProject}</h2></div>
               </header>
             )}
             {currentDescription && (
@@ -346,7 +338,7 @@ function App() {
                 {displayItems.map((item, index) => (
                   <div key={item.id} onClick={() => setSelectedImage(item)} className={isSeamlessLayout ? 'w-full text-black' : 'break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12 text-black'}>
                     <LazyImage src={item.imageUrl} alt={item.title || 'Portfolio Work'} priority={index < 6} showYear={false} imgClassName="h-auto w-full block" className={isSeamlessLayout ? 'bg-transparent text-black' : 'text-black'} />
-                    {(!selectedProject && activeCategory !== 'Moments in Time') && <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-right text-black font-sans"><p className="text-[0.56rem] uppercase tracking-[0.3em] text-gray-300 font-light text-black font-sans">{item.title}</p></div>}
+                    {(!selectedProject && activeCategory !== 'Moments in Time') && <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-right text-black font-sans text-black"><p className="text-[0.56rem] uppercase tracking-[0.3em] text-gray-300 font-light text-black font-sans text-black">{item.title}</p></div>}
                   </div>
                 ))}
               </div>
@@ -357,11 +349,11 @@ function App() {
 
       <AnimatePresence>
         {selectedImage && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center bg-white/98 p-4 md:p-12 lg:p-24 cursor-zoom-out text-black" onClick={() => setSelectedImage(null)}>
-            <button className="absolute top-8 right-8 text-black hover:rotate-90 transition-transform duration-500 p-2 text-black"><X size={24} strokeWidth={1} /></button>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center bg-white/98 p-4 md:p-12 lg:p-24 cursor-zoom-out text-black text-black" onClick={() => setSelectedImage(null)}>
+            <button className="absolute top-8 right-8 text-black hover:rotate-90 transition-transform duration-500 p-2 text-black text-black"><X size={24} strokeWidth={1} /></button>
             <motion.img initial={{ scale: 0.98, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.98, opacity: 0 }} transition={{ type: "spring", damping: 30, stiffness: 200 }} src={selectedImage.imageUrl} alt={selectedImage.title} className="max-w-full max-h-full object-contain shadow-2xl" />
             <div className="absolute bottom-12 left-12 text-left text-black text-black">
-              <p className="text-[0.56rem] uppercase tracking-[0.5em] text-gray-300 font-light text-black font-sans">{selectedImage.title} {selectedImage.subTitle ? `— ${selectedImage.subTitle}` : ''} <span className="ml-4 opacity-50 tracking-widest text-black">{selectedImage.imageUrl?.match(/\d{4}/)?.[0]}</span></p>
+              <p className="text-[0.56rem] uppercase tracking-[0.5em] text-gray-300 font-light text-black font-sans text-black">{selectedImage.title} {selectedImage.subTitle ? `— ${selectedImage.subTitle}` : ''} <span className="ml-4 opacity-50 tracking-widest text-black text-black">{selectedImage.imageUrl?.match(/\d{4}/)?.[0]}</span></p>
             </div>
           </motion.div>
         )}
