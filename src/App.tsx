@@ -74,7 +74,7 @@ function App() {
 
         <footer className="mt-12 lg:mt-0">
           <div className="flex space-x-6 grayscale opacity-30 hover:opacity-100 transition-all duration-700">
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-black">
+            <a href="https://www.instagram.com/henrilai.photography/" target="_blank" rel="noreferrer" className="hover:text-black">
               <Instagram size={16} strokeWidth={1.5} />
             </a>
             <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-black">
