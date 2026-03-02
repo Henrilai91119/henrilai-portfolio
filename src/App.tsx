@@ -140,6 +140,11 @@ function App() {
       if (item.title === '2025 潮旅行 形象' && item.imageUrl.includes('2025 Chouzhou Travel 形象 (17).jpg')) {
         projectsMap[item.title] = item;
       }
+
+      // 特別指定：2025 洛豪&怡帆 的封面更換為 2025 Wedding (48)
+      if (item.title === '2025 洛豪&怡帆' && item.imageUrl.includes('2025 Wedding (48).jpg')) {
+        projectsMap[item.title] = item;
+      }
     });
 
     return Object.entries(projectsMap).sort((a, b) => {
