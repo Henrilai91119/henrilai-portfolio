@@ -25,16 +25,22 @@ const NAV_ITEMS = [
   { label: 'Price List', href: '#' },
 ];
 
-// Reusable Image Component with Fade-in effect
+// Reusable Image Component with Scroll Reveal effect
 const LazyImage = ({ src, alt, className, ...props }: any) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
-    <div className={`relative bg-gray-50 overflow-hidden ${className}`}>
+    <motion.div 
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, ease: [0.215, 0.61, 0.355, 1] }}
+      className={`relative bg-gray-50 overflow-hidden ${className}`}
+    >
       <motion.img
         initial={{ opacity: 0 }}
         animate={{ opacity: isLoaded ? 1 : 0 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
+        transition={{ duration: 0.4 }}
         onLoad={() => setIsLoaded(true)}
         src={src}
         alt={alt}
@@ -45,7 +51,7 @@ const LazyImage = ({ src, alt, className, ...props }: any) => {
       {!isLoaded && (
         <div className="absolute inset-0 bg-gray-50" />
       )}
-    </div>
+    </motion.div>
   );
 };
 
@@ -181,11 +187,7 @@ function App() {
                   </header>
                   <div className="columns-1 sm:columns-2 md:columns-3 gap-12 lg:gap-16 space-y-12 lg:space-y-16">
                     {items.map((item) => (
-                      <motion.div
-                        layout
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
+                      <div
                         key={item.id}
                         onClick={() => setSelectedImage(item)}
                         className="break-inside-avoid mb-12 lg:mb-16 group cursor-crosshair"
@@ -195,7 +197,7 @@ function App() {
                           alt={item.title} 
                           imgClassName="h-auto group-hover:scale-[1.01] transition-transform duration-1000"
                         />
-                      </motion.div>
+                      </div>
                     ))}
                   </div>
                 </section>
@@ -206,12 +208,7 @@ function App() {
           <div className="columns-1 sm:columns-2 md:columns-3 gap-12 lg:gap-16 space-y-12 lg:space-y-16">
             <AnimatePresence mode="popLayout">
               {filteredAndSortedItems.map((item) => (
-                <motion.div
-                  layout
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.8 }}
+                <div
                   key={item.id}
                   onClick={() => setSelectedImage(item)}
                   className="break-inside-avoid mb-12 lg:mb-16 group cursor-crosshair"
@@ -224,7 +221,7 @@ function App() {
                   <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     <p className="text-[9px] uppercase tracking-[0.3em] text-gray-300 font-light">{item.title}</p>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </AnimatePresence>
           </div>
