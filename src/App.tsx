@@ -111,8 +111,8 @@ function App() {
         projectsMap[item.title] = item;
       }
 
-      // 特別指定：2024 雄女百年路跑 的封面更換為 2024 roadrace(19)
-      if (item.title === '2024 雄女百年路跑' && item.imageUrl.includes('2024 roadrace(19).jpg')) {
+      // 特別指定：2024 雄女百年路跑 的封面更換為 2024 Roadrace (19)
+      if (item.title === '2024 雄女百年路跑' && item.imageUrl.includes('2024 Roadrace (19).jpg')) {
         projectsMap[item.title] = item;
       }
 
