@@ -98,7 +98,7 @@ function App() {
           const element = yearRefs.current[year];
           if (element) {
             const rect = element.getBoundingClientRect();
-            if (rect.top >= 0 && rect.top <= 250) {
+            if (rect.top >= -100 && rect.top <= 300) {
               setActiveYear(year);
               break;
             }
@@ -172,19 +172,41 @@ function App() {
         if (!selectedSubProject || selectedSubProject === 'Default') return item.title === selectedProject;
         return item.title === selectedProject && item.subTitle === selectedSubProject;
       }).sort((a, b) => {
-        if (selectedSubProject === '997' || selectedProject === 'vehicle') return a.imageUrl.localeCompare(b.imageUrl);
+        if (selectedSubProject === '997' || (selectedProject === 'vehicle' && selectedSubProject === '997')) {
+          return a.imageUrl.localeCompare(b.imageUrl);
+        }
         return 0;
       });
     }
     return filteredAndSortedItems.slice(0, visibleCount);
   }, [filteredAndSortedItems, visibleCount, selectedProject, selectedSubProject, activeCategory]);
 
+  const scrollToYear = (year: string) => {
+    // 關鍵修正：如果年份還沒被加載，暫時增加顯示數量
+    const targetIdx = filteredAndSortedItems.findIndex(item => item.imageUrl.includes(year));
+    if (targetIdx >= visibleCount) {
+      setVisibleCount(targetIdx + 30);
+    }
+
+    // 等待 React 重新渲染後再捲動
+    setTimeout(() => {
+      const element = yearRefs.current[year];
+      if (element) {
+        const headerOffset = 120;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        setActiveYear(year);
+      }
+    }, 100);
+  };
+
   const isFolderView = (activeCategory === 'Commissioned' || activeCategory === 'Design') && !selectedProject;
   const isSubFolderView = (activeCategory === 'Commissioned' || activeCategory === 'Design') && selectedProject && !selectedSubProject;
   const shouldShowContentDirectly = selectedProject && subProjectCovers.length === 1 && subProjectCovers[0][0] === 'Default';
 
   return (
-    <div className="min-h-screen bg-white selection:bg-black selection:text-white font-sans text-black">
+    <div className="min-h-screen bg-white selection:bg-black selection:text-white font-sans text-black text-xs">
       <header className="p-8 md:p-12 lg:fixed lg:w-64 lg:h-screen lg:flex lg:flex-col lg:justify-between z-30 bg-white/80 backdrop-blur-sm lg:bg-transparent">
         <div>
           <h1 className="mb-12">
@@ -268,7 +290,7 @@ function App() {
           </div>
         ) : activeCategory === 'Moments in Time' ? (
           <div className="space-y-12">
-            <nav className="sticky top-0 z-20 bg-white/90 backdrop-blur-md py-6 mb-16 border-b border-gray-50 flex justify-center space-x-8 md:space-x-12 px-8 overflow-x-auto no-scrollbar">{allYears.map(year => (<button key={year} onClick={() => { const el = yearRefs.current[year]; if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: 'smooth' }); }} className={`text-[0.62rem] uppercase tracking-[0.4em] transition-all duration-500 whitespace-nowrap ${activeYear === year ? 'text-black font-bold scale-110' : 'text-gray-300 hover:text-black'}`}>{year}</button>))}</nav>
+            <nav className="sticky top-0 z-20 bg-white/90 backdrop-blur-md py-6 mb-16 border-b border-gray-50 flex justify-center space-x-8 md:space-x-12 px-8 overflow-x-auto no-scrollbar">{allYears.map(year => (<button key={year} onClick={() => scrollToYear(year)} className={`text-[0.62rem] uppercase tracking-[0.4em] transition-all duration-500 whitespace-nowrap ${activeYear === year ? 'text-black font-bold scale-110 underline decoration-1 underline-offset-8' : 'text-gray-300 hover:text-black'}`}>{year}</button>))}</nav>
             <div className="space-y-48">
               {groupedVisibleItems.map(([year, items]) => (
                 <section key={year} ref={el => yearRefs.current[year] = el} className="space-y-16">
