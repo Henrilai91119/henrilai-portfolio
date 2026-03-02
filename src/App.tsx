@@ -135,6 +135,11 @@ function App() {
       if (item.title === '2024 PNGLx拓荒者' && item.imageUrl.includes('2024 PNGL x Pioneer (2).jpg')) {
         projectsMap[item.title] = item;
       }
+
+      // 特別指定：2025 潮旅行 形象 的封面更換為 2025 Chouzhou Travel 形象 (17)
+      if (item.title === '2025 潮旅行 形象' && item.imageUrl.includes('2025 Chouzhou Travel 形象 (17).jpg')) {
+        projectsMap[item.title] = item;
+      }
     });
 
     return Object.entries(projectsMap).sort((a, b) => {
