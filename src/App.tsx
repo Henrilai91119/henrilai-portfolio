@@ -40,7 +40,7 @@ const NAV_ITEMS = [
 
 const ITEMS_PER_PAGE = 30;
 
-// Reusable Image Component with Elegant 2s Scroll Reveal
+// Reusable Image Component
 const LazyImage = ({ src, alt, className, priority = false, ...props }: any) => {
   const [isLoaded, setIsLoaded] = useState(false);
   return (
@@ -127,7 +127,9 @@ function App() {
 
   const allVisibleItems = useMemo(() => {
     if (activeCategory === 'Commissioned' && selectedProject) {
-      return filteredAndSortedItems.filter(item => item.title === selectedProject && !item.isCover);
+      let items = filteredAndSortedItems.filter(item => item.title === selectedProject && !item.isCover);
+      if (selectedSubProject) items = items.filter(item => item.subTitle === selectedSubProject);
+      return items;
     }
     if (activeCategory === 'Design') {
       const pToMatch = selectedProject || 'graphic';
@@ -143,7 +145,8 @@ function App() {
   }, [filteredAndSortedItems, selectedProject, selectedSubProject, activeCategory]);
 
   const displayItems = useMemo(() => {
-    if (activeCategory === 'Moments in Time' || (activeCategory === 'Design' && !selectedSubProject && (selectedProject === 'graphic' || !selectedProject))) {
+    const isSpecialDesign = activeCategory === 'Design' && !selectedSubProject && (selectedProject === 'graphic' || !selectedProject);
+    if (activeCategory === 'Moments in Time' || isSpecialDesign) {
       return allVisibleItems.slice(0, visibleCount);
     }
     return allVisibleItems;
@@ -174,8 +177,9 @@ function App() {
   }, [activeCategory, filteredAndSortedItems]);
 
   const subProjectList = useMemo(() => {
-    if (!selectedProject || activeCategory !== 'Design') return [];
-    const subs = Array.from(new Set(filteredAndSortedItems.filter(item => item.title === selectedProject).map(item => item.subTitle).filter(Boolean))) as string[];
+    const pToMatch = selectedProject || (activeCategory === 'Design' ? 'graphic' : null);
+    if (!pToMatch) return [];
+    const subs = Array.from(new Set(filteredAndSortedItems.filter(item => item.title === pToMatch).map(item => item.subTitle).filter(Boolean))) as string[];
     return subs.sort((a, b) => {
       if (a.toLowerCase() === 'wanderer') return -1;
       if (b.toLowerCase() === 'wanderer') return 1;
@@ -264,8 +268,8 @@ function App() {
             <LazyImage src="/images/BIO/self.jpg" alt="Henri Lai Profile" priority={true} className="aspect-[4/5] mb-16 w-full max-w-xs grayscale hover:grayscale-0 transition-all duration-1000" />
             <div className="space-y-10 text-[0.85rem] leading-[2] text-gray-600 tracking-wider text-black text-black">
               <p className="font-semibold text-black tracking-[0.4em] uppercase text-[1.1rem]">HI , 我是賴昱成</p>
-              <div className="space-y-6 text-black text-black text-black"><p>斜槓設計師、攝影師，目前為自由接案工作者</p><div className="space-y-2 text-black text-black"><p><span className="text-black font-semibold mr-4 tracking-[0.2em]">設計</span> 專攻戶外用品設計、平面設計</p><p><span className="text-black font-semibold mr-4 tracking-[0.2em]">攝影</span> 商品攝影、活動攝影為主，並持續運用底片創作</p></div><p className="pt-4 text-black text-xs text-black text-black text-black">歡迎透過各平台聯繫洽談商業合作內容 !</p></div>
-              <div className="pt-16 border-t border-gray-100 text-black text-black"><p className="uppercase tracking-[0.3em] text-[0.56rem] text-gray-400 mb-4 font-bold text-black text-black">Contact</p><a href="mailto:lai91119@gmail.com" className="hover:text-black underline underline-offset-8 transition-colors text-gray-400 font-sans text-black text-black">lai91119@gmail.com</a></div>
+              <div className="space-y-6 text-black text-black text-black"><p>斜槓設計師、攝影師，目前為自由接案工作者</p><div className="space-y-2 text-black text-black"><p><span className="text-black font-semibold mr-4 tracking-[0.2em]">設計</span> 專攻戶外用品設計、平面設計</p><p><span className="text-black font-semibold mr-4 tracking-[0.2em]">攝影</span> 商品攝影、活動攝影為主，並持續運用底片創作</p></div><p className="pt-4 text-black text-xs">歡迎透過各平台聯繫洽談商業合作內容 !</p></div>
+              <div className="pt-16 border-t border-gray-100 text-black text-black"><p className="uppercase tracking-[0.3em] text-[0.56rem] text-gray-400 mb-4 font-bold">Contact</p><a href="mailto:lai91119@gmail.com" className="hover:text-black underline underline-offset-8 transition-colors text-gray-400 font-sans">lai91119@gmail.com</a></div>
             </div>
           </motion.div>
         ) : activeCategory === 'Price List' ? (
@@ -278,24 +282,19 @@ function App() {
                 </div>
               ))
             ) : (
-              <div className="h-[40vh] flex flex-col items-center justify-center text-center text-black font-sans w-full text-black">
-                <p className="text-[0.62rem] uppercase tracking-[0.5em] text-gray-300 text-black">Section under construction</p>
-                <h2 className="text-[0.85rem] font-bold tracking-[0.3em] uppercase text-black mt-4 font-sans text-black text-black">正在建置中</h2>
+              <div className="h-[40vh] flex flex-col items-center justify-center text-center text-black font-sans w-full">
+                <p className="text-[0.62rem] uppercase tracking-[0.5em] text-gray-300">Section under construction</p>
+                <h2 className="text-[0.85rem] font-bold tracking-[0.3em] uppercase text-black mt-4">正在建置中</h2>
               </div>
             )}
           </motion.div>
-        ) : isEmptyCategory ? (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="w-full h-[60vh] flex flex-col items-center justify-center text-center text-black text-black">
-            <p className="text-[0.62rem] uppercase tracking-[0.5em] text-gray-300 text-black">Section under construction</p>
-            <h2 className="text-[0.85rem] font-bold tracking-[0.3em] uppercase text-black mt-4 font-sans text-black text-black text-black">正在建置中</h2>
-          </motion.div>
         ) : activeCategory === 'Commissioned' && !selectedProject ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24 px-4 md:px-8 text-black text-black text-black">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24 px-4 md:px-8 text-black">
             <AnimatePresence>
               {projectCovers.map(([title, item]) => (
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} key={title} onClick={() => { setSelectedProject(title); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="group cursor-pointer flex flex-col items-center text-center px-4 md:px-8 text-black text-black">
-                  <div className="aspect-square mb-8 overflow-hidden bg-gray-50 w-full text-black text-black text-black"><img src={item.imageUrl} alt={`${title} cover`} loading="lazy" className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-1000 ease-out text-black text-black text-black" /></div>
-                  <h2 className="text-[1.125rem] font-medium tracking-[0.2em] uppercase text-black mb-2 leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity text-black font-sans text-black text-black text-black">{title}</h2>
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} key={title} onClick={() => { setSelectedProject(title); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="group cursor-pointer flex flex-col items-center text-center px-4 md:px-8 text-black">
+                  <div className="aspect-square mb-8 overflow-hidden bg-gray-50 w-full text-black"><img src={item.imageUrl} alt={`${title} cover`} loading="lazy" className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-1000 ease-out text-black" /></div>
+                  <h2 className="text-[1.125rem] font-medium tracking-[0.2em] uppercase text-black mb-2 leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity text-black font-sans text-black">{title}</h2>
                 </motion.div>
               ))}
             </AnimatePresence>
@@ -303,49 +302,62 @@ function App() {
         ) : (
           <div className={`${isSeamlessLayout ? 'w-full text-black' : 'space-y-12 text-black'}`}>
             {activeCategory === 'Moments in Time' && (
-              <nav className="sticky top-0 z-20 bg-white/90 backdrop-blur-md py-6 mb-16 border-b border-gray-50 flex justify-center space-x-8 md:space-x-12 px-8 overflow-x-auto no-scrollbar text-black font-sans text-black text-black">
-                {allYears.map(year => (<button key={year} onClick={() => scrollToYear(year)} className={`text-[0.62rem] uppercase tracking-[0.4em] transition-all duration-500 whitespace-nowrap ${activeYear === year ? 'text-black font-bold scale-110 underline decoration-1 underline-offset-8 text-black text-black' : 'text-gray-300 hover:text-black text-gray-300'}`}>{year}</button>))}
+              <nav className="sticky top-0 z-20 bg-white/90 backdrop-blur-md py-6 mb-16 border-b border-gray-50 flex justify-center space-x-8 md:space-x-12 px-8 overflow-x-auto no-scrollbar text-black font-sans">
+                {allYears.map(year => (<button key={year} onClick={() => scrollToYear(year)} className={`text-[0.62rem] uppercase tracking-[0.4em] transition-all duration-500 whitespace-nowrap ${activeYear === year ? 'text-black font-bold scale-110 underline decoration-1 underline-offset-8 text-black' : 'text-gray-300 hover:text-black'}`}>{year}</button>))}
               </nav>
             )}
-            {activeCategory === 'Design' && (
-              <header className="sticky top-0 z-20 bg-white/90 backdrop-blur-md py-6 mb-16 border-b border-gray-50 space-y-6 text-black font-sans text-black text-black">
-                <nav className="flex justify-center space-x-8 md:space-x-12 px-8 overflow-x-auto no-scrollbar text-black font-sans text-black text-black">
-                  {designParentCategories.map(cat => (<button key={cat} onClick={() => { setSelectedProject(cat); setSelectedSubProject(null); }} className={`text-[0.62rem] uppercase tracking-[0.4em] transition-all duration-500 ${selectedProject === cat ? 'text-black font-bold text-black text-black' : 'text-gray-300 hover:text-black text-gray-300'}`}>{cat}</button>))}
-                </nav>
-                {selectedProject && subProjectList.length > 0 && (
-                  <nav className="flex justify-center space-x-6 md:space-x-8 px-8 overflow-x-auto no-scrollbar text-black pt-2 font-sans text-black text-black">
-                    {subProjectList.map(sub => (<button key={sub} onClick={() => setSelectedSubProject(sub)} className={`text-[0.56rem] uppercase tracking-[0.3em] transition-all duration-500 ${selectedSubProject === sub ? 'text-black border-b border-black text-black text-black' : 'text-gray-300 hover:text-black text-gray-300'}`}>{sub}</button>))}
+            
+            {/* Header Filter Nav for both Design and Commissioned Projects */}
+            {(activeCategory === 'Design' || (activeCategory === 'Commissioned' && selectedProject)) && (
+              <header className="sticky top-0 z-20 bg-white/90 backdrop-blur-md py-6 mb-16 border-b border-gray-50 space-y-6 text-black font-sans">
+                {activeCategory === 'Design' && (
+                  <nav className="flex justify-center space-x-8 md:space-x-12 px-8 overflow-x-auto no-scrollbar text-black font-sans">
+                    {designParentCategories.map(cat => (<button key={cat} onClick={() => { setSelectedProject(cat); setSelectedSubProject(null); }} className={`text-[0.62rem] uppercase tracking-[0.4em] transition-all duration-500 ${selectedProject === cat ? 'text-black font-bold' : 'text-gray-300 hover:text-black'}`}>{cat}</button>))}
+                  </nav>
+                )}
+                {activeCategory === 'Commissioned' && selectedProject && (
+                  <div className="px-8 flex items-center justify-between">
+                    <button onClick={() => setSelectedProject(null)} className="flex items-center text-[0.62rem] uppercase tracking-[0.3em] text-gray-400 hover:text-black transition-colors group text-black font-sans"><ArrowLeft size={12} className="mr-2 group-hover:-translate-x-1 transition-transform" />Back</button>
+                    <h2 className="text-[1.125rem] font-medium tracking-[0.3em] uppercase text-black">{selectedProject}</h2>
+                  </div>
+                )}
+                {subProjectList.length > 0 && (
+                  <nav className="flex justify-center space-x-6 md:space-x-8 px-8 overflow-x-auto no-scrollbar text-black pt-2 font-sans">
+                    <button onClick={() => setSelectedSubProject(null)} className={`text-[0.56rem] uppercase tracking-[0.3em] transition-all duration-500 ${!selectedSubProject ? 'text-black border-b border-black' : 'text-gray-300 hover:text-black'}`}>All</button>
+                    {subProjectList.map(sub => (<button key={sub} onClick={() => setSelectedSubProject(sub)} className={`text-[0.56rem] uppercase tracking-[0.3em] transition-all duration-500 ${selectedSubProject === sub ? 'text-black border-b border-black' : 'text-gray-300 hover:text-black'}`}>{sub}</button>))}
                   </nav>
                 )}
               </header>
             )}
-            {activeCategory === 'Commissioned' && selectedProject && (
-              <header className="mb-24 flex items-center justify-between border-b border-gray-100 pb-10 text-black font-sans text-black text-black">
-                <div><button onClick={() => setSelectedProject(null)} className="flex items-center text-[0.62rem] uppercase tracking-[0.3em] text-gray-400 hover:text-black transition-colors mb-6 group text-black font-sans text-black text-black text-black"><ArrowLeft size={12} className="mr-2 group-hover:-translate-x-1 transition-transform text-black text-black" />Back to Categories</button><h2 className="text-[1.125rem] font-medium tracking-[0.3em] uppercase text-black font-sans text-black text-black">{selectedProject}</h2></div>
-              </header>
-            )}
+
             {currentDescription && (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className={`max-w-2xl mx-auto mb-24 px-8 ${isSeamlessLayout ? 'mt-32 text-black text-black' : ''} text-black text-black text-black text-black`}>
-                <div className="text-[0.8rem] leading-[2.2] text-gray-500 tracking-wide font-light whitespace-pre-wrap text-center italic text-black font-sans text-black text-black text-black text-black">{currentDescription}</div>
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className={`max-w-2xl mx-auto mb-24 px-8 ${isSeamlessLayout ? 'mt-32' : ''}`}>
+                <div className="text-[0.8rem] leading-[2.2] text-gray-500 tracking-wide font-light whitespace-pre-wrap text-center italic text-black font-sans">{currentDescription}</div>
               </motion.div>
             )}
-            {activeCategory === 'Moments in Time' ? (
-              <div className="space-y-48 text-black text-black text-black">
+
+            {isEmptyCategory ? (
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="w-full h-[40vh] flex flex-col items-center justify-center text-center text-black font-sans">
+                <p className="text-[0.62rem] uppercase tracking-[0.5em] text-gray-300">Section under construction</p>
+                <h2 className="text-[0.85rem] font-bold tracking-[0.3em] uppercase text-black mt-4 font-sans">正在建置中</h2>
+              </motion.div>
+            ) : activeCategory === 'Moments in Time' ? (
+              <div className="space-y-48 text-black">
                 {groupedVisibleItems.map(([year, items]) => (
-                  <section key={year} ref={el => yearRefs.current[year] = el} className="space-y-16 text-black text-black text-black text-black">
-                    <header className="border-b border-gray-100 pb-6 mb-12 ml-8 md:ml-12 text-black text-[0.875rem] text-black text-black text-black text-black"><h2 className="text-[0.875rem] font-bold tracking-[0.6em] text-black/30 uppercase italic text-black font-sans text-black text-black text-black text-black text-black">{year}</h2></header>
-                    <div className="columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24 text-black text-black text-black text-black text-black text-black text-black">
-                      {items.map((item, index) => (<div key={item.id} onClick={() => setSelectedImage(item)} className="break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12 text-black text-black text-black text-black text-black text-black"><LazyImage src={item.imageUrl} alt={`${year} work ${index + 1}`} priority={index < 6} imgClassName="h-auto transition-transform duration-1000 ease-out group-hover:scale-[1.01] text-black text-black text-black text-black text-black text-black" /></div>))}
+                  <section key={year} ref={el => yearRefs.current[year] = el} className="space-y-16 text-black">
+                    <header className="border-b border-gray-100 pb-6 mb-12 ml-8 md:ml-12 text-black"><h2 className="text-[0.875rem] font-bold tracking-[0.6em] text-black/30 uppercase italic text-black font-sans">{year}</h2></header>
+                    <div className="columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24 text-black">
+                      {items.map((item, index) => (<div key={item.id} onClick={() => setSelectedImage(item)} className="break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12 text-black"><LazyImage src={item.imageUrl} alt={`${year} work ${index + 1}`} priority={index < 6} imgClassName="h-auto transition-transform duration-1000 ease-out group-hover:scale-[1.01]" /></div>))}
                     </div>
                   </section>
                 ))}
               </div>
             ) : (
-              <div className={isSeamlessLayout ? 'flex flex-col w-full max-w-2xl mx-auto text-black text-black text-black text-black text-black' : 'columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24 text-black text-black text-black text-black text-black'}>
+              <div className={isSeamlessLayout ? 'flex flex-col w-full max-w-2xl mx-auto text-black' : 'columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24 text-black'}>
                 {displayItems.map((item, index) => (
-                  <div key={item.id} onClick={() => setSelectedImage(item)} className={isSeamlessLayout ? 'w-full text-black text-black text-black text-black text-black' : 'break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12 text-black text-black text-black text-black text-black'}>
-                    <LazyImage src={item.imageUrl} alt={item.title || 'Portfolio Work'} priority={index < 6} imgClassName="h-auto w-full block" className={isSeamlessLayout ? 'bg-transparent text-black text-black text-black text-black' : 'text-black text-black text-black text-black text-black'} />
-                    {(!selectedProject && activeCategory !== 'Moments in Time') && <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-right text-black font-sans text-black text-black text-black text-black text-black"><p className="text-[0.56rem] uppercase tracking-[0.3em] text-gray-300 font-light text-black font-sans text-black text-black text-black text-black text-black text-black">{item.title}</p></div>}
+                  <div key={item.id} onClick={() => setSelectedImage(item)} className={isSeamlessLayout ? 'w-full text-black' : 'break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12 text-black'}>
+                    <LazyImage src={item.imageUrl} alt={item.title || 'Portfolio Work'} priority={index < 6} imgClassName="h-auto w-full block" className={isSeamlessLayout ? 'bg-transparent text-black' : 'text-black'} />
+                    {(!selectedProject && activeCategory !== 'Moments in Time') && <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-right text-black font-sans text-black"><p className="text-[0.56rem] uppercase tracking-[0.3em] text-gray-300 font-light text-black font-sans text-black">{item.title}</p></div>}
                   </div>
                 ))}
               </div>
@@ -356,22 +368,20 @@ function App() {
 
       <AnimatePresence>
         {selectedImage && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center bg-white/60 backdrop-blur-2xl p-4 md:p-12 lg:p-24 cursor-zoom-out text-black text-black text-black text-black text-black text-black text-black text-black" onClick={() => setSelectedImage(null)}>
-            <button className="absolute top-8 right-8 text-black hover:rotate-90 transition-transform duration-500 p-2 text-black text-black text-black text-black text-black text-black text-black text-black text-black text-black"><X size={24} strokeWidth={1} /></button>
-            <button className="absolute left-8 top-1/2 -translate-y-1/2 text-gray-300 hover:text-black transition-colors p-4 z-50 text-black" onClick={(e) => { e.stopPropagation(); navigateImage('prev'); }}><ChevronLeft size={48} strokeWidth={1} /></button>
-            <button className="absolute right-8 top-1/2 -translate-y-1/2 text-gray-300 hover:text-black transition-colors p-4 z-50 text-black" onClick={(e) => { e.stopPropagation(); navigateImage('next'); }}><ChevronRight size={48} strokeWidth={1} /></button>
-            
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center bg-white/60 backdrop-blur-2xl p-4 md:p-12 lg:p-24 cursor-zoom-out text-black" onClick={() => setSelectedImage(null)}>
+            <button className="absolute top-8 right-8 text-black hover:rotate-90 transition-transform duration-500 p-2 text-black"><X size={24} strokeWidth={1} /></button>
+            <button className="absolute left-8 top-1/2 -translate-y-1/2 text-gray-300 hover:text-black transition-colors p-4 z-50" onClick={(e) => { e.stopPropagation(); navigateImage('prev'); }}><ChevronLeft size={48} strokeWidth={1} /></button>
+            <button className="absolute right-8 top-1/2 -translate-y-1/2 text-gray-300 hover:text-black transition-colors p-4 z-50" onClick={(e) => { e.stopPropagation(); navigateImage('next'); }}><ChevronRight size={48} strokeWidth={1} /></button>
             <div className="relative flex items-center justify-center max-w-full max-h-full">
-              <motion.img key={selectedImage.id} initial={{ x: 20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -20, opacity: 0 }} transition={{ type: "spring", damping: 30, stiffness: 200 }} src={selectedImage.imageUrl} alt={selectedImage.title} className="max-w-full max-h-[85vh] object-contain shadow-2xl text-black text-black text-black text-black" />
+              <motion.img key={selectedImage.id} initial={{ x: 20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -20, opacity: 0 }} transition={{ type: "spring", damping: 30, stiffness: 200 }} src={selectedImage.imageUrl} alt={selectedImage.title} className="max-w-full max-h-[85vh] object-contain shadow-2xl" />
               {selectedImage.imageUrl?.match(/\d{4}/) && (
                 <div className="absolute -right-12 md:-right-16 top-1/2 -translate-y-1/2 rotate-90 origin-center pointer-events-none">
-                  <p className="text-[0.6rem] md:text-[0.75rem] font-light tracking-[0.8em] text-black/30 uppercase italic whitespace-nowrap text-black">{selectedImage.imageUrl?.match(/\d{4}/)?.[0]}</p>
+                  <p className="text-[0.6rem] md:text-[0.75rem] font-light tracking-[0.8em] text-black/30 uppercase italic whitespace-nowrap">{selectedImage.imageUrl?.match(/\d{4}/)?.[0]}</p>
                 </div>
               )}
             </div>
-
-            <div className="absolute bottom-12 left-12 text-left text-black text-black text-black">
-              <p className="text-[0.56rem] uppercase tracking-[0.5em] text-gray-300 font-light text-black font-sans text-black text-black text-black text-black text-black">{selectedImage.title} {selectedImage.subTitle ? `— ${selectedImage.subTitle}` : ''}</p>
+            <div className="absolute bottom-12 left-12 text-left">
+              <p className="text-[0.56rem] uppercase tracking-[0.5em] text-gray-300 font-light text-black font-sans">{selectedImage.title} {selectedImage.subTitle ? `— ${selectedImage.subTitle}` : ''}</p>
             </div>
           </motion.div>
         )}
