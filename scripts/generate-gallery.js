@@ -33,17 +33,15 @@ function getFiles(dir, allFiles = []) {
 }
 
 try {
-  // 1. 處理 Price List 特別邏輯 (新目錄名: price-list)
+  // 1. 處理 Price List 特別邏輯
   const priceListData = [];
   if (fs.existsSync(priceListDir)) {
     const priceFiles = fs.readdirSync(priceListDir);
     const bases = Array.from(new Set(priceFiles.map(f => path.basename(f, path.extname(f)))));
-    
     bases.forEach(base => {
       if (base === '.DS_Store') return;
       const txtFile = priceFiles.find(f => path.basename(f, path.extname(f)) === base && f.endsWith('.txt'));
       const imgFile = priceFiles.find(f => path.basename(f, path.extname(f)) === base && /\.(jpg|jpeg|png|webp)$/i.test(f));
-      
       if (txtFile) {
         priceListData.push({
           title: base,
@@ -68,11 +66,18 @@ try {
     if (ext === '.txt') {
       const content = fs.readFileSync(filePath, 'utf-8');
       const baseName = path.basename(fileName, '.txt').toLowerCase();
-      descriptions[baseName] = content;
-      if (baseName === 'pngl') {
-        descriptions['2023 pngl'] = content;
-        descriptions['2025 pngl'] = content;
-        descriptions['2024 pnglx拓荒者'] = content;
+      
+      // 核心修正：只有在 Design > Outdoor 資料夾下的 PNGL.txt 才會被套用
+      // 排除 Commissioned 分類自動抓取
+      if (relativePath.includes('design') && relativePath.includes('outdoor')) {
+        descriptions[baseName] = content;
+        if (baseName === 'pngl') {
+          // 僅針對 outdoor 裡面的 PNGL 項目生效
+          descriptions['pngl'] = content;
+        }
+      } else {
+        // 如果是資料夾內的 TXT，只給該資料夾用
+        descriptions[baseName] = content;
       }
     } else if (ext !== '.txt' && !relativePath.includes('price-list')) {
       let title = 'Untitled', subTitle = null, category = 'Personal';
@@ -112,7 +117,7 @@ try {
   fs.writeFileSync(outputGalleryFile, JSON.stringify(galleryItems, null, 2));
   fs.writeFileSync(outputDescFile, JSON.stringify(descriptions, null, 2));
   fs.writeFileSync(outputPriceFile, JSON.stringify(priceListData, null, 2));
-  console.log(`✨ Successfully generated items. Price list images: ${priceListData.length}`);
+  console.log(`✨ Generated ${galleryItems.length} items and ${Object.keys(descriptions).length} descs.`);
 } catch (error) {
   console.error('❌ Error:', error);
 }
