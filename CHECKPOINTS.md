@@ -8,3 +8,7 @@
 - **Message**: Update: Enhanced Lightbox navigation, 2s smooth reveal, and restored Under Construction logic
 - **Status**: Stable
 
+## [checkpoint-20260302-3577] - 2026/3/2 23:38:06
+- **Message**: Update: Gaussian blur Lightbox background and conditional vertical year markers
+- **Status**: Stable
+
