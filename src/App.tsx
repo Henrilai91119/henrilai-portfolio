@@ -141,9 +141,15 @@ function App() {
 
   const subProjectList = useMemo(() => {
     if (!selectedProject || activeCategory !== 'Design') return [];
-    return Array.from(new Set(
+    const subs = Array.from(new Set(
       filteredAndSortedItems.filter(item => item.title === selectedProject).map(item => item.subTitle).filter(Boolean)
-    )).sort() as string[];
+    )) as string[];
+    // 優先呈現 wanderer
+    return subs.sort((a, b) => {
+      if (a.toLowerCase() === 'wanderer') return -1;
+      if (b.toLowerCase() === 'wanderer') return 1;
+      return a.localeCompare(b);
+    });
   }, [selectedProject, activeCategory, filteredAndSortedItems]);
 
   const projectCovers = useMemo(() => {
