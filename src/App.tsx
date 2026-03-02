@@ -59,6 +59,7 @@ const LazyImage = ({ src, alt, className, priority = false, showYear = false, ..
       {!isLoaded && (
         <div className="absolute inset-0 bg-gray-50" />
       )}
+      {/* Year Label Overlay */}
       {isLoaded && showYear && year && (
         <div className="absolute top-4 right-4 pointer-events-none">
           <p className="text-[0.5rem] font-light tracking-[0.4em] text-black/20 uppercase italic">
@@ -107,7 +108,10 @@ function App() {
               const element = yearRefs.current[year];
               if (element) {
                 const rect = element.getBoundingClientRect();
-                if (rect.top >= -100 && rect.top <= 350) { setActiveYear(year); break; }
+                if (rect.top >= -100 && rect.top <= 350) {
+                  setActiveYear(year);
+                  break;
+                }
               }
             }
           }
@@ -162,17 +166,31 @@ function App() {
   }, [activeCategory, filteredAndSortedItems]);
 
   const displayItems = useMemo(() => {
+    // 1. Commissioned 模式
     if (activeCategory === 'Commissioned' && selectedProject) {
-      return filteredAndSortedItems.filter(item => item.title === selectedProject);
+      // 過濾掉封面圖
+      return filteredAndSortedItems.filter(item => item.title === selectedProject && !item.isCover);
     }
+    
+    // 2. Design 模式
     if (activeCategory === 'Design') {
       const projectToMatch = selectedProject || 'graphic';
       let items = filteredAndSortedItems.filter(item => item.title === projectToMatch);
-      if (selectedSubProject) items = items.filter(item => item.subTitle === selectedSubProject);
+      
+      // 如果進入了特定子專案，過濾掉封面圖
+      if (selectedSubProject) {
+        items = items.filter(item => item.subTitle === selectedSubProject && !item.isCover);
+      } else if (projectToMatch !== 'graphic') {
+        // 如果是在 Outdoor/Vehicle 的總覽且有子專案，過濾掉封面圖
+        items = items.filter(item => !item.isCover);
+      }
+      
       const isSeamless = selectedSubProject === '997' || selectedSubProject === 'gogoro' || selectedSubProject === 'wanderer' || (projectToMatch === 'vehicle' && !selectedSubProject);
       if (isSeamless) return [...items].sort((a, b) => (a.imageUrl || '').localeCompare(b.imageUrl || ''));
+      
       return items.slice(0, visibleCount);
     }
+    
     return filteredAndSortedItems.slice(0, visibleCount);
   }, [filteredAndSortedItems, visibleCount, selectedProject, selectedSubProject, activeCategory]);
 
@@ -208,7 +226,6 @@ function App() {
 
   const isEmptyCategory = filteredAndSortedItems.length === 0 && !['BIO', 'Price List'].includes(activeCategory);
 
-  // 取得目前專案的介紹文字
   const currentDescription = useMemo(() => {
     const key = (selectedSubProject || selectedProject || activeCategory).toLowerCase();
     return DESCRIPTIONS[key] || null;
@@ -295,10 +312,9 @@ function App() {
               </header>
             )}
 
-            {/* Project Description Block */}
             {currentDescription && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className={`max-w-2xl mx-auto mb-24 px-8 ${isSeamlessLayout ? 'mt-32' : ''}`}>
-                <div className="text-[0.8rem] leading-[2.2] text-gray-500 tracking-wide font-light whitespace-pre-wrap text-center italic">
+                <div className="text-[0.8rem] leading-[2.2] text-gray-500 tracking-wide font-light whitespace-pre-wrap text-center italic text-black">
                   {currentDescription}
                 </div>
               </motion.div>
