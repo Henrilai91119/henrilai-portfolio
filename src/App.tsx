@@ -57,7 +57,7 @@ const LazyImage = ({ src, alt, className, priority = false, showYear = false, ..
       {!isLoaded && (
         <div className="absolute inset-0 bg-gray-50" />
       )}
-      {/* Year Label Overlay (rem based) */}
+      {/* Year Label Overlay */}
       {isLoaded && showYear && year && (
         <div className="absolute top-4 right-4 pointer-events-none">
           <p className="text-[0.5rem] font-light tracking-[0.4em] text-black/20 uppercase italic">
@@ -144,6 +144,21 @@ function App() {
     return Object.entries(subProjectsMap).sort();
   }, [selectedProject, filteredAndSortedItems]);
 
+  const groupedVisibleItems = useMemo(() => {
+    const visible = filteredAndSortedItems.slice(0, visibleCount);
+    const groups: { [key: string]: GalleryItem[] } = {};
+    visible.forEach(item => {
+      const year = item.imageUrl.match(/\d{4}/)?.[0] || "Others";
+      if (!groups[year]) groups[year] = [];
+      groups[year].push(item);
+    });
+    return Object.entries(groups).sort((a, b) => {
+      if (a[0] === "Others") return 1;
+      if (b[0] === "Others") return -1;
+      return parseInt(b[0]) - parseInt(a[0]);
+    });
+  }, [filteredAndSortedItems, visibleCount]);
+
   const allYears = useMemo(() => {
     if (activeCategory !== 'Moments in Time') return [];
     const years = Array.from(new Set(filteredAndSortedItems.map(item => item.imageUrl.match(/\d{4}/)?.[0]).filter(Boolean))) as string[];
@@ -153,14 +168,13 @@ function App() {
   const displayItems = useMemo(() => {
     const isProjectView = activeCategory === 'Commissioned' || activeCategory === 'Design';
     if (isProjectView && selectedProject) {
-      let items = filteredAndSortedItems.filter(item => {
+      return filteredAndSortedItems.filter(item => {
         if (!selectedSubProject || selectedSubProject === 'Default') return item.title === selectedProject;
         return item.title === selectedProject && item.subTitle === selectedSubProject;
+      }).sort((a, b) => {
+        if (selectedSubProject === '997' || selectedProject === 'vehicle') return a.imageUrl.localeCompare(b.imageUrl);
+        return 0;
       });
-      if (selectedSubProject === '997' || (selectedProject === 'vehicle' && selectedSubProject === '997')) {
-        return items.sort((a, b) => a.imageUrl.localeCompare(b.imageUrl));
-      }
-      return items;
     }
     return filteredAndSortedItems.slice(0, visibleCount);
   }, [filteredAndSortedItems, visibleCount, selectedProject, selectedSubProject, activeCategory]);
@@ -220,7 +234,7 @@ function App() {
             <h2 className="text-[0.75rem] font-semibold tracking-[0.4em] mb-20 uppercase font-bold text-black">Price List</h2>
             <div className="space-y-16">
               <section>
-                <h3 className="text-[0.62rem] uppercase tracking-[0.4em] text-gray-300 mb-8 font-bold">— Services</h3>
+                <h3 className="text-[10px] uppercase tracking-[0.4em] text-gray-300 mb-8 font-bold">— Services</h3>
                 <ul className="space-y-6">
                   <li className="flex justify-between border-b border-gray-50 pb-4 text-[0.68rem]"><span className="tracking-widest">Photography Session</span><span className="font-light text-gray-400">Contact for pricing</span></li>
                 </ul>
@@ -229,9 +243,9 @@ function App() {
           </motion.div>
         ) : isFolderView ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24 px-4 md:px-8">
-            <AnimatePresence mode="popLayout">
+            <AnimatePresence>
               {projectCovers.map(([title, item]) => (
-                <motion.div layout initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }} key={title} onClick={() => { setSelectedProject(title); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="group cursor-pointer flex flex-col items-center text-center px-4 md:px-8">
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} key={title} onClick={() => { setSelectedProject(title); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="group cursor-pointer flex flex-col items-center text-center px-4 md:px-8">
                   <div className="aspect-square mb-8 overflow-hidden bg-gray-50 w-full"><img src={item.imageUrl} alt={title} loading="lazy" className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-1000 ease-out" /></div>
                   <h2 className="text-[1.125rem] font-medium tracking-[0.2em] uppercase text-black mb-2 leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">{title}</h2>
                 </motion.div>
@@ -245,7 +259,7 @@ function App() {
             </header>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24 px-4 md:px-8">
               {subProjectCovers.map(([subTitle, item]) => (
-                <motion.div layout key={subTitle} onClick={() => { setSelectedSubProject(subTitle); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="group cursor-pointer flex flex-col items-center text-center px-4 md:px-8">
+                <motion.div key={subTitle} onClick={() => { setSelectedSubProject(subTitle); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="group cursor-pointer flex flex-col items-center text-center px-4 md:px-8">
                   <div className="aspect-square mb-8 overflow-hidden bg-gray-50 w-full"><img src={item.imageUrl} alt={subTitle} loading="lazy" className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-1000 ease-out" /></div>
                   <h2 className="text-[1.125rem] font-medium tracking-[0.2em] uppercase text-black mb-2 leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">{subTitle === 'Default' ? selectedProject : subTitle}</h2>
                 </motion.div>
@@ -255,7 +269,16 @@ function App() {
         ) : activeCategory === 'Moments in Time' ? (
           <div className="space-y-12">
             <nav className="sticky top-0 z-20 bg-white/90 backdrop-blur-md py-6 mb-16 border-b border-gray-50 flex justify-center space-x-8 md:space-x-12 px-8 overflow-x-auto no-scrollbar">{allYears.map(year => (<button key={year} onClick={() => { const el = yearRefs.current[year]; if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: 'smooth' }); }} className={`text-[0.62rem] uppercase tracking-[0.4em] transition-all duration-500 whitespace-nowrap ${activeYear === year ? 'text-black font-bold scale-110' : 'text-gray-300 hover:text-black'}`}>{year}</button>))}</nav>
-            <div className="space-y-48">{groupedVisibleItems.map(([year, items]) => (<section key={year} ref={el => yearRefs.current[year] = el} className="space-y-16"><header className="border-b border-gray-100 pb-6 mb-12 ml-8 md:ml-12"><h2 className="text-[0.875rem] font-bold tracking-[0.6em] text-black/30 uppercase italic">{year}</h2></header><div className="columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24"><AnimatePresence mode="popLayout">{items.map((item, index) => (<div key={item.id} onClick={() => setSelectedImage(item)} className="break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12"><LazyImage src={item.imageUrl} alt={item.title} priority={index < 6} showYear={activeCategory === 'Moments in Time'} imgClassName="h-auto transition-transform duration-1000 ease-out group-hover:scale-[1.01]" /></div>))}</AnimatePresence></div></section>))}</div>
+            <div className="space-y-48">
+              {groupedVisibleItems.map(([year, items]) => (
+                <section key={year} ref={el => yearRefs.current[year] = el} className="space-y-16">
+                  <header className="border-b border-gray-100 pb-6 mb-12 ml-8 md:ml-12"><h2 className="text-[0.875rem] font-bold tracking-[0.6em] text-black/30 uppercase italic">{year}</h2></header>
+                  <div className="columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24">
+                    {items.map((item, index) => (<div key={item.id} onClick={() => setSelectedImage(item)} className="break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12"><LazyImage src={item.imageUrl} alt={item.title} priority={index < 6} showYear={activeCategory === 'Moments in Time'} imgClassName="h-auto transition-transform duration-1000 ease-out group-hover:scale-[1.01]" /></div>))}
+                  </div>
+                </section>
+              ))}
+            </div>
           </div>
         ) : (
           <div className={`${selectedSubProject === '997' ? 'w-full' : 'space-y-12'}`}>
@@ -270,14 +293,12 @@ function App() {
               </header>
             )}
             <div className={selectedSubProject === '997' ? 'flex flex-col w-full' : 'columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24'}>
-              <AnimatePresence mode="popLayout">
-                {displayItems.map((item, index) => (
-                  <div key={item.id} onClick={() => setSelectedImage(item)} className={selectedSubProject === '997' ? 'w-full' : 'break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12'}>
-                    <LazyImage src={item.imageUrl} alt={item.title} priority={index < 6} showYear={activeCategory === 'Moments in Time'} imgClassName="h-auto w-full block" className={selectedSubProject === '997' ? 'bg-transparent' : ''} />
-                    {(!selectedProject && activeCategory !== 'Moments in Time') && <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-right"><p className="text-[0.56rem] uppercase tracking-[0.3em] text-gray-300 font-light">{item.title}</p></div>}
-                  </div>
-                ))}
-              </AnimatePresence>
+              {displayItems.map((item, index) => (
+                <div key={item.id} onClick={() => setSelectedImage(item)} className={selectedSubProject === '997' ? 'w-full' : 'break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12'}>
+                  <LazyImage src={item.imageUrl} alt={item.title} priority={index < 6} showYear={activeCategory === 'Moments in Time'} imgClassName="h-auto w-full block" className={selectedSubProject === '997' ? 'bg-transparent' : ''} />
+                  {(!selectedProject && activeCategory !== 'Moments in Time') && <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-right"><p className="text-[0.56rem] uppercase tracking-[0.3em] text-gray-300 font-light">{item.title}</p></div>}
+                </div>
+              ))}
             </div>
           </div>
         )}
