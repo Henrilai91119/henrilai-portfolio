@@ -409,9 +409,9 @@
     "title": "2023 PNGL",
     "subTitle": "Part 2",
     "category": "Commissioned",
-    "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (3).jpg",
+    "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (3)_cover.jpg",
     "aspectRatio": "square",
-    "isCover": false
+    "isCover": true
   },
   {
     "id": 47,
@@ -436,9 +436,9 @@
     "title": "2023 PNGL",
     "subTitle": "Part 2",
     "category": "Commissioned",
-    "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (6)_cover.jpg",
+    "imageUrl": "/images/commissioned/2023 PNGL/Part 2/Part 2 (6).jpg",
     "aspectRatio": "square",
-    "isCover": true
+    "isCover": false
   },
   {
     "id": 50,
@@ -4513,9 +4513,9 @@
     "title": "graphic",
     "subTitle": null,
     "category": "Design",
-    "imageUrl": "/images/design/graphic/graphic (19).jpg",
+    "imageUrl": "/images/design/graphic/graphic (19)_cover.jpg",
     "aspectRatio": "square",
-    "isCover": false
+    "isCover": true
   },
   {
     "id": 503,
@@ -4621,9 +4621,9 @@
     "title": "outdoor",
     "subTitle": null,
     "category": "Design",
-    "imageUrl": "/images/design/outdoor/Tent-2.jpg",
+    "imageUrl": "/images/design/outdoor/Tent-2_cover.jpg",
     "aspectRatio": "square",
-    "isCover": false
+    "isCover": true
   },
   {
     "id": 515,
@@ -4693,9 +4693,9 @@
     "title": "997",
     "subTitle": null,
     "category": "Design",
-    "imageUrl": "/images/design/vehicle/997/997.jpg",
+    "imageUrl": "/images/design/vehicle/997/997_cover.jpg",
     "aspectRatio": "square",
-    "isCover": false
+    "isCover": true
   },
   {
     "id": 523,
@@ -4783,9 +4783,9 @@
     "title": "gogoro",
     "subTitle": null,
     "category": "Design",
-    "imageUrl": "/images/design/vehicle/gogoro/gogoro.jpg",
+    "imageUrl": "/images/design/vehicle/gogoro/gogoro_cover.jpg",
     "aspectRatio": "square",
-    "isCover": false
+    "isCover": true
   },
   {
     "id": 533,
