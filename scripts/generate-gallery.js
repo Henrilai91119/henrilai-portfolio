@@ -3,13 +3,13 @@ import path from 'path';
 
 const publicDir = path.join(process.cwd(), 'public');
 const imagesDir = path.join(publicDir, 'images');
-const priceListDir = path.join(imagesDir, 'Price list');
+const priceListDir = path.join(imagesDir, 'price-list');
 
 const outputGalleryFile = path.join(process.cwd(), 'src', 'gallery-items.json');
 const outputDescFile = path.join(process.cwd(), 'src', 'project-descriptions.json');
 const outputPriceFile = path.join(process.cwd(), 'src', 'price-list.json');
 
-const EXCLUDED_DIRS = ['.DS_Store', 'BIO', 'Price list', 'web logo'];
+const EXCLUDED_DIRS = ['.DS_Store', 'BIO', 'price-list', 'web logo'];
 
 function getFiles(dir, allFiles = []) {
   if (!fs.existsSync(dir)) return allFiles;
@@ -33,7 +33,7 @@ function getFiles(dir, allFiles = []) {
 }
 
 try {
-  // 1. 處理 Price List 特別邏輯
+  // 1. 處理 Price List 特別邏輯 (新目錄名: price-list)
   const priceListData = [];
   if (fs.existsSync(priceListDir)) {
     const priceFiles = fs.readdirSync(priceListDir);
@@ -48,13 +48,13 @@ try {
         priceListData.push({
           title: base,
           content: fs.readFileSync(path.join(priceListDir, txtFile), 'utf-8'),
-          imageUrl: imgFile ? `/images/Price list/${imgFile}` : null
+          imageUrl: imgFile ? `/images/price-list/${imgFile}` : null
         });
       }
     });
   }
 
-  // 2. 處理 一般作品 與 描述 (維持之前邏輯)
+  // 2. 處理 一般作品 與 描述
   const allFiles = getFiles(imagesDir);
   const galleryItems = [];
   const descriptions = {};
@@ -74,8 +74,7 @@ try {
         descriptions['2025 pngl'] = content;
         descriptions['2024 pnglx拓荒者'] = content;
       }
-    } else {
-      // 這裡維持作品歸類邏輯 (省略細節以求精簡)
+    } else if (ext !== '.txt' && !relativePath.includes('price-list')) {
       let title = 'Untitled', subTitle = null, category = 'Personal';
       if (relativePath.includes('moments in time')) {
         category = 'Personal';
@@ -113,7 +112,7 @@ try {
   fs.writeFileSync(outputGalleryFile, JSON.stringify(galleryItems, null, 2));
   fs.writeFileSync(outputDescFile, JSON.stringify(descriptions, null, 2));
   fs.writeFileSync(outputPriceFile, JSON.stringify(priceListData, null, 2));
-  console.log(`✨ Generated ${galleryItems.length} items, ${Object.keys(descriptions).length} project descs, and ${priceListData.length} price items.`);
+  console.log(`✨ Successfully generated items. Price list images: ${priceListData.length}`);
 } catch (error) {
   console.error('❌ Error:', error);
 }
