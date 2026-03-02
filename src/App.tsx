@@ -98,9 +98,20 @@ function App() {
   const projectCovers = useMemo(() => {
     if (activeCategory !== 'Commissioned') return [];
     const projectsMap: { [key: string]: GalleryItem } = {};
+    
+    // 取得所有 Commissioned 作品
     filteredAndSortedItems.forEach(item => {
-      if (!projectsMap[item.title]) projectsMap[item.title] = item;
+      // 預設邏輯：拿該專案的第一張圖
+      if (!projectsMap[item.title]) {
+        projectsMap[item.title] = item;
+      }
+      
+      // 特別指定：2023 PNGL 的封面更換為 Part 2 (6)
+      if (item.title === '2023 PNGL' && item.imageUrl.includes('Part 2 (6).jpg')) {
+        projectsMap[item.title] = item;
+      }
     });
+
     return Object.entries(projectsMap).sort((a, b) => {
       const yearA = a[0].match(/\d{4}/)?.[0] || "0";
       const yearB = b[0].match(/\d{4}/)?.[0] || "0";
