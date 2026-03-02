@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Instagram, Linkedin, X } from 'lucide-react';
 
@@ -25,13 +25,15 @@ const NAV_ITEMS = [
   { label: 'Price List', href: '#' },
 ];
 
-// Reusable Image Component with Scroll Reveal effect
-const LazyImage = ({ src, alt, className, ...props }: any) => {
+const ITEMS_PER_PAGE = 21; // 每次加載 21 張 (3欄的倍數)
+
+// Reusable Image Component with Scroll Reveal and Priority Support
+const LazyImage = ({ src, alt, className, priority = false, ...props }: any) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <motion.div 
-      initial={{ opacity: 0, y: 15 }}
+      initial={priority ? { opacity: 0 } : { opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, ease: [0.215, 0.61, 0.355, 1] }}
@@ -44,7 +46,9 @@ const LazyImage = ({ src, alt, className, ...props }: any) => {
         onLoad={() => setIsLoaded(true)}
         src={src}
         alt={alt}
-        loading="lazy"
+        loading={priority ? "eager" : "lazy"}
+        // @ts-ignore
+        fetchpriority={priority ? "high" : "low"}
         className={`w-full h-full object-cover ${props.imgClassName || ""}`}
         {...props}
       />
@@ -58,6 +62,24 @@ const LazyImage = ({ src, alt, className, ...props }: any) => {
 function App() {
   const [activeCategory, setActiveCategory] = useState('Personal');
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
+
+  // 當切換分類時，重置顯示數量
+  useEffect(() => {
+    setVisibleCount(ITEMS_PER_PAGE);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [activeCategory]);
+
+  // 無限捲動邏輯
+  useEffect(() => {
+    const handleScroll = () => {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 800) {
+        setVisibleCount(prev => prev + ITEMS_PER_PAGE);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // 自動排序邏輯：提取路徑中的四位數字年份進行比較
   const filteredAndSortedItems = useMemo(() => {
@@ -69,6 +91,11 @@ function App() {
       return parseInt(yearB) - parseInt(yearA);
     });
   }, [activeCategory]);
+
+  // 僅取目前可見的照片
+  const visibleItems = useMemo(() => {
+    return filteredAndSortedItems.slice(0, visibleCount);
+  }, [filteredAndSortedItems, visibleCount]);
 
   const commissionedGroups = useMemo(() => {
     if (activeCategory !== 'Commissioned') return [];
@@ -100,10 +127,7 @@ function App() {
               {NAV_ITEMS.map((item) => (
                 <li key={item.label}>
                   <button
-                    onClick={() => {
-                      setActiveCategory(item.label);
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
+                    onClick={() => setActiveCategory(item.label)}
                     className={`nav-link block w-full text-left transition-all duration-500 tracking-[0.2em] ${
                       activeCategory === item.label 
                         ? 'font-bold border-b border-black inline-block pb-1 text-black text-[11px]' 
@@ -143,6 +167,7 @@ function App() {
             <LazyImage 
               src="/images/BIO/profile.jpg" 
               alt="Henri Lai" 
+              priority={true}
               className="aspect-[4/5] mb-16 w-full max-w-sm grayscale hover:grayscale-0 transition-all duration-1000"
             />
             <div className="space-y-8 text-[13px] leading-[1.8] text-gray-600 tracking-wide">
@@ -186,7 +211,7 @@ function App() {
                     </h2>
                   </header>
                   <div className="columns-1 sm:columns-2 md:columns-3 gap-12 lg:gap-16 space-y-12 lg:space-y-16">
-                    {items.map((item) => (
+                    {items.map((item, index) => (
                       <div
                         key={item.id}
                         onClick={() => setSelectedImage(item)}
@@ -195,6 +220,7 @@ function App() {
                         <LazyImage 
                           src={item.imageUrl} 
                           alt={item.title} 
+                          priority={index < 6}
                           imgClassName="h-auto group-hover:scale-[1.01] transition-transform duration-1000"
                         />
                       </div>
@@ -207,7 +233,7 @@ function App() {
         ) : (
           <div className="columns-1 sm:columns-2 md:columns-3 gap-12 lg:gap-16 space-y-12 lg:space-y-16">
             <AnimatePresence mode="popLayout">
-              {filteredAndSortedItems.map((item) => (
+              {visibleItems.map((item, index) => (
                 <div
                   key={item.id}
                   onClick={() => setSelectedImage(item)}
@@ -216,6 +242,7 @@ function App() {
                   <LazyImage 
                     src={item.imageUrl} 
                     alt={item.title} 
+                    priority={index < 6}
                     imgClassName="h-auto transition-transform duration-1000 ease-out group-hover:scale-[1.01]"
                   />
                   <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
