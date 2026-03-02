@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Instagram, Linkedin } from 'lucide-react';
+import { useState, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Instagram, Linkedin, X } from 'lucide-react';
 
 import GALLERY_ITEMS_JSON from './gallery-items.json';
 
@@ -27,17 +27,26 @@ const NAV_ITEMS = [
 
 function App() {
   const [activeCategory, setActiveCategory] = useState('Personal');
+  const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
 
-  const filteredItems = GALLERY_ITEMS.filter(item => 
-    item.category === activeCategory
-  );
+  // 自動排序邏輯：提取路徑中的四位數字年份進行比較
+  const filteredAndSortedItems = useMemo(() => {
+    const items = GALLERY_ITEMS.filter(item => item.category === activeCategory);
+    
+    return items.sort((a, b) => {
+      const yearA = a.imageUrl.match(/\d{4}/)?.[0] || "0";
+      const yearB = b.imageUrl.match(/\d{4}/)?.[0] || "0";
+      // 依年份降序排列 (2026 -> 2023)
+      return parseInt(yearB) - parseInt(yearA);
+    });
+  }, [activeCategory]);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white selection:bg-black selection:text-white">
       {/* Sidebar Navigation */}
       <header className="p-8 md:p-12 lg:fixed lg:w-64 lg:h-screen lg:flex lg:flex-col lg:justify-between z-10">
         <div>
-          <h1 className="text-2xl font-semibold tracking-widest mb-12 uppercase">
+          <h1 className="text-2xl font-semibold tracking-[0.3em] mb-12 uppercase">
             <a href="/" className="hover:opacity-70 transition-opacity">HENRI LAI</a>
           </h1>
           <nav>
@@ -45,11 +54,14 @@ function App() {
               {NAV_ITEMS.map((item) => (
                 <li key={item.label}>
                   <button
-                    onClick={() => setActiveCategory(item.label)}
-                    className={`nav-link block w-full text-left transition-all duration-300 ${
+                    onClick={() => {
+                      setActiveCategory(item.label);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className={`nav-link block w-full text-left transition-all duration-500 tracking-[0.2em] ${
                       activeCategory === item.label 
-                        ? 'font-bold border-b border-black inline-block pb-0.5 text-black' 
-                        : 'text-gray-400 hover:text-black'
+                        ? 'font-bold border-b border-black inline-block pb-1 text-black text-xs' 
+                        : 'text-gray-300 hover:text-black text-xs'
                     }`}
                   >
                     {item.label}
@@ -61,29 +73,29 @@ function App() {
         </div>
 
         <footer className="mt-12 lg:mt-0">
-          <div className="flex space-x-6 grayscale opacity-50 hover:opacity-100 transition-all duration-500">
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-pink-600">
-              <Instagram size={18} />
+          <div className="flex space-x-6 grayscale opacity-30 hover:opacity-100 transition-all duration-700">
+            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-black">
+              <Instagram size={16} strokeWidth={1.5} />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-blue-600">
-              <Linkedin size={18} />
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-black">
+              <Linkedin size={16} strokeWidth={1.5} />
             </a>
           </div>
-          <p className="text-[10px] text-gray-400 mt-6 uppercase tracking-widest">
-            © 2024 Henri Lai
+          <p className="text-[9px] text-gray-300 mt-6 uppercase tracking-[0.2em]">
+            © 2026 Henri Lai
           </p>
         </footer>
       </header>
 
       {/* Main Content Area */}
-      <main className="lg:ml-64 p-8 md:p-12">
+      <main className="lg:ml-64 p-8 md:p-12 lg:p-20">
         {activeCategory === 'BIO' ? (
           <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="max-w-2xl"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="max-w-xl mx-auto lg:mx-0"
           >
-            <div className="aspect-[4/5] bg-gray-100 mb-12 w-full max-w-sm grayscale hover:grayscale-0 transition-all duration-1000 overflow-hidden">
+            <div className="aspect-[4/5] bg-gray-50 mb-16 w-full max-w-sm grayscale hover:grayscale-0 transition-all duration-1000 overflow-hidden">
               <img 
                 src="/images/BIO/profile.jpg" 
                 alt="Henri Lai" 
@@ -91,14 +103,12 @@ function App() {
                 onError={(e) => (e.currentTarget.style.display = 'none')}
               />
             </div>
-            <div className="space-y-6 text-sm leading-relaxed text-gray-800">
-              <p className="font-semibold text-lg mb-8 tracking-widest uppercase">HENRI LAI</p>
-              <p>
-                這裡可以放您的自我介紹。
-              </p>
-              <div className="pt-12">
-                <p className="uppercase tracking-widest text-[10px] text-gray-400 mb-4">Contact</p>
-                <a href="mailto:hello@henrilai.com" className="hover:text-gray-400 underline underline-offset-4 transition-colors">
+            <div className="space-y-8 text-[13px] leading-[1.8] text-gray-600 tracking-wide">
+              <p className="font-semibold text-black tracking-[0.3em] uppercase">HENRI LAI</p>
+              <p>這裡可以放您的自我介紹。</p>
+              <div className="pt-16 border-t border-gray-100">
+                <p className="uppercase tracking-[0.3em] text-[9px] text-gray-400 mb-4">Contact</p>
+                <a href="mailto:hello@henrilai.com" className="hover:text-black underline underline-offset-8 transition-colors text-gray-400">
                   hello@henrilai.com
                 </a>
               </div>
@@ -106,18 +116,18 @@ function App() {
           </motion.div>
         ) : activeCategory === 'Price List' ? (
           <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="max-w-2xl"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="max-w-xl"
           >
-            <h2 className="text-xl font-semibold tracking-widest mb-12 uppercase">Price List</h2>
-            <div className="space-y-12">
+            <h2 className="text-sm font-semibold tracking-[0.4em] mb-20 uppercase">Price List</h2>
+            <div className="space-y-16">
               <section>
-                <h3 className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-6">— Services</h3>
-                <ul className="space-y-4">
-                  <li className="flex justify-between border-b border-gray-100 pb-2">
-                    <span>Photography Session</span>
-                    <span className="font-mono">Contact for pricing</span>
+                <h3 className="text-[10px] uppercase tracking-[0.4em] text-gray-300 mb-8">— Services</h3>
+                <ul className="space-y-6">
+                  <li className="flex justify-between border-b border-gray-50 pb-4 text-xs">
+                    <span className="tracking-widest">Photography Session</span>
+                    <span className="font-light text-gray-400">Contact for pricing</span>
                   </li>
                 </ul>
               </section>
@@ -126,35 +136,74 @@ function App() {
         ) : (
           <motion.div 
             layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-16 md:gap-20"
           >
-            {filteredItems.map((item) => (
-              <motion.div
-                layout
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4 }}
-                key={item.id}
-                className={`
-                  relative group overflow-hidden bg-gray-50
-                  ${item.aspectRatio === 'square' ? 'aspect-square' : ''}
-                  ${item.aspectRatio === 'portrait' ? 'aspect-[3/4]' : ''}
-                  ${item.aspectRatio === 'video' ? 'aspect-video' : ''}
-                `}
-              >
-                <img 
-                  src={item.imageUrl} 
-                  alt={item.title} 
-                  loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
-              </motion.div>
-            ))}
+            <AnimatePresence mode="popLayout">
+              {filteredAndSortedItems.map((item) => (
+                <motion.div
+                  layout
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+                  key={item.id}
+                  onClick={() => setSelectedImage(item)}
+                  className="relative group cursor-crosshair"
+                >
+                  <div className="overflow-hidden bg-gray-50 transition-all duration-700">
+                    <img 
+                      src={item.imageUrl} 
+                      alt={item.title} 
+                      loading="lazy"
+                      className="w-full h-auto object-contain transition-transform duration-1000 ease-out group-hover:scale-[1.02]"
+                    />
+                  </div>
+                  {/* Subtle Title shown on hover */}
+                  <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <p className="text-[8px] uppercase tracking-[0.3em] text-gray-400">{item.title}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </motion.div>
         )}
       </main>
+
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-white/95 p-4 md:p-12 cursor-zoom-out"
+            onClick={() => setSelectedImage(null)}
+          >
+            <button 
+              className="absolute top-8 right-8 text-black hover:rotate-90 transition-transform duration-500"
+              onClick={() => setSelectedImage(null)}
+            >
+              <X size={24} strokeWidth={1} />
+            </button>
+            
+            <motion.img
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              src={selectedImage.imageUrl}
+              alt={selectedImage.title}
+              className="max-w-full max-h-full object-contain shadow-2xl"
+            />
+            
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
+              <p className="text-[10px] uppercase tracking-[0.4em] text-gray-400 font-light">
+                {selectedImage.title}
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
