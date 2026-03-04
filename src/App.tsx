@@ -252,7 +252,7 @@ function App() {
     <div className="min-h-screen bg-white selection:bg-black selection:text-white font-sans text-black">
       <header className="p-8 md:p-12 lg:fixed lg:w-64 lg:h-screen lg:flex lg:flex-col lg:justify-between z-30 bg-white/80 backdrop-blur-sm lg:bg-transparent text-black">
         <div>
-          <h1 className="mb-12"><a href="/" className="hover:opacity-70 transition-opacity"><img src="/images/web logo/未命名-2_工作區域 1.png" alt="HENRI LAI Logo" className="w-16 md:w-20 h-auto" /></a></h1>
+          <h1 className="mb-12"><a href="/" className="hover:opacity-70 transition-opacity"><img src="/images/web logo/web logo.png" alt="HENRI LAI Logo" className="w-16 md:w-20 h-auto" /></a></h1>
           <nav>
             <ul className="space-y-4">
               {NAV_ITEMS.map((item) => (
