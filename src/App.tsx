@@ -38,20 +38,15 @@ const NAV_ITEMS = [
   { label: 'Price List', href: '#' },
 ];
 
-const ITEMS_PER_PAGE = 30;
-
-// Reusable Image Component
+// Reusable Image Component with Elegant 2s Reveal
 const LazyImage = ({ src, alt, className, priority = false, ...props }: any) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const yearMatch = src ? src.match(/\d{4}/) : null;
-  const year = yearMatch ? yearMatch[0] : null;
-
   return (
-    <div className={`relative bg-transparent overflow-hidden ${className}`}>
+    <div className={`relative bg-gray-50/50 overflow-hidden ${className}`}>
       <motion.img
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
-        viewport={{ once: true, margin: "-50px" }}
+        viewport={{ once: true, margin: "100px" }}
         transition={{ duration: 2.0, ease: [0.22, 1, 0.36, 1] }}
         onLoad={() => setIsLoaded(true)}
         src={src || ''}
@@ -69,13 +64,11 @@ function App() {
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
   const [selectedSubProject, setSelectedSubProject] = useState<string | null>(null);
-  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
   const [activeYear, setActiveYear] = useState<string | null>(null);
 
   const yearRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   useEffect(() => {
-    setVisibleCount(ITEMS_PER_PAGE);
     if (activeCategory === 'Design') {
       setSelectedProject('graphic');
       setSelectedSubProject(null);
@@ -92,9 +85,6 @@ function App() {
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 1200) {
-            setVisibleCount(prev => prev + ITEMS_PER_PAGE);
-          }
           if (activeCategory === 'Moments in Time') {
             const years = Object.keys(yearRefs.current);
             for (const year of years) {
@@ -128,47 +118,24 @@ function App() {
     });
   }, [activeCategory]);
 
-  // 取得當前專案下的所有作品 (排除封面)
-  const currentProjectItems = useMemo(() => {
-    if (!selectedProject) return [];
-    return filteredAndSortedItems.filter(item => item.title === selectedProject && !item.isCover);
-  }, [selectedProject, filteredAndSortedItems]);
-
-  // 取得子分類選單列表
-  const subProjectList = useMemo(() => {
-    if (!selectedProject) return [];
-    const subs = Array.from(new Set(currentProjectItems.map(item => item.subTitle).filter(Boolean))) as string[];
-    return subs.sort((a, b) => {
-      if (a.toLowerCase() === 'wanderer') return -1;
-      if (b.toLowerCase() === 'wanderer') return 1;
-      return a.localeCompare(b);
-    });
-  }, [selectedProject, currentProjectItems]);
-
+  // 全量預渲染的作品集
   const allVisibleItems = useMemo(() => {
     if (activeCategory === 'Commissioned' && selectedProject) {
-      if (!selectedSubProject) return currentProjectItems;
-      return currentProjectItems.filter(item => item.subTitle === selectedSubProject);
+      let items = filteredAndSortedItems.filter(item => item.title === selectedProject && !item.isCover);
+      if (selectedSubProject) items = items.filter(item => item.subTitle === selectedSubProject);
+      return items;
     }
     if (activeCategory === 'Design') {
       const pToMatch = selectedProject || 'graphic';
       let items = filteredAndSortedItems.filter(item => item.title === pToMatch && !item.isCover);
       if (selectedSubProject) items = items.filter(item => item.subTitle === selectedSubProject);
-      
-      const isSeamless = selectedSubProject === '997' || selectedSubProject === 'gogoro' || selectedSubProject === 'wanderer' || (pToMatch === 'vehicle' && !selectedSubProject);
-      if (isSeamless) return [...items].sort((a, b) => (a.imageUrl || '').localeCompare(b.imageUrl || ''));
+      if (selectedSubProject === '997' || selectedSubProject === 'gogoro' || selectedSubProject === 'wanderer' || (pToMatch === 'vehicle' && !selectedSubProject)) {
+        return [...items].sort((a, b) => (a.imageUrl || '').localeCompare(b.imageUrl || ''));
+      }
       return items;
     }
     return filteredAndSortedItems;
-  }, [filteredAndSortedItems, selectedProject, selectedSubProject, activeCategory, currentProjectItems]);
-
-  const displayItems = useMemo(() => {
-    const isSpecialDesign = activeCategory === 'Design' && !selectedSubProject && (selectedProject === 'graphic' || !selectedProject);
-    if (activeCategory === 'Moments in Time' || isSpecialDesign) {
-      return allVisibleItems.slice(0, visibleCount);
-    }
-    return allVisibleItems;
-  }, [allVisibleItems, visibleCount, activeCategory, selectedSubProject, selectedProject]);
+  }, [filteredAndSortedItems, selectedProject, selectedSubProject, activeCategory]);
 
   const navigateImage = (direction: 'next' | 'prev') => {
     if (!selectedImage) return;
@@ -194,6 +161,17 @@ function App() {
     return Array.from(new Set(filteredAndSortedItems.map(item => item.title))).filter(Boolean).sort() as string[];
   }, [activeCategory, filteredAndSortedItems]);
 
+  const subProjectList = useMemo(() => {
+    const pToMatch = selectedProject || (activeCategory === 'Design' ? 'graphic' : null);
+    if (!pToMatch) return [];
+    const subs = Array.from(new Set(filteredAndSortedItems.filter(item => item.title === pToMatch).map(item => item.subTitle).filter(Boolean))) as string[];
+    return subs.sort((a, b) => {
+      if (a.toLowerCase() === 'wanderer') return -1;
+      if (b.toLowerCase() === 'wanderer') return 1;
+      return a.localeCompare(b);
+    });
+  }, [selectedProject, activeCategory, filteredAndSortedItems]);
+
   const projectCovers = useMemo(() => {
     if (activeCategory !== 'Commissioned') return [];
     const projectsMap: { [key: string]: GalleryItem } = {};
@@ -214,23 +192,19 @@ function App() {
   }, [activeCategory, filteredAndSortedItems]);
 
   const scrollToYear = (year: string) => {
-    const targetIdx = filteredAndSortedItems.findIndex(item => item.imageUrl?.includes(year));
-    if (targetIdx >= visibleCount) setVisibleCount(targetIdx + 30);
-    setTimeout(() => {
-      const element = yearRefs.current[year];
-      if (element) {
-        const headerOffset = 120;
-        window.scrollTo({ top: element.getBoundingClientRect().top + window.pageYOffset - headerOffset, behavior: 'smooth' });
-        setActiveYear(year);
-      }
-    }, 100);
+    const element = yearRefs.current[year];
+    if (element) {
+      const headerOffset = 120;
+      window.scrollTo({ top: element.getBoundingClientRect().top + window.pageYOffset - headerOffset, behavior: 'smooth' });
+      setActiveYear(year);
+    }
   };
 
   const isSeamlessLayout = activeCategory === 'Design' && (selectedSubProject === '997' || selectedSubProject === 'gogoro' || selectedSubProject === 'wanderer' || (selectedProject === 'vehicle' && !selectedSubProject));
-  const groupedVisibleItems = useMemo(() => {
+  const groupedItems = useMemo(() => {
     if (activeCategory !== 'Moments in Time') return [];
     const groups: { [key: string]: GalleryItem[] } = {};
-    displayItems.forEach(item => {
+    allVisibleItems.forEach(item => {
       const year = item.imageUrl?.match(/\d{4}/)?.[0] || "Others";
       if (!groups[year]) groups[year] = [];
       groups[year].push(item);
@@ -240,7 +214,7 @@ function App() {
       if (b[0] === "Others") return -1;
       return parseInt(b[0]) - parseInt(a[0]);
     });
-  }, [displayItems, activeCategory]);
+  }, [allVisibleItems, activeCategory]);
 
   const isEmptyCategory = filteredAndSortedItems.length === 0 && !['BIO', 'Price List'].includes(activeCategory);
   const currentDescription = useMemo(() => {
@@ -273,14 +247,14 @@ function App() {
         {activeCategory === 'BIO' ? (
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-xl mx-auto lg:mx-0 p-8 text-black">
             <LazyImage src="/images/BIO/self.jpg" alt="Henri Lai Profile" priority={true} className="aspect-[4/5] mb-16 w-full max-w-xs grayscale hover:grayscale-0 transition-all duration-1000" />
-            <div className="space-y-10 text-[0.85rem] leading-[2] text-gray-600 tracking-wider text-black text-black">
+            <div className="space-y-10 text-[0.85rem] leading-[2] text-gray-600 tracking-wider text-black">
               <p className="font-semibold text-black tracking-[0.4em] uppercase text-[1.1rem]">HI , 我是賴昱成</p>
-              <div className="space-y-6 text-black text-black text-black"><p>斜槓設計師、攝影師，目前為自由接案工作者</p><div className="space-y-2 text-black text-black"><p><span className="text-black font-semibold mr-4 tracking-[0.2em]">設計</span> 專攻戶外用品設計、平面設計</p><p><span className="text-black font-semibold mr-4 tracking-[0.2em]">攝影</span> 商品攝影、活動攝影為主，並持續運用底片創作</p></div><p className="pt-4 text-black text-xs">歡迎透過各平台聯繫洽談商業合作內容 !</p></div>
-              <div className="pt-16 border-t border-gray-100 text-black text-black"><p className="uppercase tracking-[0.3em] text-[0.56rem] text-gray-400 mb-4 font-bold text-black">Contact</p><a href="mailto:lai91119@gmail.com" className="hover:text-black underline underline-offset-8 transition-colors text-gray-400 font-sans text-black">lai91119@gmail.com</a></div>
+              <div className="space-y-6 text-black"><p>斜槓設計師、攝影師，目前為自由接案工作者</p><div className="space-y-2 text-black"><p><span className="text-black font-semibold mr-4 tracking-[0.2em]">設計</span> 專攻戶外用品設計、平面設計</p><p><span className="text-black font-semibold mr-4 tracking-[0.2em]">攝影</span> 商品攝影、活動攝影為主，並持續運用底片創作</p></div><p className="pt-4 text-black text-xs">歡迎透過各平台聯繫洽談商業合作內容 !</p></div>
+              <div className="pt-16 border-t border-gray-100 text-black"><p className="uppercase tracking-[0.3em] text-[0.56rem] text-gray-400 mb-4 font-bold">Contact</p><a href="mailto:lai91119@gmail.com" className="hover:text-black underline underline-offset-8 transition-colors text-gray-400 font-sans">lai91119@gmail.com</a></div>
             </div>
           </motion.div>
         ) : activeCategory === 'Price List' ? (
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-5xl mx-auto p-8 space-y-32 py-20 text-black text-black">
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-5xl mx-auto p-8 space-y-32 py-20 text-black">
             {PRICE_ITEMS.length > 0 ? (
               PRICE_ITEMS.map((item, index) => (
                 <div key={item.title} className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 md:gap-24 items-start text-black`}>
@@ -349,21 +323,21 @@ function App() {
               </motion.div>
             ) : activeCategory === 'Moments in Time' ? (
               <div className="space-y-48 text-black">
-                {groupedVisibleItems.map(([year, items]) => (
+                {groupedItems.map(([year, items]) => (
                   <section key={year} ref={el => yearRefs.current[year] = el} className="space-y-16 text-black">
                     <header className="border-b border-gray-100 pb-6 mb-12 ml-8 md:ml-12 text-black"><h2 className="text-[0.875rem] font-bold tracking-[0.6em] text-black/30 uppercase italic text-black font-sans">{year}</h2></header>
                     <div className="columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24 text-black">
-                      {items.map((item, index) => (<div key={item.id} onClick={() => setSelectedImage(item)} className="break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12 text-black"><LazyImage src={item.imageUrl} alt={`${year} work ${index + 1}`} priority={index < 6} imgClassName="h-auto transition-transform duration-1000 ease-out group-hover:scale-[1.01]" /></div>))}
+                      {items.map((item, index) => (<div key={item.id} onClick={() => setSelectedImage(item)} className="break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12 text-black"><LazyImage src={item.imageUrl} alt={`${year} work ${index + 1}`} priority={index < 12} imgClassName="h-auto transition-transform duration-1000 ease-out group-hover:scale-[1.01]" /></div>))}
                     </div>
                   </section>
                 ))}
               </div>
             ) : (
               <div className={isSeamlessLayout ? 'flex flex-col w-full max-w-2xl mx-auto text-black' : 'columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24 text-black'}>
-                {displayItems.map((item, index) => (
+                {allVisibleItems.map((item, index) => (
                   <div key={item.id} onClick={() => setSelectedImage(item)} className={isSeamlessLayout ? 'w-full text-black' : 'break-inside-avoid mb-16 lg:mb-24 group cursor-crosshair px-4 md:px-8 lg:px-12 text-black'}>
-                    <LazyImage src={item.imageUrl} alt={item.title || 'Portfolio Work'} priority={index < 6} imgClassName="h-auto w-full block" className={isSeamlessLayout ? 'bg-transparent text-black' : 'text-black'} />
-                    {(!selectedProject && activeCategory !== 'Moments in Time') && <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-right text-black font-sans"><p className="text-[0.56rem] uppercase tracking-[0.3em] text-gray-300 font-light text-black font-sans">{item.title}</p></div>}
+                    <LazyImage src={item.imageUrl} alt={item.title || 'Portfolio Work'} priority={index < 12} imgClassName="h-auto w-full block" className={isSeamlessLayout ? 'bg-transparent text-black' : 'text-black'} />
+                    {(!selectedProject && activeCategory !== 'Moments in Time') && <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-right text-black font-sans text-black"><p className="text-[0.56rem] uppercase tracking-[0.3em] text-gray-300 font-light text-black font-sans text-black">{item.title}</p></div>}
                   </div>
                 ))}
               </div>
