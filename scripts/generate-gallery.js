@@ -28,7 +28,7 @@ function rgbToHue(r, g, b) {
 async function getDominantHue(filePath) {
   try {
     const { data } = await sharp(filePath)
-      .resize(5, 5, { fit: 'cover' }) // 縮小到 5x5 取得平均色
+      .resize(5, 5, { fit: 'cover' })
       .raw()
       .toBuffer({ resolveWithObject: true });
     
@@ -77,7 +77,10 @@ function getHierarchy(relativePath) {
     const idx = parts.indexOf('commissioned');
     if (idx !== -1 && parts.length > idx + 1) {
       title = parts[idx+1];
-      if (parts.length > idx + 3) subTitle = parts[idx+2];
+      // 支援多層目錄偵測 subTitle
+      if (parts.length > idx + 3) {
+        subTitle = parts[idx+2];
+      }
     }
   } else if (relativePath.includes('design')) {
     category = 'Design';
@@ -128,16 +131,10 @@ async function run() {
       if (ext === '.txt') {
         const content = fs.readFileSync(filePath, 'utf-8');
         const baseName = path.basename(fileName, '.txt').toLowerCase();
-        if (relativePath.includes('design') && relativePath.includes('outdoor')) {
-          descriptions[baseName] = content;
-          if (baseName === 'pngl') descriptions['pngl'] = content;
-        } else {
-          descriptions[baseName] = content;
-        }
+        descriptions[baseName] = content;
       } else if (ext !== '.txt' && !relativePath.includes('price-list')) {
         const { title, subTitle, category } = getHierarchy(relativePath);
         
-        // 核心更新：只有 Personal (Moments in Time) 的圖片才需要進行昂貴的色彩分析
         let hue = 0;
         if (category === 'Personal') {
           hue = await getDominantHue(filePath);
@@ -157,7 +154,7 @@ async function run() {
     fs.writeFileSync(outputGalleryFile, JSON.stringify(galleryItems, null, 2));
     fs.writeFileSync(outputDescFile, JSON.stringify(descriptions, null, 2));
     fs.writeFileSync(outputPriceFile, JSON.stringify(priceListData, null, 2));
-    console.log(`✨ Successfully generated ${galleryItems.length} items. Color analysis completed for Personal works.`);
+    console.log(`✨ Successfully generated ${galleryItems.length} items. Color analysis completed.`);
   } catch (error) {
     console.error('❌ Error:', error);
   }
