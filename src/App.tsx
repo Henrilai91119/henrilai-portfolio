@@ -38,15 +38,17 @@ const NAV_ITEMS = [
   { label: 'Price List', href: '#' },
 ];
 
-// Reusable Image Component with Elegant 2s Reveal
+const ITEMS_PER_PAGE = 30;
+
+// Reusable Image Component
 const LazyImage = ({ src, alt, className, priority = false, ...props }: any) => {
   const [isLoaded, setIsLoaded] = useState(false);
   return (
-    <div className={`relative bg-gray-50/50 overflow-hidden ${className}`}>
+    <div className={`relative bg-transparent overflow-hidden ${className}`}>
       <motion.img
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
-        viewport={{ once: true, margin: "100px" }}
+        viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 2.0, ease: [0.22, 1, 0.36, 1] }}
         onLoad={() => setIsLoaded(true)}
         src={src || ''}
@@ -118,12 +120,33 @@ function App() {
     });
   }, [activeCategory]);
 
-  // 全量預渲染的作品集
+  const currentProjectItems = useMemo(() => {
+    if (!selectedProject) return [];
+    return filteredAndSortedItems.filter(item => item.title === selectedProject && !item.isCover);
+  }, [selectedProject, filteredAndSortedItems]);
+
+  const subProjectList = useMemo(() => {
+    const pToMatch = selectedProject || (activeCategory === 'Design' ? 'graphic' : null);
+    if (!pToMatch) return [];
+    const subs = Array.from(new Set(filteredAndSortedItems.filter(item => item.title === pToMatch).map(item => item.subTitle).filter(Boolean))) as string[];
+    return subs.sort((a, b) => {
+      if (a.toLowerCase() === 'wanderer') return -1;
+      if (b.toLowerCase() === 'wanderer') return 1;
+      return a.localeCompare(b);
+    });
+  }, [selectedProject, activeCategory, filteredAndSortedItems]);
+
+  // 當選擇 Outdoor 時，自動選中第一個子分類
+  useEffect(() => {
+    if (activeCategory === 'Design' && selectedProject === 'outdoor' && !selectedSubProject && subProjectList.length > 0) {
+      setSelectedSubProject(subProjectList[0]);
+    }
+  }, [activeCategory, selectedProject, subProjectList]);
+
   const allVisibleItems = useMemo(() => {
     if (activeCategory === 'Commissioned' && selectedProject) {
-      let items = filteredAndSortedItems.filter(item => item.title === selectedProject && !item.isCover);
-      if (selectedSubProject) items = items.filter(item => item.subTitle === selectedSubProject);
-      return items;
+      if (!selectedSubProject) return currentProjectItems;
+      return currentProjectItems.filter(item => item.subTitle === selectedSubProject);
     }
     if (activeCategory === 'Design') {
       const pToMatch = selectedProject || 'graphic';
@@ -135,7 +158,15 @@ function App() {
       return items;
     }
     return filteredAndSortedItems;
-  }, [filteredAndSortedItems, selectedProject, selectedSubProject, activeCategory]);
+  }, [filteredAndSortedItems, selectedProject, selectedSubProject, activeCategory, currentProjectItems]);
+
+  const displayItems = useMemo(() => {
+    const isSpecialDesign = activeCategory === 'Design' && !selectedSubProject && (selectedProject === 'graphic' || !selectedProject);
+    if (activeCategory === 'Moments in Time' || isSpecialDesign) {
+      return allVisibleItems.slice(0, 100); // 增加 Moments in Time 預渲染數量
+    }
+    return allVisibleItems;
+  }, [allVisibleItems, activeCategory, selectedSubProject, selectedProject]);
 
   const navigateImage = (direction: 'next' | 'prev') => {
     if (!selectedImage) return;
@@ -160,17 +191,6 @@ function App() {
     if (activeCategory !== 'Design') return [];
     return Array.from(new Set(filteredAndSortedItems.map(item => item.title))).filter(Boolean).sort() as string[];
   }, [activeCategory, filteredAndSortedItems]);
-
-  const subProjectList = useMemo(() => {
-    const pToMatch = selectedProject || (activeCategory === 'Design' ? 'graphic' : null);
-    if (!pToMatch) return [];
-    const subs = Array.from(new Set(filteredAndSortedItems.filter(item => item.title === pToMatch).map(item => item.subTitle).filter(Boolean))) as string[];
-    return subs.sort((a, b) => {
-      if (a.toLowerCase() === 'wanderer') return -1;
-      if (b.toLowerCase() === 'wanderer') return 1;
-      return a.localeCompare(b);
-    });
-  }, [selectedProject, activeCategory, filteredAndSortedItems]);
 
   const projectCovers = useMemo(() => {
     if (activeCategory !== 'Commissioned') return [];
@@ -201,10 +221,10 @@ function App() {
   };
 
   const isSeamlessLayout = activeCategory === 'Design' && (selectedSubProject === '997' || selectedSubProject === 'gogoro' || selectedSubProject === 'wanderer' || (selectedProject === 'vehicle' && !selectedSubProject));
-  const groupedItems = useMemo(() => {
+  const groupedVisibleItems = useMemo(() => {
     if (activeCategory !== 'Moments in Time') return [];
     const groups: { [key: string]: GalleryItem[] } = {};
-    allVisibleItems.forEach(item => {
+    displayItems.forEach(item => {
       const year = item.imageUrl?.match(/\d{4}/)?.[0] || "Others";
       if (!groups[year]) groups[year] = [];
       groups[year].push(item);
@@ -214,7 +234,7 @@ function App() {
       if (b[0] === "Others") return -1;
       return parseInt(b[0]) - parseInt(a[0]);
     });
-  }, [allVisibleItems, activeCategory]);
+  }, [displayItems, activeCategory]);
 
   const isEmptyCategory = filteredAndSortedItems.length === 0 && !['BIO', 'Price List'].includes(activeCategory);
   const currentDescription = useMemo(() => {
@@ -247,10 +267,10 @@ function App() {
         {activeCategory === 'BIO' ? (
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-xl mx-auto lg:mx-0 p-8 text-black">
             <LazyImage src="/images/BIO/self.jpg" alt="Henri Lai Profile" priority={true} className="aspect-[4/5] mb-16 w-full max-w-xs grayscale hover:grayscale-0 transition-all duration-1000" />
-            <div className="space-y-10 text-[0.85rem] leading-[2] text-gray-600 tracking-wider text-black">
+            <div className="space-y-10 text-[0.85rem] leading-[2] text-gray-600 tracking-wider text-black text-black">
               <p className="font-semibold text-black tracking-[0.4em] uppercase text-[1.1rem]">HI , 我是賴昱成</p>
-              <div className="space-y-6 text-black"><p>斜槓設計師、攝影師，目前為自由接案工作者</p><div className="space-y-2 text-black"><p><span className="text-black font-semibold mr-4 tracking-[0.2em]">設計</span> 專攻戶外用品設計、平面設計</p><p><span className="text-black font-semibold mr-4 tracking-[0.2em]">攝影</span> 商品攝影、活動攝影為主，並持續運用底片創作</p></div><p className="pt-4 text-black text-xs">歡迎透過各平台聯繫洽談商業合作內容 !</p></div>
-              <div className="pt-16 border-t border-gray-100 text-black"><p className="uppercase tracking-[0.3em] text-[0.56rem] text-gray-400 mb-4 font-bold">Contact</p><a href="mailto:lai91119@gmail.com" className="hover:text-black underline underline-offset-8 transition-colors text-gray-400 font-sans">lai91119@gmail.com</a></div>
+              <div className="space-y-6 text-black text-black text-black"><p>斜槓設計師、攝影師，目前為自由接案工作者</p><div className="space-y-2 text-black text-black"><p><span className="text-black font-semibold mr-4 tracking-[0.2em]">設計</span> 專攻戶外用品設計、平面設計</p><p><span className="text-black font-semibold mr-4 tracking-[0.2em]">攝影</span> 商品攝影、活動攝影為主，並持續運用底片創作</p></div><p className="pt-4 text-black text-xs">歡迎透過各平台聯繫洽談商業合作內容 !</p></div>
+              <div className="pt-16 border-t border-gray-100 text-black text-black"><p className="uppercase tracking-[0.3em] text-[0.56rem] text-gray-400 mb-4 font-bold">Contact</p><a href="mailto:lai91119@gmail.com" className="hover:text-black underline underline-offset-8 transition-colors text-gray-400 font-sans">lai91119@gmail.com</a></div>
             </div>
           </motion.div>
         ) : activeCategory === 'Price List' ? (
@@ -303,7 +323,10 @@ function App() {
                 )}
                 {subProjectList.length > 0 && (
                   <nav className="flex justify-center space-x-6 md:space-x-8 px-8 overflow-x-auto no-scrollbar text-black pt-2 font-sans">
-                    <button onClick={() => setSelectedSubProject(null)} className={`text-[0.56rem] uppercase tracking-[0.3em] transition-all duration-500 ${!selectedSubProject ? 'text-black border-b border-black' : 'text-gray-300 hover:text-black'}`}>All</button>
+                    {/* 如果是 Outdoor，不顯示 All 按鈕 */}
+                    {selectedProject !== 'outdoor' && (
+                      <button onClick={() => setSelectedSubProject(null)} className={`text-[0.56rem] uppercase tracking-[0.3em] transition-all duration-500 ${!selectedSubProject ? 'text-black border-b border-black' : 'text-gray-300 hover:text-black'}`}>All</button>
+                    )}
                     {subProjectList.map(sub => (<button key={sub} onClick={() => setSelectedSubProject(sub)} className={`text-[0.56rem] uppercase tracking-[0.3em] transition-all duration-500 ${selectedSubProject === sub ? 'text-black border-b border-black' : 'text-gray-300 hover:text-black'}`}>{sub}</button>))}
                   </nav>
                 )}
@@ -323,7 +346,7 @@ function App() {
               </motion.div>
             ) : activeCategory === 'Moments in Time' ? (
               <div className="space-y-48 text-black">
-                {groupedItems.map(([year, items]) => (
+                {groupedVisibleItems.map(([year, items]) => (
                   <section key={year} ref={el => yearRefs.current[year] = el} className="space-y-16 text-black">
                     <header className="border-b border-gray-100 pb-6 mb-12 ml-8 md:ml-12 text-black"><h2 className="text-[0.875rem] font-bold tracking-[0.6em] text-black/30 uppercase italic text-black font-sans">{year}</h2></header>
                     <div className="columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24 text-black">
