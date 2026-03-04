@@ -136,9 +136,9 @@ function App() {
     });
   }, [selectedProject, activeCategory, filteredAndSortedItems]);
 
-  // 當選擇 Outdoor 時，自動選中第一個子分類
+  // 當選擇 Outdoor 或 Vehicle 時，自動選中第一個子分類
   useEffect(() => {
-    if (activeCategory === 'Design' && selectedProject === 'outdoor' && !selectedSubProject && subProjectList.length > 0) {
+    if (activeCategory === 'Design' && (selectedProject === 'outdoor' || selectedProject === 'vehicle') && !selectedSubProject && subProjectList.length > 0) {
       setSelectedSubProject(subProjectList[0]);
     }
   }, [activeCategory, selectedProject, subProjectList]);
@@ -163,7 +163,7 @@ function App() {
   const displayItems = useMemo(() => {
     const isSpecialDesign = activeCategory === 'Design' && !selectedSubProject && (selectedProject === 'graphic' || !selectedProject);
     if (activeCategory === 'Moments in Time' || isSpecialDesign) {
-      return allVisibleItems.slice(0, 100); // 增加 Moments in Time 預渲染數量
+      return allVisibleItems.slice(0, 100);
     }
     return allVisibleItems;
   }, [allVisibleItems, activeCategory, selectedSubProject, selectedProject]);
@@ -270,11 +270,11 @@ function App() {
             <div className="space-y-10 text-[0.85rem] leading-[2] text-gray-600 tracking-wider text-black text-black">
               <p className="font-semibold text-black tracking-[0.4em] uppercase text-[1.1rem]">HI , 我是賴昱成</p>
               <div className="space-y-6 text-black text-black text-black"><p>斜槓設計師、攝影師，目前為自由接案工作者</p><div className="space-y-2 text-black text-black"><p><span className="text-black font-semibold mr-4 tracking-[0.2em]">設計</span> 專攻戶外用品設計、平面設計</p><p><span className="text-black font-semibold mr-4 tracking-[0.2em]">攝影</span> 商品攝影、活動攝影為主，並持續運用底片創作</p></div><p className="pt-4 text-black text-xs">歡迎透過各平台聯繫洽談商業合作內容 !</p></div>
-              <div className="pt-16 border-t border-gray-100 text-black text-black"><p className="uppercase tracking-[0.3em] text-[0.56rem] text-gray-400 mb-4 font-bold">Contact</p><a href="mailto:lai91119@gmail.com" className="hover:text-black underline underline-offset-8 transition-colors text-gray-400 font-sans">lai91119@gmail.com</a></div>
+              <div className="pt-16 border-t border-gray-100 text-black text-black"><p className="uppercase tracking-[0.3em] text-[0.56rem] text-gray-400 mb-4 font-bold text-black">Contact</p><a href="mailto:lai91119@gmail.com" className="hover:text-black underline underline-offset-8 transition-colors text-gray-400 font-sans">lai91119@gmail.com</a></div>
             </div>
           </motion.div>
         ) : activeCategory === 'Price List' ? (
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-5xl mx-auto p-8 space-y-32 py-20 text-black">
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-5xl mx-auto p-8 space-y-32 py-20 text-black text-black">
             {PRICE_ITEMS.length > 0 ? (
               PRICE_ITEMS.map((item, index) => (
                 <div key={item.title} className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 md:gap-24 items-start text-black`}>
@@ -285,7 +285,7 @@ function App() {
             ) : (
               <div className="h-[40vh] flex flex-col items-center justify-center text-center text-black font-sans w-full">
                 <p className="text-[0.62rem] uppercase tracking-[0.5em] text-gray-300">Section under construction</p>
-                <h2 className="text-[0.85rem] font-bold tracking-[0.3em] uppercase text-black mt-4">正在建置中</h2>
+                <h2 className="text-[0.85rem] font-bold tracking-[0.3em] uppercase text-black mt-4 font-sans">正在建置中</h2>
               </div>
             )}
           </motion.div>
@@ -323,8 +323,8 @@ function App() {
                 )}
                 {subProjectList.length > 0 && (
                   <nav className="flex justify-center space-x-6 md:space-x-8 px-8 overflow-x-auto no-scrollbar text-black pt-2 font-sans">
-                    {/* 如果是 Outdoor，不顯示 All 按鈕 */}
-                    {selectedProject !== 'outdoor' && (
+                    {/* 如果是 Outdoor 或 Vehicle，不顯示 All 按鈕 */}
+                    {!(selectedProject === 'outdoor' || selectedProject === 'vehicle') && (
                       <button onClick={() => setSelectedSubProject(null)} className={`text-[0.56rem] uppercase tracking-[0.3em] transition-all duration-500 ${!selectedSubProject ? 'text-black border-b border-black' : 'text-gray-300 hover:text-black'}`}>All</button>
                     )}
                     {subProjectList.map(sub => (<button key={sub} onClick={() => setSelectedSubProject(sub)} className={`text-[0.56rem] uppercase tracking-[0.3em] transition-all duration-500 ${selectedSubProject === sub ? 'text-black border-b border-black' : 'text-gray-300 hover:text-black'}`}>{sub}</button>))}
