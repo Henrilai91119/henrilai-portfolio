@@ -12,3 +12,7 @@
 - **Message**: Update: Gaussian blur Lightbox background and conditional vertical year markers
 - **Status**: Stable
 
+## [checkpoint-20260302-0872] - 2026/3/3 00:12:02
+- **Message**: Update: Sub-project menu filtering for Commissioned, and fixed Under Construction logic
+- **Status**: Stable
+
