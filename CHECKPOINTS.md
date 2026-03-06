@@ -36,3 +36,7 @@
 - **Message**: Update: Restored full BIO content and added interactive effects
 - **Status**: Stable
 
+## [checkpoint-20260306-1378] - 2026/3/6 15:01:24
+- **Message**: Fix: React crash due to hook order, complete BIO content, and ensure Design sub-projects auto-select
+- **Status**: Stable
+
