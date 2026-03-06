@@ -181,7 +181,24 @@ function App() {
       {/* Main Area */}
       <main className={`lg:ml-64 ${isSeamlessLayout ? 'p-0' : 'p-8 md:p-12 lg:p-16 lg:pt-12'}`}>
         {activeCategory === 'BIO' ? (
-          <div className="max-w-xl mx-auto lg:mx-0 p-8"><LazyImage src="/images/BIO/self.jpg" alt="BIO" className="aspect-[4/5] mb-16 w-full max-w-xs grayscale" /><div className="space-y-10 text-[0.85rem] leading-[2] text-gray-600 tracking-wider"><p className="font-semibold text-black tracking-[0.4em] uppercase text-[1.1rem]">HI , 我是賴昱成</p><p>斜槓設計師、攝影師</p></div></div>
+          <div className="max-w-xl mx-auto lg:mx-0 p-8">
+            <LazyImage src="/images/BIO/self.jpg" alt="BIO" className="aspect-[4/5] mb-16 w-full max-w-xs grayscale hover:grayscale-0 transition-all duration-1000" />
+            <div className="space-y-10 text-[0.85rem] leading-[2] text-gray-600 tracking-wider">
+              <p className="font-semibold text-black tracking-[0.4em] uppercase text-[1.1rem]">HI , 我是賴昱成</p>
+              <div className="space-y-6">
+                <p>斜槓設計師、攝影師，目前為自由接案工作者</p>
+                <div className="space-y-2">
+                  <p><span className="text-black font-semibold mr-4 tracking-[0.2em]">設計</span> 專攻戶外用品設計、平面設計</p>
+                  <p><span className="text-black font-semibold mr-4 tracking-[0.2em]">攝影</span> 商品攝影、活動攝影為主，並持續運用底片創作</p>
+                </div>
+                <p className="pt-4 text-xs">歡迎透過各平台聯繫洽談商業合作內容 !</p>
+              </div>
+              <div className="pt-16 border-t border-gray-100">
+                <p className="uppercase tracking-[0.3em] text-[0.56rem] text-gray-400 mb-4 font-bold">Contact</p>
+                <a href="mailto:lai91119@gmail.com" className="hover:text-black underline underline-offset-8 transition-colors text-gray-400">lai91119@gmail.com</a>
+              </div>
+            </div>
+          </div>
         ) : activeCategory === 'Price List' ? (
           <div className="max-w-5xl mx-auto p-8 space-y-32 py-20">{PRICE_ITEMS.map((item, index) => (<div key={item.title} className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 md:gap-24 items-start`}><div className="w-full md:w-1/2"><LazyImage src={item.imageUrl} alt={item.title} className="w-full h-auto" /></div><div className="w-full md:w-1/2 space-y-8 pt-4"><h2 className="text-[1.1rem] font-bold tracking-[0.4em] uppercase border-b border-gray-100 pb-4">{item.title}</h2><div className="text-[0.8rem] leading-[2.2] text-gray-600 tracking-wide whitespace-pre-wrap">{item.content}</div></div></div>))}</div>
         ) : activeCategory === 'Commissioned' && !selectedProject ? (

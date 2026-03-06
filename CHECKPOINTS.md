@@ -28,3 +28,7 @@
 - **Message**: Update: Restore Moments in Time masonry layout with yearly navigation and fix Commissioned chronological sorting
 - **Status**: Stable
 
+## [checkpoint-20260306-6045] - 2026/3/6 14:57:08
+- **Message**: Update: Automated thumbnail generation & auto-select first sub-project for Design categories
+- **Status**: Stable
+
