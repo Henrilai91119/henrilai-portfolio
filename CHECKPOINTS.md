@@ -60,3 +60,7 @@
 - **Message**: Fix: Enable darkMode in tailwind config and optimize dark mode toggle
 - **Status**: Stable
 
+## [checkpoint-20260306-2023] - 2026/3/6 15:25:08
+- **Message**: UI Fix: Override browser system appearance with explicit color-scheme control
+- **Status**: Stable
+

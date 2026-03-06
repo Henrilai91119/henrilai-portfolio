@@ -100,11 +100,16 @@ function App() {
   const [activeYear, setActiveYear] = useState<string | null>(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // 初始化主題
+  // 初始化主題：預設為淺色模式
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
+    // 只有當用戶之前明確選擇過 'dark' 時才設為深色
     if (savedTheme === 'dark') {
       setIsDarkMode(true);
+    } else {
+      setIsDarkMode(false);
+      document.documentElement.classList.remove('dark');
+      document.documentElement.style.colorScheme = 'light';
     }
   }, []);
 
