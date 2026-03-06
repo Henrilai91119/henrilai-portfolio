@@ -112,9 +112,11 @@ function App() {
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
+      document.documentElement.style.colorScheme = 'dark'; // 強制告訴瀏覽器使用深色方案
       localStorage.setItem('theme', 'dark');
     } else {
       document.documentElement.classList.remove('dark');
+      document.documentElement.style.colorScheme = 'light'; // 強制告訴瀏覽器使用淺色方案
       localStorage.setItem('theme', 'light');
     }
   }, [isDarkMode]);
