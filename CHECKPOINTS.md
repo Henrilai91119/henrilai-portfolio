@@ -68,3 +68,7 @@
 - **Message**: UI: Set Light Mode as default regardless of system settings
 - **Status**: Stable
 
+## [checkpoint-20260306-0168] - 2026/3/6 15:30:22
+- **Message**: UI: Reduce vertical spacing between photo and text in BIO page
+- **Status**: Stable
+
