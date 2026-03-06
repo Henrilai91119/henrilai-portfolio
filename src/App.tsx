@@ -264,7 +264,7 @@ function App() {
           >
             {activeCategory === 'BIO' ? (
               <div className="max-w-xl mx-auto lg:mx-0 p-8">
-                <LazyImage src="/images/BIO/self.jpg" alt="BIO" className="aspect-[4/5] mb-10 w-full max-w-xs grayscale hover:grayscale-0 transition-all duration-1000" />
+                <LazyImage src="/images/BIO/self.jpg" alt="BIO" className="aspect-[4/5] mb-4 w-full max-w-xs grayscale hover:grayscale-0 transition-all duration-1000" />
                 <div className="space-y-8 text-[0.85rem] leading-[2] text-gray-600 dark:text-gray-400 tracking-wider">
                   <p className="font-semibold text-black dark:text-white tracking-[0.4em] uppercase text-[1.1rem]">HI , 我是賴昱成</p>
                   <div className="space-y-4">

@@ -64,3 +64,7 @@
 - **Message**: UI Fix: Override browser system appearance with explicit color-scheme control
 - **Status**: Stable
 
+## [checkpoint-20260306-8497] - 2026/3/6 15:25:58
+- **Message**: UI: Set Light Mode as default regardless of system settings
+- **Status**: Stable
+
