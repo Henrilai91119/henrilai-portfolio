@@ -1,45 +1,45 @@
 @tailwind base;
+@layer base {
+  html {
+    /* 平滑切換模式 */
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+}
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html {
-    /* 預設根字體 16px */
-    font-size: 16px;
-    background-color: white;
-    color: black;
-    -webkit-font-smoothing: antialiased;
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
-
-  /* Full HD 顯示器範圍 (通常為 1920x1080) */
-  /* 當螢幕寬度在 1400px 到 2000px 之間時，適度縮放根字體 */
-  @media (min-width: 1400px) and (max-width: 2000px) {
-    html {
-      font-size: 14px; /* 調大 40%，提升大螢幕下的閱讀大氣感 */
-    }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
-
-  /* 2K / 4K 顯示器範圍 */
-  @media (min-width: 2001px) {
-    html {
-      font-size: 16px; /* 恢復正常比例，依靠大螢幕的物理尺寸呈現高級感 */
-    }
-  }
-
-  body {
-    @apply bg-white text-black antialiased;
+  
+  /* 磁吸按鈕的基礎樣式 */
+  .magnetic-button {
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   }
 }
 
-.nav-link {
-  @apply hover:text-gray-400 transition-colors duration-200 uppercase tracking-widest;
+:root {
+  font-family: 'Inter', 'Noto Sans TC', sans-serif;
 }
 
-/* 隱藏滾動條但保持功能 */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+
+/* 自定義選取顏色 */
+.selection\:bg-black ::selection {
+  background-color: black;
+  color: white;
+}
+
+.dark .selection\:bg-black ::selection {
+  background-color: white;
+  color: black;
 }

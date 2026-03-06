@@ -40,3 +40,7 @@
 - **Message**: Fix: React crash due to hook order, complete BIO content, and ensure Design sub-projects auto-select
 - **Status**: Stable
 
+## [checkpoint-20260306-9879] - 2026/3/6 15:03:30
+- **Message**: UI: Tighten spacing in BIO page for better visual balance
+- **Status**: Stable
+
