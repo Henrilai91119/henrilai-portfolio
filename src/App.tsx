@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Instagram, X, ArrowLeft, ChevronLeft, ChevronRight, Moon, Sun } from 'lucide-react';
+import { Instagram, X, ArrowLeft, ChevronLeft, ChevronRight, Moon, Sun, Youtube } from 'lucide-react';
 
 import GALLERY_ITEMS_JSON from './gallery-items.json';
 import PROJECT_DESCRIPTIONS from './project-descriptions.json';
@@ -32,8 +32,6 @@ const NAV_ITEMS = [
   'Moments in Time',
   'Commissioned',
   'Design',
-  'Motion',
-  'Blog',
   'BIO',
   'Price List',
 ];
@@ -85,7 +83,7 @@ const LazyImage = ({ src, alt, className, priority = false, ...props }: any) => 
         transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
         onLoad={() => setIsLoaded(true)}
         src={src || ''}
-        alt={alt || 'Portfolio Work'}
+        alt={alt || 'Henri Lai Portfolio Work'}
         loading={priority ? "eager" : "lazy"}
         className={`w-full h-auto object-contain block ${props.imgClassName || ""}`}
         {...props}
@@ -234,6 +232,9 @@ function App() {
           <div className="flex items-center space-x-6">
             <a href="https://www.instagram.com/henrilai.photography/" target="_blank" rel="noopener noreferrer" className="grayscale opacity-30 hover:opacity-100 transition-all duration-700">
               <Instagram size={16} strokeWidth={1.5} />
+            </a>
+            <a href="https://www.youtube.com/@lailai91119" target="_blank" rel="noopener noreferrer" className="grayscale opacity-30 hover:opacity-100 transition-all duration-700">
+              <Youtube size={16} strokeWidth={1.5} />
             </a>
             <button onClick={toggleDarkMode} className="grayscale opacity-30 hover:opacity-100 transition-all duration-700 p-1">
               {isDarkMode ? <Sun size={16} strokeWidth={1.5} /> : <Moon size={16} strokeWidth={1.5} />}
