@@ -47,8 +47,8 @@ const MagneticButton = ({ children, onClick, className }: any) => {
     const { left, top, width, height } = ref.current.getBoundingClientRect();
     const centerX = left + width / 2;
     const centerY = top + height / 2;
-    const x = (clientX - centerX) * 0.35;
-    const y = (clientY - centerY) * 0.35;
+    const x = (clientX - centerX) * 0.25; // 稍微調小係數，增加點擊穩定性
+    const y = (clientY - centerY) * 0.25;
     setPosition({ x, y });
   };
 
