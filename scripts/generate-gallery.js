@@ -4,6 +4,7 @@ import sharp from 'sharp';
 
 const publicDir = path.join(process.cwd(), 'public');
 const imagesDir = path.join(publicDir, 'images');
+const thumbnailsDir = path.join(publicDir, 'thumbnails');
 const priceListDir = path.join(imagesDir, 'price-list');
 
 const outputGalleryFile = path.join(process.cwd(), 'src', 'gallery-items.json');
@@ -11,6 +12,11 @@ const outputDescFile = path.join(process.cwd(), 'src', 'project-descriptions.jso
 const outputPriceFile = path.join(process.cwd(), 'src', 'price-list.json');
 
 const EXCLUDED_DIRS = ['.DS_Store', 'BIO', 'price-list', 'web logo'];
+
+// 確保縮圖目錄存在
+if (!fs.existsSync(thumbnailsDir)) {
+  fs.mkdirSync(thumbnailsDir, { recursive: true });
+}
 
 // 將 RGB 轉換為 Hue (色相)
 function rgbToHue(r, g, b) {
@@ -24,11 +30,28 @@ function rgbToHue(r, g, b) {
   return Math.round(h * 60);
 }
 
-// 取得圖片的主色調 Hue (用於 Moments in Time 排序)
-async function getDominantHue(filePath) {
+// 取得圖片主色調與生成縮圖
+async function processImage(filePath, relativePath) {
   try {
-    const { data } = await sharp(filePath)
-      .resize(10, 10, { fit: 'cover' })
+    const thumbPath = path.join(thumbnailsDir, relativePath.replace(/\.[^/.]+$/, ".webp"));
+    const thumbDir = path.dirname(thumbPath);
+    
+    if (!fs.existsSync(thumbDir)) {
+      fs.mkdirSync(thumbDir, { recursive: true });
+    }
+
+    // 1. 生成 WebP 縮圖 (寬度 600px, 品質 80)
+    // 如果縮圖已存在則跳過，加快執行速度
+    if (!fs.existsSync(thumbPath)) {
+      await sharp(filePath)
+        .resize(600, null, { withoutEnlargement: true })
+        .webp({ quality: 80 })
+        .toFile(thumbPath);
+    }
+
+    // 2. 取得色相 (使用縮圖取樣更快)
+    const { data } = await sharp(thumbPath)
+      .resize(10, 10)
       .raw()
       .toBuffer({ resolveWithObject: true });
     
@@ -37,9 +60,15 @@ async function getDominantHue(filePath) {
       r += data[i]; g += data[i+1]; b += data[i+2];
     }
     const count = data.length / 3;
-    return rgbToHue(r / count, g / count, b / count);
+    const hue = rgbToHue(r / count, g / count, b / count);
+
+    return { 
+      hue, 
+      thumbnailUrl: '/thumbnails/' + relativePath.replace(/\.[^/.]+$/, ".webp").split(path.sep).join('/') 
+    };
   } catch (e) {
-    return 0;
+    console.error(`Error processing ${filePath}:`, e.message);
+    return { hue: 0, thumbnailUrl: null };
   }
 }
 
@@ -64,36 +93,22 @@ function getFiles(dir, allFiles = []) {
   return allFiles;
 }
 
-/**
- * 解析路徑層級 (修正版)
- * 結構: public/images/[Category]/[ProjectTitle]/[SubProjectTitle]/image.jpg
- */
 function getHierarchy(relativePath) {
   const parts = relativePath.split(path.sep);
-  // parts[0] 是 'images'
-  // parts[1] 是 分類目錄 (moments in time, commissioned, design)
-  
   let categoryRaw = parts[1] || '';
-  let title = 'Untitled';
-  let subTitle = null;
-  let category = 'Personal';
+  let title = 'Untitled', subTitle = null, category = 'Personal';
 
   if (categoryRaw.toLowerCase() === 'moments in time') {
     category = 'Personal';
-    title = parts[2] || 'Untitled'; // 通常是年份 2024
+    title = parts[2] || 'Untitled';
   } else if (categoryRaw.toLowerCase() === 'commissioned') {
     category = 'Commissioned';
     title = parts[2] || 'Untitled';
-    // 偵測是否還有子目錄
-    if (parts.length > 4) {
-      subTitle = parts[3];
-    }
+    if (parts.length > 4) subTitle = parts[3];
   } else if (categoryRaw.toLowerCase() === 'design') {
     category = 'Design';
     title = parts[2] || 'Untitled';
-    if (parts.length > 4) {
-      subTitle = parts[3];
-    }
+    if (parts.length > 4) subTitle = parts[3];
   }
 
   return { title, subTitle, category };
@@ -101,7 +116,7 @@ function getHierarchy(relativePath) {
 
 async function run() {
   try {
-    console.log('🎨 Analyzing images and generating gallery data...');
+    console.log('🎨 Generating thumbnails and gallery data...');
     const allFiles = getFiles(imagesDir);
     const galleryItems = [];
     const descriptions = {};
@@ -125,28 +140,26 @@ async function run() {
       });
     }
 
-    // 2. 處理 描述 與 作品
+    // 2. 處理作品
     for (const filePath of allFiles) {
       const fileName = path.basename(filePath);
       const ext = path.extname(filePath).toLowerCase();
       const relativePath = path.relative(publicDir, filePath);
+      const imagesRelativePath = path.relative(imagesDir, filePath);
 
       if (ext === '.txt') {
-        const content = fs.readFileSync(filePath, 'utf-8');
-        const key = path.basename(fileName, '.txt').toLowerCase().trim();
-        descriptions[key] = content;
+        descriptions[path.basename(fileName, '.txt').toLowerCase().trim()] = fs.readFileSync(filePath, 'utf-8');
       } else if (!relativePath.includes('price-list')) {
         const { title, subTitle, category } = getHierarchy(relativePath);
         
-        let hue = 0;
-        if (category === 'Personal') {
-          hue = await getDominantHue(filePath);
-        }
+        // 生成縮圖並獲取色相
+        const { hue, thumbnailUrl } = await processImage(filePath, imagesRelativePath);
 
         galleryItems.push({
           id: galleryItems.length + 1,
           title, subTitle, category,
           imageUrl: '/' + relativePath.split(path.sep).join('/'),
+          thumbnailUrl: thumbnailUrl || '/' + relativePath.split(path.sep).join('/'), // Fallback to original
           isCover: fileName.toLowerCase().includes('cover'),
           hue: hue
         });
@@ -157,8 +170,7 @@ async function run() {
     fs.writeFileSync(outputDescFile, JSON.stringify(descriptions, null, 2));
     fs.writeFileSync(outputPriceFile, JSON.stringify(priceListData, null, 2));
     
-    console.log(`✨ Successfully generated ${galleryItems.length} items.`);
-    console.log(`📝 Processed ${Object.keys(descriptions).length} project descriptions.`);
+    console.log(`✨ Successfully processed ${galleryItems.length} items with thumbnails.`);
   } catch (error) {
     console.error('❌ Error:', error);
   }

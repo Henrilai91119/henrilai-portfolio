@@ -24,3 +24,7 @@
 - **Message**: Fix: Moments in Time display issues & Switch to Grid Pagination
 - **Status**: Stable
 
+## [checkpoint-20260306-3626] - 2026/3/6 14:52:21
+- **Message**: Update: Restore Moments in Time masonry layout with yearly navigation and fix Commissioned chronological sorting
+- **Status**: Stable
+

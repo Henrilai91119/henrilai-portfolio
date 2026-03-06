@@ -13,6 +13,7 @@ interface GalleryItem {
   subTitle?: string | null;
   category: string;
   imageUrl: string;
+  thumbnailUrl?: string; // 新增縮圖欄位
   isCover?: boolean;
   hue?: number;
 }
@@ -43,10 +44,10 @@ const LazyImage = ({ src, alt, className, priority = false, ...props }: any) => 
   return (
     <div className={`relative bg-transparent overflow-hidden ${className}`}>
       <motion.img
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 10 }}
         viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
         onLoad={() => setIsLoaded(true)}
         src={src || ''}
         alt={alt || 'Henri Lai Portfolio Work'}
@@ -90,7 +91,7 @@ function App() {
   // 初始化年份與切換重置
   useEffect(() => {
     if (activeCategory === 'Moments in Time' && allYears.length > 0) {
-      setActiveYear(allYears[0]); // 預設顯示最新年份
+      setActiveYear(allYears[0]);
     } else if (activeCategory === 'Design') {
       setSelectedProject('graphic');
     } else {
@@ -100,16 +101,21 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [activeCategory, allYears]);
 
+  // 當選中 Outdoor 或 Vehicle 時，自動選中第一個子分類
+  useEffect(() => {
+    if (activeCategory === 'Design' && (selectedProject === 'outdoor' || selectedProject === 'vehicle') && !selectedSubProject && subProjectList.length > 0) {
+      setSelectedSubProject(subProjectList[0]);
+    }
+  }, [activeCategory, selectedProject, subProjectList]);
+
   // 3. 最終渲染項目 (含年份篩選)
   const displayItems = useMemo(() => {
     let items = [...currentCategoryItems];
 
     if (activeCategory === 'Moments in Time') {
-      // 根據年份選單切換照片
       if (activeYear) {
         items = items.filter(item => getYearFromPath(item.imageUrl) === activeYear);
       }
-      // 內部排序
       return items.sort((a, b) => (a.hue || 0) - (b.hue || 0));
     }
 
@@ -191,7 +197,8 @@ function App() {
                 return (
                   <div key={title} onClick={() => { setSelectedProject(title); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="group cursor-pointer flex flex-col items-center text-center px-4 md:px-8">
                     <div className="aspect-square mb-8 overflow-hidden bg-gray-50 w-full">
-                      <img src={cover?.imageUrl} alt={title} className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-1000" />
+                      {/* 封面也使用縮圖 */}
+                      <img src={cover?.thumbnailUrl || cover?.imageUrl} alt={title} className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-1000" />
                     </div>
                     <h2 className="text-[1.125rem] font-medium tracking-[0.2em] uppercase mb-2 opacity-80 group-hover:opacity-100 transition-opacity">{title}</h2>
                   </div>
@@ -225,11 +232,11 @@ function App() {
 
             {currentDescription && (<div className="max-w-2xl mx-auto mb-24 px-8 italic text-center text-[0.8rem] leading-[2.2] text-gray-500 tracking-wide font-light whitespace-pre-wrap">{currentDescription}</div>)}
 
-            {/* Gallery Content - 瀑布流還原 */}
+            {/* Gallery Content - 列表顯示使用縮圖 */}
             <div className={isSeamlessLayout ? "flex flex-col w-full max-w-2xl mx-auto" : "columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24 px-4 md:px-8 lg:px-12"}>
               {displayItems.map((item) => (
                 <div key={item.id} onClick={() => setSelectedImage(item)} className="break-inside-avoid cursor-crosshair group relative mb-16 lg:mb-24">
-                  <LazyImage src={item.imageUrl} alt={item.title} />
+                  <LazyImage src={item.thumbnailUrl || item.imageUrl} alt={item.title} />
                   {!selectedProject && (
                     <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-right">
                       <p className="text-[0.5rem] text-gray-300 uppercase tracking-widest">{getYearFromPath(item.imageUrl)}</p>
@@ -242,7 +249,7 @@ function App() {
         )}
       </main>
 
-      {/* Lightbox */}
+      {/* Lightbox - 放大後顯示原始大圖 */}
       <AnimatePresence>{selectedImage && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center bg-white/95 p-4 md:p-12 cursor-zoom-out" onClick={() => setSelectedImage(null)}>
           <button className="absolute top-8 right-8 text-black p-2"><X size={24} strokeWidth={1} /></button>
