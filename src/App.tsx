@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useRef } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Instagram, X, ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -37,25 +37,23 @@ const NAV_ITEMS = [
   'Price List',
 ];
 
-const ITEMS_PER_PAGE = 24;
-
 // Reusable Image Component
 const LazyImage = ({ src, alt, className, priority = false, ...props }: any) => {
   const [isLoaded, setIsLoaded] = useState(false);
   return (
-    <div className={`relative bg-gray-50 overflow-hidden ${className}`}>
+    <div className={`relative bg-transparent overflow-hidden ${className}`}>
       <motion.img
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isLoaded ? 1 : 0 }}
-        transition={{ duration: 0.8 }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
         onLoad={() => setIsLoaded(true)}
         src={src || ''}
         alt={alt || 'Henri Lai Portfolio Work'}
         loading={priority ? "eager" : "lazy"}
-        className={`w-full h-full object-cover ${props.imgClassName || ""}`}
+        className={`w-full h-auto object-contain block ${props.imgClassName || ""}`}
         {...props}
       />
-      {!isLoaded && <div className="absolute inset-0 bg-gray-50 animate-pulse" />}
     </div>
   );
 };
@@ -65,24 +63,7 @@ function App() {
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
   const [selectedSubProject, setSelectedSubProject] = useState<string | null>(null);
-  const [currentPage, setCurrentPage] = useState(1);
-
-  // 當切換分類或專案時，重設分頁與滾動位置
-  useEffect(() => {
-    if (activeCategory === 'Design') {
-      setSelectedProject('graphic');
-    } else {
-      setSelectedProject(null);
-    }
-    setSelectedSubProject(null);
-    setCurrentPage(1);
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [activeCategory]);
-
-  useEffect(() => {
-    setCurrentPage(1);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [selectedProject, selectedSubProject]);
+  const [activeYear, setActiveYear] = useState<string | null>(null);
 
   // 輔助函式：抓取年份
   const getYearFromPath = (path: string) => {
@@ -91,15 +72,47 @@ function App() {
     return yearPart || "Others";
   };
 
+  // 1. 基本分類篩選
   const currentCategoryItems = useMemo(() => {
     const categoryToMatch = activeCategory === 'Moments in Time' ? 'Personal' : activeCategory;
     return GALLERY_ITEMS.filter(item => item.category === categoryToMatch);
   }, [activeCategory]);
 
-  // 篩選後的所有可見項目
-  const allVisibleItems = useMemo(() => {
+  // 2. 年份選單生成
+  const allYears = useMemo(() => {
+    if (activeCategory !== 'Moments in Time') return [];
+    const years = Array.from(new Set(currentCategoryItems.map(item => getYearFromPath(item.imageUrl))))
+      .filter(y => y !== "Others")
+      .sort((a, b) => parseInt(b) - parseInt(a));
+    return years;
+  }, [currentCategoryItems, activeCategory]);
+
+  // 初始化年份與切換重置
+  useEffect(() => {
+    if (activeCategory === 'Moments in Time' && allYears.length > 0) {
+      setActiveYear(allYears[0]); // 預設顯示最新年份
+    } else if (activeCategory === 'Design') {
+      setSelectedProject('graphic');
+    } else {
+      setSelectedProject(null);
+    }
+    setSelectedSubProject(null);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [activeCategory, allYears]);
+
+  // 3. 最終渲染項目 (含年份篩選)
+  const displayItems = useMemo(() => {
     let items = [...currentCategoryItems];
-    
+
+    if (activeCategory === 'Moments in Time') {
+      // 根據年份選單切換照片
+      if (activeYear) {
+        items = items.filter(item => getYearFromPath(item.imageUrl) === activeYear);
+      }
+      // 內部排序
+      return items.sort((a, b) => (a.hue || 0) - (b.hue || 0));
+    }
+
     if (activeCategory === 'Commissioned' && selectedProject) {
       items = items.filter(item => item.title === selectedProject && !item.isCover);
       if (selectedSubProject) items = items.filter(item => item.subTitle === selectedSubProject);
@@ -109,22 +122,8 @@ function App() {
       if (selectedSubProject) items = items.filter(item => item.subTitle === selectedSubProject);
     }
 
-    // 排序：年份降序
-    return items.sort((a, b) => {
-      const yearA = getYearFromPath(a.imageUrl);
-      const yearB = getYearFromPath(b.imageUrl);
-      if (yearA !== yearB) return parseInt(yearB) - parseInt(yearA);
-      return (a.id - b.id);
-    });
-  }, [currentCategoryItems, selectedProject, selectedSubProject, activeCategory]);
-
-  // 分頁後的項目
-  const paginatedItems = useMemo(() => {
-    const start = (currentPage - 1) * ITEMS_PER_PAGE;
-    return allVisibleItems.slice(start, start + ITEMS_PER_PAGE);
-  }, [allVisibleItems, currentPage]);
-
-  const totalPages = Math.ceil(allVisibleItems.length / ITEMS_PER_PAGE);
+    return items;
+  }, [currentCategoryItems, selectedProject, selectedSubProject, activeCategory, activeYear]);
 
   const subProjectList = useMemo(() => {
     const pToMatch = selectedProject || (activeCategory === 'Design' ? 'graphic' : null);
@@ -134,10 +133,10 @@ function App() {
 
   const navigateImage = (direction: 'next' | 'prev') => {
     if (!selectedImage) return;
-    const currentIndex = allVisibleItems.findIndex(item => item.id === selectedImage.id);
+    const currentIndex = displayItems.findIndex(item => item.id === selectedImage.id);
     if (currentIndex === -1) return;
-    let nextIndex = direction === 'next' ? (currentIndex + 1) % allVisibleItems.length : (currentIndex - 1 + allVisibleItems.length) % allVisibleItems.length;
-    setSelectedImage(allVisibleItems[nextIndex]);
+    let nextIndex = direction === 'next' ? (currentIndex + 1) % displayItems.length : (currentIndex - 1 + displayItems.length) % displayItems.length;
+    setSelectedImage(displayItems[nextIndex]);
   };
 
   useEffect(() => {
@@ -149,18 +148,18 @@ function App() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedImage, allVisibleItems]);
+  }, [selectedImage, displayItems]);
 
   const currentDescription = useMemo(() => {
-    const keys = [selectedSubProject, selectedProject, activeCategory].map(k => k?.toLowerCase().trim()).filter(Boolean) as string[];
+    const keys = [selectedSubProject, selectedProject, activeYear, activeCategory].map(k => k?.toLowerCase().trim()).filter(Boolean) as string[];
     for (const key of keys) { if (DESCRIPTIONS[key]) return DESCRIPTIONS[key]; }
     return null;
-  }, [selectedProject, selectedSubProject, activeCategory]);
+  }, [selectedProject, selectedSubProject, activeCategory, activeYear]);
 
   const isSeamlessLayout = activeCategory === 'Design' && (selectedSubProject === '997' || selectedSubProject === 'gogoro' || selectedSubProject === 'wanderer');
 
   return (
-    <div className="min-h-screen bg-white font-sans text-black">
+    <div className="min-h-screen bg-white font-sans text-black selection:bg-black selection:text-white">
       {/* Sidebar */}
       <header className="p-8 md:p-12 lg:fixed lg:w-64 lg:h-screen lg:flex lg:flex-col lg:justify-between z-30 bg-white/80 backdrop-blur-sm lg:bg-transparent">
         <div>
@@ -181,71 +180,64 @@ function App() {
           <div className="max-w-5xl mx-auto p-8 space-y-32 py-20">{PRICE_ITEMS.map((item, index) => (<div key={item.title} className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 md:gap-24 items-start`}><div className="w-full md:w-1/2"><LazyImage src={item.imageUrl} alt={item.title} className="w-full h-auto" /></div><div className="w-full md:w-1/2 space-y-8 pt-4"><h2 className="text-[1.1rem] font-bold tracking-[0.4em] uppercase border-b border-gray-100 pb-4">{item.title}</h2><div className="text-[0.8rem] leading-[2.2] text-gray-600 tracking-wide whitespace-pre-wrap">{item.content}</div></div></div>))}</div>
         ) : activeCategory === 'Commissioned' && !selectedProject ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24 px-4 md:px-8">
-            {Array.from(new Set(currentCategoryItems.map(i => i.title))).map(title => {
-              const cover = currentCategoryItems.find(i => i.title === title && i.isCover) || currentCategoryItems.find(i => i.title === title);
-              return (<div key={title} onClick={() => setSelectedProject(title)} className="group cursor-pointer flex flex-col items-center text-center px-4 md:px-8"><div className="aspect-square mb-8 overflow-hidden bg-gray-50 w-full"><img src={cover?.imageUrl} alt={title} className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-1000" /></div><h2 className="text-[1.125rem] font-medium tracking-[0.2em] uppercase mb-2 opacity-80 group-hover:opacity-100 transition-opacity">{title}</h2></div>);
-            })}
+            {Array.from(new Set(currentCategoryItems.map(i => i.title)))
+              .sort((a, b) => {
+                const yearA = a.match(/\d{4}/)?.[0] || "0";
+                const yearB = b.match(/\d{4}/)?.[0] || "0";
+                return parseInt(yearB) - parseInt(yearA);
+              })
+              .map(title => {
+                const cover = currentCategoryItems.find(i => i.title === title && i.isCover) || currentCategoryItems.find(i => i.title === title);
+                return (
+                  <div key={title} onClick={() => { setSelectedProject(title); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="group cursor-pointer flex flex-col items-center text-center px-4 md:px-8">
+                    <div className="aspect-square mb-8 overflow-hidden bg-gray-50 w-full">
+                      <img src={cover?.imageUrl} alt={title} className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-1000" />
+                    </div>
+                    <h2 className="text-[1.125rem] font-medium tracking-[0.2em] uppercase mb-2 opacity-80 group-hover:opacity-100 transition-opacity">{title}</h2>
+                  </div>
+                );
+              })}
           </div>
         ) : (
           <div className="space-y-12">
-            {(activeCategory === 'Design' || selectedProject) && (
-              <header className="sticky top-0 z-20 bg-white/90 backdrop-blur-md py-6 mb-16 border-b border-gray-50 space-y-6">
-                {activeCategory === 'Design' && (
-                  <nav className="flex justify-center space-x-8 md:space-x-12 px-8 overflow-x-auto no-scrollbar">{Array.from(new Set(currentCategoryItems.map(i => i.title))).sort().map(cat => (<button key={cat} onClick={() => { setSelectedProject(cat); setSelectedSubProject(null); }} className={`text-[0.62rem] uppercase tracking-[0.4em] transition-all duration-500 ${selectedProject === cat ? 'text-black font-bold' : 'text-gray-300 hover:text-black'}`}>{cat}</button>))}</nav>
-                )}
-                {selectedProject && (
-                  <div className="px-8 flex items-center justify-between"><button onClick={() => setSelectedProject(null)} className="flex items-center text-[0.62rem] uppercase tracking-[0.3em] text-gray-400 hover:text-black group"><ArrowLeft size={12} className="mr-2 group-hover:-translate-x-1 transition-transform" />Back</button><h2 className="text-[1.125rem] font-medium tracking-[0.3em] uppercase">{selectedProject}</h2></div>
-                )}
-                {subProjectList.length > 0 && (
-                  <nav className="flex justify-center space-x-6 md:space-x-8 px-8 overflow-x-auto no-scrollbar pt-2">{subProjectList.map(sub => (<button key={sub} onClick={() => setSelectedSubProject(sub)} className={`text-[0.56rem] uppercase tracking-[0.3em] transition-all duration-500 ${selectedSubProject === sub ? 'text-black border-b border-black' : 'text-gray-300 hover:text-black'}`}>{sub}</button>))}</nav>
-                )}
-              </header>
-            )}
+            {/* 年份/專案 導覽列 */}
+            <header className="sticky top-0 z-20 bg-white/90 backdrop-blur-md py-6 mb-16 border-b border-gray-50 space-y-6">
+              {activeCategory === 'Moments in Time' ? (
+                <nav className="flex justify-center space-x-8 md:space-x-12 px-8 overflow-x-auto no-scrollbar">
+                  {allYears.map(year => (
+                    <button key={year} onClick={() => { setActiveYear(year); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className={`text-[0.62rem] uppercase tracking-[0.4em] transition-all duration-500 whitespace-nowrap ${activeYear === year ? 'text-black font-bold border-b border-black pb-1' : 'text-gray-300 hover:text-black'}`}>{year}</button>
+                  ))}
+                </nav>
+              ) : (
+                <>
+                  {activeCategory === 'Design' && (
+                    <nav className="flex justify-center space-x-8 md:space-x-12 px-8 overflow-x-auto no-scrollbar">{Array.from(new Set(currentCategoryItems.map(i => i.title))).sort().map(cat => (<button key={cat} onClick={() => { setSelectedProject(cat); setSelectedSubProject(null); }} className={`text-[0.62rem] uppercase tracking-[0.4em] transition-all duration-500 ${selectedProject === cat ? 'text-black font-bold' : 'text-gray-300 hover:text-black'}`}>{cat}</button>))}</nav>
+                  )}
+                  {selectedProject && (
+                    <div className="px-8 flex items-center justify-between"><button onClick={() => setSelectedProject(null)} className="flex items-center text-[0.62rem] uppercase tracking-[0.3em] text-gray-400 hover:text-black group"><ArrowLeft size={12} className="mr-2 group-hover:-translate-x-1 transition-transform" />Back</button><h2 className="text-[1.125rem] font-medium tracking-[0.3em] uppercase">{selectedProject}</h2></div>
+                  )}
+                  {subProjectList.length > 0 && (
+                    <nav className="flex justify-center space-x-6 md:space-x-8 px-8 overflow-x-auto no-scrollbar pt-2">{subProjectList.map(sub => (<button key={sub} onClick={() => setSelectedSubProject(sub)} className={`text-[0.56rem] uppercase tracking-[0.3em] transition-all duration-500 ${selectedSubProject === sub ? 'text-black border-b border-black' : 'text-gray-300 hover:text-black'}`}>{sub}</button>))}</nav>
+                  )}
+                </>
+              )}
+            </header>
 
             {currentDescription && (<div className="max-w-2xl mx-auto mb-24 px-8 italic text-center text-[0.8rem] leading-[2.2] text-gray-500 tracking-wide font-light whitespace-pre-wrap">{currentDescription}</div>)}
 
-            {/* Gallery Grid */}
-            <div className={isSeamlessLayout ? "flex flex-col w-full max-w-2xl mx-auto" : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12"}>
-              {paginatedItems.map((item) => (
-                <div key={item.id} onClick={() => setSelectedImage(item)} className="cursor-crosshair group relative">
-                  <LazyImage src={item.imageUrl} alt={item.title} className={isSeamlessLayout ? "w-full h-auto" : "aspect-square w-full"} />
-                  <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                    <p className="text-[0.5rem] text-white uppercase tracking-widest">{getYearFromPath(item.imageUrl)}</p>
-                  </div>
+            {/* Gallery Content - 瀑布流還原 */}
+            <div className={isSeamlessLayout ? "flex flex-col w-full max-w-2xl mx-auto" : "columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24 px-4 md:px-8 lg:px-12"}>
+              {displayItems.map((item) => (
+                <div key={item.id} onClick={() => setSelectedImage(item)} className="break-inside-avoid cursor-crosshair group relative mb-16 lg:mb-24">
+                  <LazyImage src={item.imageUrl} alt={item.title} />
+                  {!selectedProject && (
+                    <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-right">
+                      <p className="text-[0.5rem] text-gray-300 uppercase tracking-widest">{getYearFromPath(item.imageUrl)}</p>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
-
-            {/* Pagination Controls */}
-            {totalPages > 1 && (
-              <nav className="flex justify-center items-center space-x-8 pt-16 border-t border-gray-50">
-                <button 
-                  disabled={currentPage === 1} 
-                  onClick={() => { setCurrentPage(p => Math.max(1, p - 1)); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                  className={`text-[0.62rem] uppercase tracking-[0.3em] ${currentPage === 1 ? 'text-gray-100' : 'text-gray-400 hover:text-black'}`}
-                >
-                  Prev
-                </button>
-                <div className="flex space-x-4">
-                  {Array.from({ length: totalPages }).map((_, i) => (
-                    <button 
-                      key={i} 
-                      onClick={() => { setCurrentPage(i + 1); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                      className={`text-[0.62rem] w-6 h-6 flex items-center justify-center transition-all ${currentPage === i + 1 ? 'font-bold border-b border-black' : 'text-gray-300 hover:text-black'}`}
-                    >
-                      {i + 1}
-                    </button>
-                  ))}
-                </div>
-                <button 
-                  disabled={currentPage === totalPages} 
-                  onClick={() => { setCurrentPage(p => Math.min(totalPages, p + 1)); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                  className={`text-[0.62rem] uppercase tracking-[0.3em] ${currentPage === totalPages ? 'text-gray-100' : 'text-gray-400 hover:text-black'}`}
-                >
-                  Next
-                </button>
-              </nav>
-            )}
           </div>
         )}
       </main>
