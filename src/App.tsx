@@ -13,7 +13,7 @@ interface GalleryItem {
   subTitle?: string | null;
   category: string;
   imageUrl: string;
-  thumbnailUrl?: string; // 新增縮圖欄位
+  thumbnailUrl?: string;
   isCover?: boolean;
   hue?: number;
 }
@@ -50,7 +50,7 @@ const LazyImage = ({ src, alt, className, priority = false, ...props }: any) => 
         transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
         onLoad={() => setIsLoaded(true)}
         src={src || ''}
-        alt={alt || 'Henri Lai Portfolio Work'}
+        alt={alt || 'Portfolio Work'}
         loading={priority ? "eager" : "lazy"}
         className={`w-full h-auto object-contain block ${props.imgClassName || ""}`}
         {...props}
@@ -66,20 +66,17 @@ function App() {
   const [selectedSubProject, setSelectedSubProject] = useState<string | null>(null);
   const [activeYear, setActiveYear] = useState<string | null>(null);
 
-  // 輔助函式：抓取年份
   const getYearFromPath = (path: string) => {
     const parts = path.split('/');
     const yearPart = parts.find(p => /^\d{4}$/.test(p));
     return yearPart || "Others";
   };
 
-  // 1. 基本分類篩選
   const currentCategoryItems = useMemo(() => {
     const categoryToMatch = activeCategory === 'Moments in Time' ? 'Personal' : activeCategory;
     return GALLERY_ITEMS.filter(item => item.category === categoryToMatch);
   }, [activeCategory]);
 
-  // 2. 年份選單生成
   const allYears = useMemo(() => {
     if (activeCategory !== 'Moments in Time') return [];
     const years = Array.from(new Set(currentCategoryItems.map(item => getYearFromPath(item.imageUrl))))
@@ -88,7 +85,14 @@ function App() {
     return years;
   }, [currentCategoryItems, activeCategory]);
 
-  // 初始化年份與切換重置
+  // --- 先定義 subProjectList ---
+  const subProjectList = useMemo(() => {
+    const pToMatch = selectedProject || (activeCategory === 'Design' ? 'graphic' : null);
+    if (!pToMatch) return [];
+    return Array.from(new Set(currentCategoryItems.filter(item => item.title === pToMatch).map(item => item.subTitle).filter(Boolean))) as string[];
+  }, [selectedProject, activeCategory, currentCategoryItems]);
+
+  // --- 再定義 useEffect ---
   useEffect(() => {
     if (activeCategory === 'Moments in Time' && allYears.length > 0) {
       setActiveYear(allYears[0]);
@@ -101,24 +105,18 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [activeCategory, allYears]);
 
-  // 當選中 Outdoor 或 Vehicle 時，自動選中第一個子分類
   useEffect(() => {
     if (activeCategory === 'Design' && (selectedProject === 'outdoor' || selectedProject === 'vehicle') && !selectedSubProject && subProjectList.length > 0) {
       setSelectedSubProject(subProjectList[0]);
     }
   }, [activeCategory, selectedProject, subProjectList]);
 
-  // 3. 最終渲染項目 (含年份篩選)
   const displayItems = useMemo(() => {
     let items = [...currentCategoryItems];
-
     if (activeCategory === 'Moments in Time') {
-      if (activeYear) {
-        items = items.filter(item => getYearFromPath(item.imageUrl) === activeYear);
-      }
+      if (activeYear) items = items.filter(item => getYearFromPath(item.imageUrl) === activeYear);
       return items.sort((a, b) => (a.hue || 0) - (b.hue || 0));
     }
-
     if (activeCategory === 'Commissioned' && selectedProject) {
       items = items.filter(item => item.title === selectedProject && !item.isCover);
       if (selectedSubProject) items = items.filter(item => item.subTitle === selectedSubProject);
@@ -127,15 +125,8 @@ function App() {
       items = items.filter(item => item.title === pToMatch && !item.isCover);
       if (selectedSubProject) items = items.filter(item => item.subTitle === selectedSubProject);
     }
-
     return items;
   }, [currentCategoryItems, selectedProject, selectedSubProject, activeCategory, activeYear]);
-
-  const subProjectList = useMemo(() => {
-    const pToMatch = selectedProject || (activeCategory === 'Design' ? 'graphic' : null);
-    if (!pToMatch) return [];
-    return Array.from(new Set(currentCategoryItems.filter(item => item.title === pToMatch).map(item => item.subTitle).filter(Boolean))) as string[];
-  }, [selectedProject, activeCategory, currentCategoryItems]);
 
   const navigateImage = (direction: 'next' | 'prev') => {
     if (!selectedImage) return;
@@ -166,7 +157,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white font-sans text-black selection:bg-black selection:text-white">
-      {/* Sidebar */}
       <header className="p-8 md:p-12 lg:fixed lg:w-64 lg:h-screen lg:flex lg:flex-col lg:justify-between z-30 bg-white/80 backdrop-blur-sm lg:bg-transparent">
         <div>
           <h1 className="mb-12"><a href="/"><img src="/images/web logo/web logo.png" alt="Logo" className="w-16 md:w-20 h-auto" /></a></h1>
@@ -178,7 +168,6 @@ function App() {
         </footer>
       </header>
 
-      {/* Main Area */}
       <main className={`lg:ml-64 ${isSeamlessLayout ? 'p-0' : 'p-8 md:p-12 lg:p-16 lg:pt-12'}`}>
         {activeCategory === 'BIO' ? (
           <div className="max-w-xl mx-auto lg:mx-0 p-8">
@@ -203,35 +192,16 @@ function App() {
           <div className="max-w-5xl mx-auto p-8 space-y-32 py-20">{PRICE_ITEMS.map((item, index) => (<div key={item.title} className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 md:gap-24 items-start`}><div className="w-full md:w-1/2"><LazyImage src={item.imageUrl} alt={item.title} className="w-full h-auto" /></div><div className="w-full md:w-1/2 space-y-8 pt-4"><h2 className="text-[1.1rem] font-bold tracking-[0.4em] uppercase border-b border-gray-100 pb-4">{item.title}</h2><div className="text-[0.8rem] leading-[2.2] text-gray-600 tracking-wide whitespace-pre-wrap">{item.content}</div></div></div>))}</div>
         ) : activeCategory === 'Commissioned' && !selectedProject ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24 px-4 md:px-8">
-            {Array.from(new Set(currentCategoryItems.map(i => i.title)))
-              .sort((a, b) => {
-                const yearA = a.match(/\d{4}/)?.[0] || "0";
-                const yearB = b.match(/\d{4}/)?.[0] || "0";
-                return parseInt(yearB) - parseInt(yearA);
-              })
-              .map(title => {
-                const cover = currentCategoryItems.find(i => i.title === title && i.isCover) || currentCategoryItems.find(i => i.title === title);
-                return (
-                  <div key={title} onClick={() => { setSelectedProject(title); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="group cursor-pointer flex flex-col items-center text-center px-4 md:px-8">
-                    <div className="aspect-square mb-8 overflow-hidden bg-gray-50 w-full">
-                      {/* 封面也使用縮圖 */}
-                      <img src={cover?.thumbnailUrl || cover?.imageUrl} alt={title} className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-1000" />
-                    </div>
-                    <h2 className="text-[1.125rem] font-medium tracking-[0.2em] uppercase mb-2 opacity-80 group-hover:opacity-100 transition-opacity">{title}</h2>
-                  </div>
-                );
-              })}
+            {Array.from(new Set(currentCategoryItems.map(i => i.title))).sort((a,b) => (b.match(/\d{4}/)?.[0]||"0").localeCompare(a.match(/\d{4}/)?.[0]||"0")).map(title => {
+              const cover = currentCategoryItems.find(i => i.title === title && i.isCover) || currentCategoryItems.find(i => i.title === title);
+              return (<div key={title} onClick={() => { setSelectedProject(title); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="group cursor-pointer flex flex-col items-center text-center px-4 md:px-8"><div className="aspect-square mb-8 overflow-hidden bg-gray-50 w-full"><img src={cover?.thumbnailUrl || cover?.imageUrl} alt={title} className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-1000" /></div><h2 className="text-[1.125rem] font-medium tracking-[0.2em] uppercase mb-2 opacity-80 group-hover:opacity-100 transition-opacity">{title}</h2></div>);
+            })}
           </div>
         ) : (
           <div className="space-y-12">
-            {/* 年份/專案 導覽列 */}
             <header className="sticky top-0 z-20 bg-white/90 backdrop-blur-md py-6 mb-16 border-b border-gray-50 space-y-6">
               {activeCategory === 'Moments in Time' ? (
-                <nav className="flex justify-center space-x-8 md:space-x-12 px-8 overflow-x-auto no-scrollbar">
-                  {allYears.map(year => (
-                    <button key={year} onClick={() => { setActiveYear(year); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className={`text-[0.62rem] uppercase tracking-[0.4em] transition-all duration-500 whitespace-nowrap ${activeYear === year ? 'text-black font-bold border-b border-black pb-1' : 'text-gray-300 hover:text-black'}`}>{year}</button>
-                  ))}
-                </nav>
+                <nav className="flex justify-center space-x-8 md:space-x-12 px-8 overflow-x-auto no-scrollbar">{allYears.map(year => (<button key={year} onClick={() => { setActiveYear(year); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className={`text-[0.62rem] uppercase tracking-[0.4em] transition-all duration-500 whitespace-nowrap ${activeYear === year ? 'text-black font-bold border-b border-black pb-1' : 'text-gray-300 hover:text-black'}`}>{year}</button>))}</nav>
               ) : (
                 <>
                   {activeCategory === 'Design' && (
@@ -246,10 +216,7 @@ function App() {
                 </>
               )}
             </header>
-
             {currentDescription && (<div className="max-w-2xl mx-auto mb-24 px-8 italic text-center text-[0.8rem] leading-[2.2] text-gray-500 tracking-wide font-light whitespace-pre-wrap">{currentDescription}</div>)}
-
-            {/* Gallery Content - 列表顯示使用縮圖 */}
             <div className={isSeamlessLayout ? "flex flex-col w-full max-w-2xl mx-auto" : "columns-1 sm:columns-2 md:columns-3 gap-16 lg:gap-24 space-y-16 lg:space-y-24 px-4 md:px-8 lg:px-12"}>
               {displayItems.map((item) => (
                 <div key={item.id} onClick={() => setSelectedImage(item)} className="break-inside-avoid cursor-crosshair group relative mb-16 lg:mb-24">
@@ -266,15 +233,12 @@ function App() {
         )}
       </main>
 
-      {/* Lightbox - 放大後顯示原始大圖 */}
       <AnimatePresence>{selectedImage && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center bg-white/95 p-4 md:p-12 cursor-zoom-out" onClick={() => setSelectedImage(null)}>
           <button className="absolute top-8 right-8 text-black p-2"><X size={24} strokeWidth={1} /></button>
           <div className="relative flex items-center justify-center max-w-full max-h-full">
             <motion.img key={selectedImage.id} initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} src={selectedImage.imageUrl} className="max-w-full max-h-[85vh] object-contain shadow-sm" />
-            <div className="absolute -bottom-12 left-0 w-full text-center italic text-black/40 tracking-[0.5em] text-[0.6rem] uppercase">
-              {getYearFromPath(selectedImage.imageUrl)} — {selectedImage.title}
-            </div>
+            <div className="absolute -bottom-12 left-0 w-full text-center italic text-black/40 tracking-[0.5em] text-[0.6rem] uppercase">{getYearFromPath(selectedImage.imageUrl)} — {selectedImage.title}</div>
           </div>
           <button className="absolute left-8 top-1/2 -translate-y-1/2 text-gray-300 hover:text-black p-4" onClick={(e) => { e.stopPropagation(); navigateImage('prev'); }}><ChevronLeft size={48} strokeWidth={1} /></button>
           <button className="absolute right-8 top-1/2 -translate-y-1/2 text-gray-300 hover:text-black p-4" onClick={(e) => { e.stopPropagation(); navigateImage('next'); }}><ChevronRight size={48} strokeWidth={1} /></button>

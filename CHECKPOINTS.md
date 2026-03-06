@@ -32,3 +32,7 @@
 - **Message**: Update: Automated thumbnail generation & auto-select first sub-project for Design categories
 - **Status**: Stable
 
+## [checkpoint-20260306-8364] - 2026/3/6 14:58:39
+- **Message**: Update: Restored full BIO content and added interactive effects
+- **Status**: Stable
+
