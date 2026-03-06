@@ -24,11 +24,11 @@ function rgbToHue(r, g, b) {
   return Math.round(h * 60);
 }
 
-// 取得圖片的主色調 Hue
+// 取得圖片的主色調 Hue (用於 Moments in Time 排序)
 async function getDominantHue(filePath) {
   try {
     const { data } = await sharp(filePath)
-      .resize(5, 5, { fit: 'cover' })
+      .resize(10, 10, { fit: 'cover' })
       .raw()
       .toBuffer({ resolveWithObject: true });
     
@@ -64,35 +64,38 @@ function getFiles(dir, allFiles = []) {
   return allFiles;
 }
 
+/**
+ * 解析路徑層級 (修正版)
+ * 結構: public/images/[Category]/[ProjectTitle]/[SubProjectTitle]/image.jpg
+ */
 function getHierarchy(relativePath) {
   const parts = relativePath.split(path.sep);
-  let title = 'Untitled', subTitle = null, category = 'Personal';
+  // parts[0] 是 'images'
+  // parts[1] 是 分類目錄 (moments in time, commissioned, design)
   
-  if (relativePath.includes('moments in time')) {
+  let categoryRaw = parts[1] || '';
+  let title = 'Untitled';
+  let subTitle = null;
+  let category = 'Personal';
+
+  if (categoryRaw.toLowerCase() === 'moments in time') {
     category = 'Personal';
-    const idx = parts.indexOf('moments in time');
-    if (idx !== -1 && parts.length > idx + 1) title = parts[idx+1];
-  } else if (relativePath.includes('commissioned')) {
+    title = parts[2] || 'Untitled'; // 通常是年份 2024
+  } else if (categoryRaw.toLowerCase() === 'commissioned') {
     category = 'Commissioned';
-    const idx = parts.indexOf('commissioned');
-    if (idx !== -1 && parts.length > idx + 1) {
-      title = parts[idx+1];
-      // 支援多層目錄偵測 subTitle
-      if (parts.length > idx + 3) {
-        subTitle = parts[idx+2];
-      }
+    title = parts[2] || 'Untitled';
+    // 偵測是否還有子目錄
+    if (parts.length > 4) {
+      subTitle = parts[3];
     }
-  } else if (relativePath.includes('design')) {
+  } else if (categoryRaw.toLowerCase() === 'design') {
     category = 'Design';
-    const idx = parts.indexOf('design');
-    if (idx !== -1 && parts.length > idx + 1) {
-      title = parts[idx+1];
-      if (parts.length > idx + 2) {
-        const p = parts.slice(idx + 2);
-        if (p.length >= 2) subTitle = p[0];
-      }
+    title = parts[2] || 'Untitled';
+    if (parts.length > 4) {
+      subTitle = parts[3];
     }
   }
+
   return { title, subTitle, category };
 }
 
@@ -130,9 +133,9 @@ async function run() {
 
       if (ext === '.txt') {
         const content = fs.readFileSync(filePath, 'utf-8');
-        const baseName = path.basename(fileName, '.txt').toLowerCase();
-        descriptions[baseName] = content;
-      } else if (ext !== '.txt' && !relativePath.includes('price-list')) {
+        const key = path.basename(fileName, '.txt').toLowerCase().trim();
+        descriptions[key] = content;
+      } else if (!relativePath.includes('price-list')) {
         const { title, subTitle, category } = getHierarchy(relativePath);
         
         let hue = 0;
@@ -144,7 +147,6 @@ async function run() {
           id: galleryItems.length + 1,
           title, subTitle, category,
           imageUrl: '/' + relativePath.split(path.sep).join('/'),
-          aspectRatio: 'square',
           isCover: fileName.toLowerCase().includes('cover'),
           hue: hue
         });
@@ -154,7 +156,9 @@ async function run() {
     fs.writeFileSync(outputGalleryFile, JSON.stringify(galleryItems, null, 2));
     fs.writeFileSync(outputDescFile, JSON.stringify(descriptions, null, 2));
     fs.writeFileSync(outputPriceFile, JSON.stringify(priceListData, null, 2));
-    console.log(`✨ Successfully generated ${galleryItems.length} items. Color analysis completed.`);
+    
+    console.log(`✨ Successfully generated ${galleryItems.length} items.`);
+    console.log(`📝 Processed ${Object.keys(descriptions).length} project descriptions.`);
   } catch (error) {
     console.error('❌ Error:', error);
   }
