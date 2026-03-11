@@ -313,7 +313,7 @@ function App() {
               <div className="space-y-12">
                 <header className="sticky top-0 z-20 bg-white/90 dark:bg-[#0a0a0a]/90 backdrop-blur-md py-6 mb-16 border-b border-gray-50 dark:border-gray-900 space-y-6">
                   {activeCategory === 'Moments in Time' ? (
-                    <nav className="flex justify-center space-x-8 md:space-x-12 px-8 overflow-x-auto no-scrollbar">
+                    <nav className="flex justify-start md:justify-center space-x-8 md:space-x-12 px-8 overflow-x-auto no-scrollbar scroll-smooth">
                       {allYears.map(year => (
                         <button key={year} onClick={() => { setActiveYear(year); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className={`text-[0.62rem] uppercase tracking-[0.4em] transition-all duration-500 whitespace-nowrap ${activeYear === year ? 'text-black dark:text-white font-bold border-b border-black dark:border-white pb-1' : 'text-gray-300 hover:text-black dark:hover:text-white'}`}>{year}</button>
                       ))}
@@ -321,9 +321,9 @@ function App() {
                   ) : (
                     <>
                       {activeCategory === 'Design' && (
-                        <nav className="flex justify-center space-x-8 md:space-x-12 px-8 overflow-x-auto no-scrollbar">
+                        <nav className="flex justify-start md:justify-center space-x-8 md:space-x-12 px-8 overflow-x-auto no-scrollbar">
                           {Array.from(new Set(currentCategoryItems.map(i => i.title))).sort().map(cat => (
-                            <button key={cat} onClick={() => { setSelectedProject(cat); setSelectedSubProject(null); }} className={`text-[0.62rem] uppercase tracking-[0.4em] transition-all duration-500 ${selectedProject === cat ? 'text-black dark:text-white font-bold' : 'text-gray-300 hover:text-black dark:hover:text-white'}`}>{cat}</button>
+                            <button key={cat} onClick={() => { setSelectedProject(cat); setSelectedSubProject(null); }} className={`text-[0.62rem] uppercase tracking-[0.4em] transition-all duration-500 whitespace-nowrap ${selectedProject === cat ? 'text-black dark:text-white font-bold' : 'text-gray-300 hover:text-black dark:hover:text-white'}`}>{cat}</button>
                           ))}
                         </nav>
                       )}
@@ -336,9 +336,9 @@ function App() {
                         </div>
                       )}
                       {subProjectList.length > 0 && (
-                        <nav className="flex justify-center space-x-6 md:space-x-8 px-8 overflow-x-auto no-scrollbar pt-2">
+                        <nav className="flex justify-start md:justify-center space-x-6 md:space-x-8 px-8 overflow-x-auto no-scrollbar pt-2">
                           {subProjectList.map(sub => (
-                            <button key={sub} onClick={() => setSelectedSubProject(sub)} className={`text-[0.56rem] uppercase tracking-[0.3em] transition-all duration-500 ${selectedSubProject === sub ? 'text-black dark:text-white border-b border-black dark:border-white' : 'text-gray-300 hover:text-black dark:hover:text-white'}`}>{sub}</button>
+                            <button key={sub} onClick={() => setSelectedSubProject(sub)} className={`text-[0.56rem] uppercase tracking-[0.3em] transition-all duration-500 whitespace-nowrap ${selectedSubProject === sub ? 'text-black dark:text-white border-b border-black dark:border-white' : 'text-gray-300 hover:text-black dark:hover:text-white'}`}>{sub}</button>
                           ))}
                         </nav>
                       )}
