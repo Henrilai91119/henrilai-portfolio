@@ -218,9 +218,9 @@ function App() {
   return (
     <div className="min-h-screen bg-white dark:bg-[#0a0a0a] font-sans text-black dark:text-white selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black transition-colors duration-500">
       {/* Sidebar */}
-      <header className="p-8 md:p-12 lg:fixed lg:w-64 lg:h-screen lg:flex lg:flex-col lg:justify-between z-30 bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-sm lg:bg-transparent lg:dark:bg-transparent">
-        <div>
-          <h1 className="mb-12"><a href="/"><img src="/images/web logo/web logo.png" alt="Logo" className="w-16 md:w-20 h-auto dark:invert" /></a></h1>
+      <header className="p-8 md:p-12 lg:fixed lg:w-64 lg:h-screen flex flex-col justify-between z-30 bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-sm lg:bg-transparent lg:dark:bg-transparent">
+        <div className="space-y-12">
+          <h1 className=""><a href="/"><img src="/images/web logo/web logo.png" alt="Logo" className="w-16 md:w-20 h-auto dark:invert" /></a></h1>
           <nav>
             <ul className="space-y-4">
               {NAV_ITEMS.map((label) => (
@@ -236,7 +236,7 @@ function App() {
             </ul>
           </nav>
         </div>
-        <footer className="space-y-8">
+        <footer className="space-y-8 mt-16 lg:mt-0">
           <div className="flex items-center space-x-6">
             <a href="https://www.instagram.com/henrilai.photography/" target="_blank" rel="noopener noreferrer" className="grayscale opacity-30 hover:opacity-100 transition-all duration-700">
               <Instagram size={16} strokeWidth={1.5} />
