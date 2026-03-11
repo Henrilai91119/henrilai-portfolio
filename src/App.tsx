@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Instagram, X, ArrowLeft, ChevronLeft, ChevronRight, Moon, Sun, Youtube } from 'lucide-react';
+import { Instagram, X, ArrowLeft, ChevronLeft, ChevronRight, Moon, Sun, Youtube, ArrowUp } from 'lucide-react';
 
 import GALLERY_ITEMS_JSON from './gallery-items.json';
 import PROJECT_DESCRIPTIONS from './project-descriptions.json';
@@ -99,6 +99,20 @@ function App() {
   const [selectedSubProject, setSelectedSubProject] = useState<string | null>(null);
   const [activeYear, setActiveYear] = useState<string | null>(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  // 監聽捲動位置，決定是否顯示「回到頂部」按鈕
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // 初始化主題：預設為淺色模式
   useEffect(() => {
@@ -376,6 +390,23 @@ function App() {
             <button className="absolute left-8 top-1/2 -translate-y-1/2 text-gray-300 hover:text-black dark:hover:text-white p-4" onClick={(e) => { e.stopPropagation(); navigateImage('prev'); }}><ChevronLeft size={48} strokeWidth={1} /></button>
             <button className="absolute right-8 top-1/2 -translate-y-1/2 text-gray-300 hover:text-black dark:hover:text-white p-4" onClick={(e) => { e.stopPropagation(); navigateImage('next'); }}><ChevronRight size={48} strokeWidth={1} /></button>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Mobile Scroll to Top Button */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.5 }}
+            onClick={scrollToTop}
+            className="fixed bottom-8 right-8 z-40 p-3 bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-md border border-gray-100 dark:border-gray-800 rounded-full shadow-lg lg:hidden"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <ArrowUp size={20} className="text-black dark:text-white" strokeWidth={1.5} />
+          </motion.button>
         )}
       </AnimatePresence>
     </div>
