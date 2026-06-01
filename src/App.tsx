@@ -113,6 +113,20 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Helper to generate the current hash string from state
+  const getCurrentHash = () => {
+    let hashParts = [activeCategory];
+    if (activeCategory === 'Moments in Time' && activeYear) {
+      hashParts.push(activeYear);
+    } else if ((activeCategory === 'Commissioned' || activeCategory === 'Design') && selectedProject) {
+      hashParts.push(selectedProject);
+      if (selectedSubProject) {
+        hashParts.push(selectedSubProject);
+      }
+    }
+    return `#${hashParts.join('/')}`;
+  };
+
   // Parse hash to state
   const parseHash = () => {
     const rawHash = window.location.hash.replace('#', '');
@@ -123,15 +137,15 @@ function App() {
       try { return decodeURIComponent(part); } catch (e) { return part; }
     });
 
-    const cat = parts[0];
+    const [cat, p1, p2] = parts;
     if (NAV_ITEMS.includes(cat)) {
       setActiveCategory(cat);
-      if (cat === 'Moments in Time' && parts[1]) {
-        setActiveYear(parts[1]);
-      } else if ((cat === 'Commissioned' || cat === 'Design') && parts[1]) {
-        setSelectedProject(parts[1]);
-        if (cat === 'Design' && parts[2]) {
-          setSelectedSubProject(parts[2]);
+      if (cat === 'Moments in Time' && p1) {
+        setActiveYear(p1);
+      } else if ((cat === 'Commissioned' || cat === 'Design') && p1) {
+        setSelectedProject(p1);
+        if (cat === 'Design' && p2) {
+          setSelectedSubProject(p2);
         }
       }
     }
@@ -149,18 +163,7 @@ function App() {
   // Synchronize state to URL hash
   useEffect(() => {
     if (isParsingHash.current) return;
-
-    let hashParts = [activeCategory];
-    if (activeCategory === 'Moments in Time' && activeYear) {
-      hashParts.push(activeYear);
-    } else if ((activeCategory === 'Commissioned' || activeCategory === 'Design') && selectedProject) {
-      hashParts.push(selectedProject);
-      if (selectedSubProject) {
-        hashParts.push(selectedSubProject);
-      }
-    }
-    
-    const newHash = `#${hashParts.join('/')}`;
+    const newHash = getCurrentHash();
     if (decodeURIComponent(window.location.hash) !== decodeURIComponent(newHash)) {
       window.history.replaceState(null, '', encodeURI(newHash));
     }
@@ -168,19 +171,7 @@ function App() {
 
   const handleCopyLink = async (e?: React.MouseEvent) => {
     e?.stopPropagation();
-    
-    // Construct the URL directly from state parts to ensure it is clean and decoded (readable)
-    let hashParts = [activeCategory];
-    if (activeCategory === 'Moments in Time' && activeYear) {
-      hashParts.push(activeYear);
-    } else if ((activeCategory === 'Commissioned' || activeCategory === 'Design') && selectedProject) {
-      hashParts.push(selectedProject);
-      if (selectedSubProject) {
-        hashParts.push(selectedSubProject);
-      }
-    }
-    
-    const url = `${window.location.origin}${window.location.pathname}#${hashParts.join('/')}`;
+    const url = `${window.location.origin}${window.location.pathname}${getCurrentHash()}`;
     
     try {
       let successful = false;
