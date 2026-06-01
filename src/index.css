@@ -1,0 +1,54 @@
+@tailwind base;
+@layer base {
+  html {
+    /* 平滑切換模式 */
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  img {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+}
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  /* 磁吸按鈕的基礎樣式 */
+  .magnetic-button {
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+}
+
+:root {
+  font-family: 'Inter', 'Noto Sans TC', sans-serif;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 自定義選取顏色 */
+.selection\:bg-black ::selection {
+  background-color: black;
+  color: white;
+}
+
+.dark .selection\:bg-black ::selection {
+  background-color: white;
+  color: black;
+}
